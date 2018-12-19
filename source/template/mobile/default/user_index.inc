@@ -103,7 +103,18 @@
                         </div>
                     </a>
                 </div>
-                
+
+                <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3 pad0">
+                    <a href="{:url('users/mytransfer')}">
+                        <div class="thumbnail" style="border:none;">
+                            <img src="{$skin}img/user/mybank.png" alt="游戏和彩票互转" />
+                            <div class="caption">
+                                <h3>游戏&彩票互转</h3>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+
                 <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3 pad0">
                     <a href="{:url('users/changePass')}">
                         <div class="thumbnail" style="border:none;">
