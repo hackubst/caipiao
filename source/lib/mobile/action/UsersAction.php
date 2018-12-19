@@ -439,6 +439,7 @@ class UsersAction extends BaseAction
         return $this->display('user_reg');
     }
     private function act_gamereg(){
+        checkIP();
         $data=[];
         $data['mobile']=Req::post('account');
         $data['password']=Req::post('password');
@@ -785,6 +786,7 @@ class UsersAction extends BaseAction
     }
 
     private function act_gamemoneyin() {
+        checkIP();
         $money =Req::request('money','intval')?:0;
         $Score = $money * 10;
         $code = Req::request('code');

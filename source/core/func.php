@@ -457,3 +457,51 @@ function curPageURL()
 	return $pageURL;
 }
 
+function checkIP()
+{
+    if ( getenv( "HTTP_CLIENT_IP" ) )
+    {
+        $ip = getenv( "HTTP_CLIENT_IP" );
+    }
+    else if ( getenv( "HTTP_X_FORWARDED_FOR" ) )
+    {
+        $ip = getenv( "HTTP_X_FORWARDED_FOR" );
+    }
+    else if ( getenv( "HTTP_X_FORWARDED" ) )
+    {
+        $ip = getenv( "HTTP_X_FORWARDED" );
+    }
+    else if ( getenv( "HTTP_FORWARDED_FOR" ) )
+    {
+        $ip = getenv( "HTTP_FORWARDED_FOR" );
+    }
+    else if ( getenv( "HTTP_FORWARDED" ) )
+    {
+        $ip = getenv( "HTTP_FORWARDED" );
+    }
+    else
+    {
+        $ip = $_SERVER['REMOTE_ADDR'];
+    }
+
+
+    if(globalFilterKey($ip)) exit("kdy28:Illegal operation!");
+
+
+    if($_SERVER['PHP_SELF'] != "/kdywlist-003.php"){
+        global $db;
+        $sql = "select ip from admin_ips where ip='{$ip}' limit 1";
+        $result = $db->query($sql);
+        $RowCount = $db->num_rows($result);
+        if(empty($RowCount) || empty($ip)){
+
+            echo "<META http-equiv=Content-Type content=\"text/html; charset=utf-8\">\r\n";
+            echo "对不起，你不能访问这里!";
+            exit;
+        }
+    }
+}
+
+function globalFilterKey($str){
+    return preg_match('/PHP_EOL|replace|group_concat|table|create|call|drop|database|alter|select|insert|update|delete|name_const|where|having|from|\sand\s|\sor\s|truncate|script|union|into|\'|\/\*|\*|\.\.\/|\.\/|#|load_file|outfile/i',$str,$matches);
+}
