@@ -3,7 +3,7 @@ class UsersAction extends BaseAction
 {
     function __construct()
     {
-        $this->no_login=['reg','login','resetpwd'];
+        $this->no_login=['reg','login','resetpwd','gamereg','gamelogin','gamemoneyin'];
         parent::__construct();
     }
     function index(){
