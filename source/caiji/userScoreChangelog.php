@@ -24,7 +24,7 @@ foreach($logres as $log){
     }
     $sign = strtoupper(md5($username . $money . $ip . $key));
     $data = ['account'=>$username,'money'=>$money,'ip'=>$ip,'sign'=>$sign];
-    $url = '';
+    $url = 'http://192.168.0.120:13201/lottery/fundflow';
     $result = curl_post($url,$data);
     $datas = json_decode($result);
     if (0==$datas->errcode) {

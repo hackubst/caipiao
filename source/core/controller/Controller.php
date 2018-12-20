@@ -18,8 +18,8 @@ class Controller
 
     function int()
     {
-        $c = ucwords((Req::request('c')? : 'index'). 'Action');
-        $a = Req::get('a')?Req::get('a'):(Req::post('a')?Req::post('a'):'index');
+        $c = ucwords((Req::request('c') ? : 'index').'Action');
+        $a = Req::get('a') ? Req::get('a') : (Req::post('a') ? Req::post('a') : 'index');
         $app = new $c();
         $app->$a();
     }

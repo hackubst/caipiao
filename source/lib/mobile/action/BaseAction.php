@@ -25,9 +25,7 @@ class BaseAction extends Action{
         
         $this->global_check();
         if(!empty($_GET['referer']))setcookie('referer',$_GET['referer']);
-        
-        
-        
+                
         if(isset($_SESSION['logintime']) && !empty($_SESSION['logintime'])){
         	$sql = "select logintime from users where id = '{$_SESSION['usersid']}'";
         	$result=db::get_one($sql,'assoc');

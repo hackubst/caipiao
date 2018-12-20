@@ -1,6 +1,6 @@
 <?php
 $web_pwd_encrypt_prefix="Tmd##123##0783#Tmd";
-$web_datahost="172.19.95.147";//
+$web_datahost='127.0.0.1';//172.19.95.147
 $web_database="kdy28";
 $web_datauser="kdy28";
 $web_datapassword="kdy28*87902204";

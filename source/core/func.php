@@ -484,17 +484,13 @@ function checkIP()
         $ip = $_SERVER['REMOTE_ADDR'];
     }
 
-
     if(globalFilterKey($ip)) exit("kdy28:Illegal operation!");
 
-
     if($_SERVER['PHP_SELF'] != "/kdywlist-003.php"){
-        global $db;
+        //global $db;
         $sql = "select ip from admin_ips where ip='{$ip}' limit 1";
-        $result = $db->query($sql);
-        $RowCount = $db->num_rows($result);
-        if(empty($RowCount) || empty($ip)){
-
+        $result = db::get_one()($sql);
+        if(empty(result) || empty($ip)){
             echo "<META http-equiv=Content-Type content=\"text/html; charset=utf-8\">\r\n";
             echo "对不起，你不能访问这里!";
             exit;
