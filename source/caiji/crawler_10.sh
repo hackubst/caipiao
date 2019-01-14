@@ -1,21 +1,21 @@
 #!/bin/bash
 
-cd /alidata/www/kdy28/caiji
+cd /home/www/caipiao/caiji
 
 sleep 10
-/alidata/www/kdy28/caiji/crawler.sh
+/home/www/caipiao/caiji/crawler.sh
 
 sleep 10
-/alidata/www/kdy28/caiji/crawler.sh
+/home/www/caipiao/caiji/crawler.sh
 
 sleep 10
-/alidata/www/kdy28/caiji/crawler.sh
+/home/www/caipiao/caiji/crawler.sh
 
 sleep 10
-/alidata/www/kdy28/caiji/crawler.sh
+/home/www/caipiao/caiji/crawler.sh
 
 sleep 10
-/alidata/www/kdy28/caiji/crawler.sh
+/home/www/caipiao/caiji/crawler.sh
 
 
 

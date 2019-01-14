@@ -1,15 +1,17 @@
 @CHARSET "UTF-8";
 body{
 	font-family: "Helvetica Neue", Helvetica, Arial, "Microsoft YaheiUI", "Microsoft YaHei", SimHei, "\5B8B\4F53", simsun, sans-serif;
-	color:#5c6570;
-	background:#fff;
+	color:#ecc296; 
+	background:#1f1c1b !important;
+	/* color:#5c6570;
+	background: #fff !important; */
 	font-size:12px;
 }
 ul,li{
 	list-style-type: none;
 }
-#main{
-	margin:50px 0 100px 0;
+#main {
+	margin:68px 0 100px 0;
 }
 a:focus,a:hover{
 	outline:none;
@@ -41,7 +43,8 @@ button{
 	border-radius:50%;
 }
 .pad0{
-	padding:0;
+	padding:0px;
+	text-align: center;
 }
 .pad4{
 	padding:0 4px;
@@ -50,7 +53,8 @@ button{
 	font-weight:bold;
 }
 .white_bg{
-	background:#fff;
+	/* background:#fff; */
+	background:#1f1c1b !important;
 }
 .small-36 .input-group-addon{
 	padding:0 8px;
@@ -81,11 +85,16 @@ button{
 table thead tr th,table tbody tr td{
 	text-align:center;
 }
-.nav_bg {color:#fff;
-	background: #9D3434;
+
+.nav_bg, nav.navbar {
+	color:#fff;
+	background-image: url('../new_imgs/main/topbar.png');
+	background-size: 100% 115%; 
+	padding-bottom: 1px;
+	/* background: #9D3434;
 	background:-webkit-gradient(linear, 0 0, 0 100%, from(#9D3434), to(#8F1E1E));
 	background:-moz-linear-gradient(top,#9D3434,#8F1E1E);
-	filter:progid:DXImageTransform.Microsoft.gradient(startColorstr=#9D3434,endColorstr=#8F1E1E,grandientType=0);
+	filter:progid:DXImageTransform.Microsoft.gradient(startColorstr=#9D3434,endColorstr=#8F1E1E,grandientType=0); */
 }
 
 
@@ -120,19 +129,23 @@ table thead tr th,table tbody tr td{
 }
 
 
-
-
-
-
-
-
-
-
-
-
 /*	这个是顶部导航。	*/
-.logo{
+.navbar-brand {
 	padding:5px;
+}
+.navbar-brand > img {
+	width: 26px;
+	height: 36px;	
+	padding: 5px 0px 0px 5px;
+}
+.navbar-toggle > img {
+	width: 35px;	
+}
+.navbar-toggle.break {
+	padding: 3px 10px;
+}
+.navbar-toggle.break > img {
+	width: 30px;	
 }
 .computer{padding:10px 5px;}
 .navbar-toggle{
@@ -146,16 +159,36 @@ table thead tr th,table tbody tr td{
 .navbar-header{
 	box-shadow:0 1 10px rgba(0,0,0,0.3);
 }
-
+.navbar_title {
+	position:absolute;
+	top:15px;
+	left:33%;
+	width:30%;
+	text-align:center;
+	font-size:16px;
+	text-shadow:2px 2px 3px;
+	color:#ecc296;
+}
 
 #press .active span{background-color: #0AC0EF;color:#fff}
-
-
-
-
-
-
-
+.pad0.press,.pad0.press span {
+	border: 0px !important;
+}
+/*开奖中*/
+.press button.kj {
+	width: 80px;
+	height: 34px;
+	border: 0px !important;
+	background-image: url('../new_imgs/bet/btn_kaijiang.png') !important;
+	background-size: 100% 100%;
+	background-color: transparent;
+	margin-top: -5px;
+}
+/*投注*/
+.press #press button.kj {
+	background-image: url('../new_imgs/bet/btn_touzhu.png') !important;
+	background-size: 100% 100%;
+}
 
 
 /*   这个是底部悬浮的导航		*/

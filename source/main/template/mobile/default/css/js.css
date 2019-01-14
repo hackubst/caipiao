@@ -24,13 +24,22 @@ ul,li,dl,ol{
 	width:20%;
 	float:left;
 }
-.list-group .list-group-item{
+.list-group .list-group-item {
 	padding:0;
 	margin:0;
 	border:none;
-	border-bottom:1px solid #ddd;
+	/* border-bottom:1px solid #ddd; */
+	font-size: 16px;
+	color: #978D6E;
+	line-height: 36px;
+	background-color: transparent !important;
+	border-bottom: 1px solid #6b614f;
 }
-.list-group a{
+.list-group .list-group-item:hover {
+	color: rgb(163, 150, 111) !important;
+	background: #2c2927;
+}
+.list-group a {
 	width:100%;
 	display:block;
 	clear:both;
@@ -63,18 +72,21 @@ ul,li,dl,ol{
 .small-show a{
 	text-align:center;
 }
-.small-btn{
+.small-btn {
 	width:100%;
 	margin:0 auto;
 }
+.small-btn.row {
+	margin-top: 8px; 
+}
 #dx .small-red,#press .small-red{color:#fff}
 .small-bg{
-	display:block;
 	font-size:16px;
 	padding:0;
 	width:95%;
-	height:35px;
-	line-height:35px;
+	height:38px;
+	line-height:3px;
+	padding-top:3px;
 	margin: 0 auto 5px;
 	color:#666;
 	font-weight: bold;
@@ -108,13 +120,12 @@ ul,li,dl,ol{
 
 /* 	急速金豆明细	*/
 .detailed_coin{
-	height:40px;
-	line-height: 40px;
+	height:32px;
+	line-height: 32px;
 	padding:0 10px;
 }
 .detailed_coin p{
 	margin:0 0 5px 0;
-	text-align:left;
 	text-overflow:ellipsis;
 	overflow:hidden;
 	white-space:nowrap;
@@ -126,6 +137,30 @@ table tbody tr td img{
 	margin:0 auto;
 }
 
+ul.new li lable {
+	display: inline-block;
+	min-width: 100px;
+	text-align: right;
+	padding-right: 15px;
+    width: 23%;
+}
+ul.new li {
+	height: 33px;
+	line-height: 33px;
+
+}
+ul.new li select, ul.new li input {
+	display: inline-block;
+	min-width: 200px;
+	width: 60%;
+	height: 28px;
+	line-height: 28px;
+	background-color: transparent;
+	border: 1px solid #4f4332;
+	padding: 0px 8px;
+	color: #a5976e;
+	font-size: 15px;
+}
 
 /*  投注  */
 
@@ -188,13 +223,12 @@ table tbody tr td img{
 }
 .btn-tz{
 	padding:0px 0px;
-	font-size:14px;
+	font-size:15px;
 	clear:both;
-	margin:0px 1px 5px 1px;
-	
+	margin:0px 2px 5px;	
 	border-radius: 90px;
-	height:35px;
-	line-height:35px;
+	height:34px;
+	line-height:34px;
 	font-weight:600;
 }
 
@@ -225,7 +259,7 @@ table tbody tr td img{
     left:0;
     right: 0;
 	top:auto;
-	bottom:130px;
+	bottom:125px;
 	margin: auto;
 	position:absolute;
 	overflow:auto;
@@ -276,10 +310,8 @@ table tbody tr td img{
 }
 
 .betXSmall {
-    font-size: 0.60rem;
+    font-size: 0.85rem;
     font-weight:200;
-    margin-top:-23px;
-    margin-left:0px;
     color:#000;
 }
 
@@ -298,16 +330,24 @@ table tbody tr td img{
 	width:30%;
 }
 .bottom_left p{
-	margin:5px 0 0 5px;
+	width:inherit;
+	color:#fff;
+	font-size:14px;
+	margin:5px 5px 0px;
+	text-align: center;
 }
 .bottom_left .chips{
-	width:100%;
-	margin:5px 0 0 5px;
+	width:inherit;
+	margin:5px 5px 0px;
+	display:inline-block;
+	text-align: center;
 	clear:both;
 }
+.bottom_left .chips a {
+	display:inline-block;
+}
 .bottom_left .chips img{
-	float:left;
-	margin:3px 3% 3px 5px;
+	margin:3px 5px;
 }
 .bottom_right dd{
 	width:33%;
@@ -430,7 +470,13 @@ p.jl{
 .auto_table .form-control{
 	padding:0 3px;
 }
-
+.table_list {
+	background-color: transparent !important;
+}
+.table_list > tbody > tr > th {
+	text-align: center;
+	border-color: #755222;
+}
 
 /*   游戏规则		 */
 .rule_well{
@@ -447,7 +493,24 @@ p.jl{
 	text-indent:30px;
 	line-height: 1.6;
 }
-
+.table-striped > tbody > tr:nth-of-type(2n+1) {
+	background-color: transparent;
+}
+.table-bordered > tbody > tr > th, .table-bordered > thead > tr > th {
+	border-color: #755222;
+	color: #c4ac70;
+	font-size: 115%;
+}
+.table-bordered > tbody > tr > td, .table-bordered > tfoot > tr > td, .table-bordered > tfoot > tr > th, .table-bordered > thead > tr > td {
+	border-color: #5e4f3a;
+	color: #8f815e;
+}
+.table-striped > tbody > tr .title, .table-striped > tbody > tr td.text-center {
+	font-size: 115%;
+	color: #cfba81;
+	text-align: center;
+	vertical-align: middle;
+}
 
 /*	走势图	*/
 .jg{
@@ -461,7 +524,7 @@ p.jl{
 }
 
 #list{
-	margin-bottom:10px;
+	margin-bottom:10px; 
 }
 #headingOne{
 	font-size:14px;

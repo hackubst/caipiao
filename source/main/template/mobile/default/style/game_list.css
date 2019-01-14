@@ -2,17 +2,26 @@
 body{
 	background:#fff;
 }
-.panel-heading{
-	padding:0;
+.panel-default {
+	border: none;
+	border-radius: 0px !important;
+	background-color: transparent !important;
 }
-.panel_line a{
+.panel-heading {
+	padding:0;
+	background-image: url(../new_imgs/main/game_bg.png);
+	background-size: 100% 100%;
+	background-color: transparent !important;
+}
+
+.panel_line a {
 	display:block;
-	padding:0 10px;
-	height:32px;
-	line-height: 32px;
+	padding:0 20px;
+	height: 35px;
+	line-height: 35px;
 	text-decoration:none;
-	color:#333;
 	font-size:14;
+
 }
 .js_bg{
 	display:block;
@@ -87,19 +96,22 @@ body{
 	padding:0px 0;
 }
 .list_game li{
-	border-bottom:1px solid #eee;
+	/* border-bottom: 1px solid #eee; */
+	border-bottom: 1px solid #6b614f;
 }
 .list_game li a{
 	display:inline-block;
 	padding:5px 0px 5px 15px;
 	text-decoration:none;
-	font-size:12px;
+	font-size:14px;
+	line-height: 25px;
 	letter-spacing:1px;
-	color:#666;
+	/* color:#666; */
+	color: #978D6E;
 	width:24%;
 }
 .list_game li a:hover,.list_game li a:focus{
-	background: #eee;
+	background: #2c2927;
 }
 .right_caret{
 	padding:0 3px;

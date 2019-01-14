@@ -16,7 +16,10 @@
             <div id="panels" class="panel-group">
                 <div class="panel panel-default">
                     <div class="panel-heading panel_heading">
-                        <h4 class="panel-title panel_line" style="font-size:14px;"><a href="#js" data-parent="#panels" data-toggle="collapse" style="color:#e64047;border-left:3px solid #e64047;">急速类</a></h4>
+                        <h4 class="panel-title panel_line" style="font-size:14px;"><a href="#js" data-parent="#panels" data-toggle="collapse" style="color:#e64047;">
+                            <!-- 急速类 border-left:3px solid #e64047; -->
+                            <img src="template/mobile/default/new_imgs/main/game_name1.png" alt="急速类" style="height:28px;" />
+                        </a></h4>
                     </div>
                     <div id="js" class="panel-collapse collapse in">
                         <div class="collapse-body">
@@ -38,7 +41,10 @@
                 </div>
                 <div class="panel panel-default">
                     <div class="panel-heading panel_heading">
-                        <h4 class="panel-title panel_line" style="font-size:14px;"><a href="#bj" data-parent="#panels" data-toggle="collapse" style="color:#6a25cb;border-left:3px solid #6a25cb;">北京类</a></h4>
+                        <h4 class="panel-title panel_line" style="font-size:14px;"><a href="#bj" data-parent="#panels" data-toggle="collapse" style="color:#6a25cb;">
+                            <!-- 北京类 border-left:3px solid #6a25cb; -->
+                            <img src="template/mobile/default/new_imgs/main/game_name2.png" alt="北京类" style="height:28px;" />
+                        </a></h4>
                     </div>
                     <div id="bj" class="panel-collapse collapse in">
                         <div class="collapse-body">
@@ -60,7 +66,10 @@
                 </div>
                 <div class="panel panel-default">
                     <div class="panel-heading panel_heading">
-                        <h4 class="panel-title panel_line" style="font-size:14px;"><a href="#pk" data-parent="#panels" data-toggle="collapse" style="color:#fd8823;border-left:3px solid #fd8823;">PK类</a></h4>
+                        <h4 class="panel-title panel_line" style="font-size:14px;"><a href="#pk" data-parent="#panels" data-toggle="collapse" style="color:#fd8823;">
+                            <!-- PK类 border-left:3px solid #fd8823; -->
+                            <img src="template/mobile/default/new_imgs/main/game_name3.png" alt="PK类" style="height:28px;" />
+                        </a></h4>
                     </div>
                     <div id="pk" class="panel-collapse collapse in">
                         <div class="collapse-body">
@@ -81,7 +90,10 @@
                 </div>
                 <div class="panel panel-default">
                     <div class="panel-heading panel_heading">
-                        <h4 class="panel-title panel_line" style="font-size:14px;"><a href="#jnd" data-parent="#panels" data-toggle="collapse" style="color:#026fdf;border-left:3px solid #026fdf;">加拿大类</a></h4>
+                        <h4 class="panel-title panel_line" style="font-size:14px;"><a href="#jnd" data-parent="#panels" data-toggle="collapse" style="color:#026fdf;">
+                            <!-- 加拿大类 border-left:3px solid #026fdf; -->
+                            <img src="template/mobile/default/new_imgs/main/game_name4.png" alt="加拿大类" style="height:28px;" />
+                        </a></h4>
                     </div>
                     <div id="jnd" class="panel-collapse collapse in">
                         <div class="collapse-body">
@@ -103,7 +115,10 @@
                 </div>
                 <div class="panel panel-default">
                     <div class="panel-heading panel_heading">
-                        <h4 class="panel-title panel_line" style="font-size:14px;"><a href="#dd" data-parent="#panels" data-toggle="collapse" style="color:#9aaa00;border-left:3px solid #9aaa00;">蛋蛋类</a></h4>
+                        <h4 class="panel-title panel_line" style="font-size:14px;"><a href="#dd" data-parent="#panels" data-toggle="collapse" style="color:#9aaa00;">
+                            <!-- 蛋蛋类 border-left:3px solid #9aaa00; -->
+                            <img src="template/mobile/default/new_imgs/main/game_name5.png" alt="蛋蛋类" style="height:28px;" />
+                        </a></h4>
                     </div>
                     <div id="dd" class="panel-collapse collapse in">
                         <div class="collapse-body">
@@ -122,40 +137,13 @@
                             </ul>
                         </div>
                     </div>
-                </div>
-
-				<!--  
+                </div>                
                 <div class="panel panel-default">
                     <div class="panel-heading panel_heading">
-                        <h4 class="panel-title panel_line" style="font-size:14px;"><a href="#qt" data-parent="#panels" data-toggle="collapse" style="color:#272ba6;border-left:3px solid #272ba6;">首尔类 </a></h4>
-                    </div>
-                    <div id="qt" class="panel-collapse collapse in">
-                        <div class="collapse-body">
-                            <ul class="list-unstyled list_game" style="margin-bottom:0;">
-                                <li>
-                                <a href="{:url('game/game/id/20/')}" alt="首尔11"><img src="{$skin}img/game_list/right_caret6.png" class="img-responsive right_caret" alt=""> 首尔11</a>
-                                <a href="{:url('game/game/id/19/')}" alt="首尔16"><img src="{$skin}img/game_list/right_caret6.png" class="img-responsive right_caret" alt=""> 首尔16</a>
-                                </li>
-                                <li>
-                                <a href="{:url('game/game/id/18/')}" alt="首尔28"><img src="{$skin}img/game_list/right_caret6.png" class="img-responsive right_caret" alt=""> 首尔28</a>
-                                <a href="{:url('game/game/id/21/')}" alt="首尔36"><img src="{$skin}img/game_list/right_caret6.png" class="img-responsive right_caret" alt=""> 首尔36</a>
-                                </li>
-                                <li>
-                                <a href="{:url('game/game/id/30/')}" alt="首尔外围"><img src="{$skin}img/game_list/right_caret6.png" class="img-responsive right_caret" alt=""> 首尔外围</a>
-                                <a href="{:url('game/game/id/31/')}" alt="首尔定位"><img src="{$skin}img/game_list/right_caret6.png" class="img-responsive right_caret" alt=""> 首尔定位</a>
-                                </li>
-                                <li>
-                                <a href="{:url('game/game/id/34/')}" alt="首尔28固定"><img src="{$skin}img/game_list/right_caret6.png" class="img-responsive right_caret" alt=""> 首尔28固定</a>
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-                -->
-                
-                <div class="panel panel-default">
-                    <div class="panel-heading panel_heading">
-                        <h4 class="panel-title panel_line" style="font-size:14px;"><a href="#airship" data-parent="#panels" data-toggle="collapse" style="color:#fd8823;border-left:3px solid #fd8823;">飞艇类</a></h4>
+                        <h4 class="panel-title panel_line" style="font-size:14px;"><a href="#airship" data-parent="#panels" data-toggle="collapse" style="color:#fd8823;">
+                            <!-- 飞艇类 border-left:3px solid #fd8823; -->
+                            <img src="template/mobile/default/new_imgs/main/game_name6.png" alt="飞艇类" style="height:28px;" />
+                        </a></h4>
                     </div>
                     <div id="airship" class="panel-collapse collapse in">
                         <div class="collapse-body">
@@ -173,11 +161,12 @@
                         </div>
                     </div>
                 </div>
-                
-                
                 <div class="panel panel-default">
                     <div class="panel-heading panel_heading">
-                        <h4 class="panel-title panel_line" style="font-size:14px;"><a href="#qt" data-parent="#panels" data-toggle="collapse" style="color:#272ba6;border-left:3px solid #272ba6;">时时彩类 </a></h4>
+                        <h4 class="panel-title panel_line" style="font-size:14px;"><a href="#qt" data-parent="#panels" data-toggle="collapse" style="color:#272ba6;">
+                            <!-- 时时彩 border-left:3px solid #272ba6; -->
+                            <img src="template/mobile/default/new_imgs/main/game_name7.png" alt="时时彩" style="height:28px;" />
+                        </a></h4>
                     </div>
                     <div id="qt" class="panel-collapse collapse in">
                         <div class="collapse-body">
@@ -189,14 +178,10 @@
                         </div>
                     </div>
                 </div>
-                
-                
             </div>
-
         </div>
     </div>
 </div>
-{tpl foot}
 
 </body>
 </html>

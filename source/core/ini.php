@@ -5,11 +5,11 @@ define('KKINC', str_replace("\\", '/', dirname(__FILE__)));
 define('TPL', ROOT . '/template/');
 defined('APP_PATH')  or define('APP_PATH', '/default/');
 defined('EXTENSION') or define('EXTENSION','.inc');
-define('MODEL',KKROOT.'/core/model/');
+define('MODEL',KKROOT.'/core/model/'); 
 set_include_path(KKROOT."/lib/util");
 define('IS_AJAX',((isset($_SERVER['HTTP_X_REQUESTED_WITH']) && strtolower($_SERVER['HTTP_X_REQUESTED_WITH']) == 'xmlhttprequest') || !empty($_POST[('VAR_AJAX_SUBMIT')]) || !empty($_GET[('VAR_AJAX_SUBMIT')])) ? true : false);
 require_once 'define.php';
-require_once 'func.php';
+require_once 'func.php'; 
 
 set_exception_handler("myHandleException");
 /* 加载类 */

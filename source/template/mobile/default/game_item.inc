@@ -16,7 +16,7 @@
         <div class="navbar-header nav_header">
             <a href="javascript:void(0);" class="navbar-brand" onclick="history.back();"><span class="glyphicon glyphicon-chevron-left icon"></span></a>
         </div>
-        <p style="position:absolute; top:15px; left:50%; margin-left:-55px; font-size:16px; text-shadow:2px 2px 3px #ccc;color: #ecc296;">第{$no}期明细</p>
+        <p class="navbar_title">第{$no}期明细</p>
     </div>
 </nav>
 

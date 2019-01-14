@@ -34,7 +34,7 @@ class BaseAction extends Action{
         		if($result['logintime'] != $_SESSION['logintime']){
         			session_destroy();
         			echo "<meta charset=\"utf-8\" />";
-        			echo "<script>alert('您的账号在异地或其他客户端登录！');window.location='./mobile.php?c=users&a=login';</script>";
+        			echo "<script>alert('您的账号在异地或其他客户端登录！');</script>";
         			exit;
         		}
         	}
@@ -189,11 +189,17 @@ class BaseAction extends Action{
         echo json_encode(['status'=>$status,'message'=>$msg],JSON_UNESCAPED_UNICODE);
     }
     /* 更新分数
-      *
+     *
      */
-    function RefreshPoints()
+    function RefreshPoints($uid = '', $t = 'uid')
     {
-        $sql = "select points,back,dj from users where id = '{$_SESSION['usersid']}'";
+        if ($uid == "") { $uid = $_SESSION['usersid']; }
+        if ($uid == "") { return array('points'=>0,'bank'=>0); }
+
+        $sql = "select points,back,dj from users where id = '{$uid}'";
+        if ($t == 'uname') {
+            $sql = "select points,back,dj from users where username = '{$uid}'";
+        }
         $info=db::get_one($sql,'assoc');
         if($info['points']){
             //$info['points']=sprintf('%.2f',$info['points']/1000);

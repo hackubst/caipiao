@@ -12,9 +12,9 @@
 <nav class="navbar navbar-default navbar-fixed-top">
     <div class="container-fluid" style="position:relative;">
         <div class="navbar-header">
-            <a href="{:url('game/index')}" class="navbar-brand" ><span class="glyphicon glyphicon-chevron-left icon"></span></a>
+            <a href="{:url('game/index')}" class="navbar-brand" onclick="javascript:void(0);"><img src="{$skin}new_imgs/main/bar_back.png"></a>
             <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#list_nav">
-                <span class="glyphicon glyphicon-option-horizontal"></span>
+                <img src="{$skin}new_imgs/main/bar_more.png">
             </button>
         </div>
 
@@ -26,11 +26,11 @@
                 <li><a href="{:url("game/auto/id/$id")}">自动投注</a></li>
             </ul>
         </div>
-        <p onclick="window.location.reload();" style="position:absolute; top:15px; left:50%; margin-left:-18px; font-size:16px;  text-shadow:2px 2px 3px;color: #ecc296;">{$game_name}</p>
+        <p onclick="window.location.reload();" class="navbar_title">{$game_name}</p>
     </div>
 
 </nav>
-<div id="main" style="margin-top:60px;margin-bottom:0px;">
+<div id="main">
     <div class="container-fluid">
         <div class="row">
             <div class="list-group white_bg" id="list">
@@ -54,13 +54,14 @@
                                         <span v-if="v.stoptime>0">截止<span class="red">{{v.stoptime}}</span>秒</span>
                                         <span v-else>
                                             <span v-if="v.kjtime>0">还有<span class="red">{{v.kjtime}}</span>秒,开奖 </span>
-                                                <span v-else>开奖中...</span>
+                                            <span v-else>开奖中...</span>
+                                        </span>
                                     </template>
                                 </div>
                                 <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3 pad0 press">
                                     <span v-if="v.status==1">{{v.points}}/{{v.hdpoints}}</span>
-                                    <span v-if="v.status==2" id="press"><button class="btn btn-info kj"><span v-if="v.points>0">{{v.points}}</span><span v-else>投　注</span></button></span>
-                                    <span v-if="v.status==3"><button class="btn btn-warning kj">开奖中</button></span>
+                                    <span v-if="v.status==2" id="press"><button class="btn btn-info kj"><span v-if="v.points>0">{{v.points}}</span><span v-else>&nbsp;<!--投　注-->&nbsp;</span></button></span>
+                                    <span v-if="v.status==3"><button class="btn btn-warning kj"><!--开奖中--></button></span>
                                 </div>
                             </div>
                         </div>
@@ -128,7 +129,7 @@
         getContent();
     });
     $(function () {
-        $("#list").on('click','.press',function () {
+        $("#list").on('click','#press',function () {
             if($(this).find(".btn").hasClass("btn-default")){
             	alert("投注已结束");//已过期
                 return false;
@@ -146,7 +147,7 @@
             //$(".status1").hide();
             return false;
         });
-        $("#list").on("click",".text-left",function () {
+        $("#list").on("click",".status1 .text-left",function () {
             no=$(this).parents("a").attr("id");
             window.location="{:url("game/recorddetail/id/$id")}&no="+no;
             //window.location="{:url("game/record/id/$id")}";
@@ -187,66 +188,70 @@
                 	<div class="row small-btn small-36">
 	                    {loop $press $k $v}
 	                    <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2 pad0">
-	                        <a id="tbNum<?php echo $k;?>" class="col-lg-2 btn btn-default small-bg"><?php echo $k+$step;?><div class="betXSmall">x{$odds[$k]}</div></a>
+	                        <a id="tbNum<?php echo $k;?>" class="col-lg-2 btn btn-default small-bg">
+                                <span style="display:block;line-height:21px;"><?php echo $k+$step;?></span>
+                                <span class="betXSmall">x{$odds[$k]}</span>
+                            </a>
 	                    </div>
 	                    {/loop}
-	                    <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2 pad0">
-	                        <a class="col-lg-2 btn btn-default small-bg2 " id="reselect" href="javascript:reselect();" rel="4">反选</a>
-	                    </div>
-	                    <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2 pad0">
-	                        <a class="col-lg-2 btn btn-default small-bg2 " href="javascript:remove();" rel="4">清除</a>
-	                    </div>
+                        
+	                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" style="text-aling:center;">
+                            <div class="pad0" style="display:inline-block;width:16.66666%;">
+                                <a class="col-lg-2 btn btn-default small-bg2 " id="reselect" href="javascript:reselect();" rel="4">
+                                    <span style="display:block;line-height:33px;">反选</span>
+                                </a>
+                            </div>
+                            <div class="pad0" style="display:inline-block;width:16.66666%;">
+                                <a class="col-lg-2 btn btn-default small-bg2 " href="javascript:remove();" rel="4">
+                                    <span style="display:block;line-height:33px;">清除</span>
+                                </a>
+                            </div>
+                        </div>
                     </div>
                 </div>
+
                 <div class="row small-btn small-36" id="dx">
                     <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2 pad0">
-                        <a class="col-lg-2 btn btn-default small-bg2 " href="javascript:;" rel="4">大</a></div>
-
-                    <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2 pad0">
-                        <a class="col-lg-2 btn btn-default small-bg2" href="javascript:;" rel="3">小</a>
+                        <a class="col-lg-2 btn btn-default small-bg2 " href="javascript:;" rel="4"><span style="display:block;line-height:33px;">大</span></a>
                     </div>
                     <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2 pad0">
-                        <a class="col-lg-2 btn btn-default small-bg2" href="javascript:;" rel="2">单</a>
+                        <a class="col-lg-2 btn btn-default small-bg2" href="javascript:;" rel="3"><span style="display:block;line-height:33px;">小</span></a>
                     </div>
                     <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2 pad0">
-                        <a class="col-lg-2 btn btn-default small-bg2" href="javascript:;" rel="1">双</a>
+                        <a class="col-lg-2 btn btn-default small-bg2" href="javascript:;" rel="2"><span style="display:block;line-height:33px;">单</span></a>
                     </div>
                     <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2 pad0">
-                        <a class="col-lg-2 btn btn-default small-bg2" href="javascript:;" rel="8">小单</a>
+                        <a class="col-lg-2 btn btn-default small-bg2" href="javascript:;" rel="1"><span style="display:block;line-height:33px;">双</span></a>
                     </div>
                     <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2 pad0">
-                        <a class="col-lg-2 btn btn-default small-bg2" href="javascript:;" rel="7">大单</a>
+                        <a class="col-lg-2 btn btn-default small-bg2" href="javascript:;" rel="8"><span style="display:block;line-height:33px;">小单</span></a>
                     </div>
                     <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2 pad0">
-                        <a class="col-lg-2 btn btn-default small-bg2" href="javascript:;" rel="10">小双</a>
+                        <a class="col-lg-2 btn btn-default small-bg2" href="javascript:;" rel="7"><span style="display:block;line-height:33px;">大单</span></a>
                     </div>
                     <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2 pad0">
-                        <a class="col-lg-2 btn btn-default small-bg2" href="javascript:;" rel="9">大双</a>
+                        <a class="col-lg-2 btn btn-default small-bg2" href="javascript:;" rel="10"><span style="display:block;line-height:33px;">小双</span></a>
                     </div>
                     <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2 pad0">
-                        <a class="col-lg-2 btn btn-default small-bg2" href="javascript:;" rel="5">中</a>
+                        <a class="col-lg-2 btn btn-default small-bg2" href="javascript:;" rel="9"><span style="display:block;line-height:33px;">大双</span></a>
                     </div>
                     <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2 pad0">
-                        <a class="col-lg-2 btn btn-default small-bg2" href="javascript:;" rel="6">边</a>
+                        <a class="col-lg-2 btn btn-default small-bg2" href="javascript:;" rel="5"><span style="display:block;line-height:33px;">中</span></a>
                     </div>
                     <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2 pad0">
-                        <a class="col-lg-2 btn btn-default small-bg2" href="javascript:;" rel="11">大边</a>
+                        <a class="col-lg-2 btn btn-default small-bg2" href="javascript:;" rel="6"><span style="display:block;line-height:33px;">边</span></a>
                     </div>
                     <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2 pad0">
-                        <a class="col-lg-2 btn btn-default small-bg2" href="javascript:;" rel="12">小边</a>
+                        <a class="col-lg-2 btn btn-default small-bg2" href="javascript:;" rel="11"><span style="display:block;line-height:33px;">大边</span></a>
                     </div>
-                    
+                    <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2 pad0">
+                        <a class="col-lg-2 btn btn-default small-bg2" href="javascript:;" rel="12"><span style="display:block;line-height:33px;">小边</span></a>
+                    </div>                    
                 </div>
             </div>
             <!-- 选号区 -->
             
-            
-            
         </div>
-        
-        
-        
-        
     </div>
 </div>
         
@@ -254,24 +259,24 @@
 <nav class="navbar-default navbar-fixed-bottom" id="pressbottom" style="display:none;">
     <div class="container-fluid betting_bottom">
         <div class="row">
-                <div class="bottom_left">
-                    <p style="font-size:14px;color:#fff;"><span>投注:</span><input type="number" name="total" id="total" class="form-control total_press" style="display:inline-block;height:35px;width:40%;" value="0"/>　余额:<span>{$info.points}</span></p>
-                    <div class="chips">
-                        <a href="javascript:chouma(1);"><img src="{$skin}img/chips_1000.png" class="img-responsive" alt="1"></a>
-                        <a href="javascript:chouma(10);"><img src="{$skin}img/chips_10000.png" class="img-responsive" alt="10"></a>
-                        <a href="javascript:chouma(100);"><img src="{$skin}img/chips_100000.png" class="img-responsive" alt="100"></a>
-                        <a href="javascript:chouma(500);"><img src="{$skin}img/chips_500000.png" class="img-responsive" alt="500"></a>
-                        <a href="javascript:chouma(1000);"><img src="{$skin}img/chips_1000000.png" class="img-responsive" alt="1000"></a>
-                        <a href="javascript:chouma(5000);"><img src="{$skin}img/chips_5000000.png" class="img-responsive" alt="5000"></a>
-                    </div>
+            <div class="bottom_left">
+                <p><span>投注:</span><input type="number" name="total" id="total" class="form-control total_press" style="display:inline-block;height:35px;width:40%;" value="0"/>　余额:<span>{$info.points}</span></p>
+                <div class="chips">
+                    <a href="javascript:chouma(1);"><img src="{$skin}img/chips_1000.png" class="img-responsive" alt="1"></a>
+                    <a href="javascript:chouma(10);"><img src="{$skin}img/chips_10000.png" class="img-responsive" alt="10"></a>
+                    <a href="javascript:chouma(100);"><img src="{$skin}img/chips_100000.png" class="img-responsive" alt="100"></a>
+                    <a href="javascript:chouma(500);"><img src="{$skin}img/chips_500000.png" class="img-responsive" alt="500"></a>
+                    <a href="javascript:chouma(1000);"><img src="{$skin}img/chips_1000000.png" class="img-responsive" alt="1000"></a>
+                    <a href="javascript:chouma(5000);"><img src="{$skin}img/chips_5000000.png" class="img-responsive" alt="5000"></a>
                 </div>
+            </div>
         </div>
         <div class="row">
-                <div class="bottom_right">
-                    <a href="javascript:last_press();" class="btn-tz btn btn-success">上次</a>
-                    <a href="javascript:cancel();" class="btn-tz btn btn-warning">取消</a>
-                    <a href="javascript:;" class="btn-tz btn btn-danger" onclick="tz()">投注</a>
-                </div>
+            <div class="bottom_right">
+                <a href="javascript:last_press();" class="btn-tz btn btn-success">上次</a>
+                <a href="javascript:cancel();" class="btn-tz btn btn-warning">取消</a>
+                <a href="javascript:;" class="btn-tz btn btn-danger" onclick="tz()">投注</a>
+            </div>
         </div>
     </div>
 </nav>

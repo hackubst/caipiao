@@ -109,9 +109,8 @@ function checkIP()
 		global $db;
 		$sql = "select ip from admin_ips where ip='{$ip}' limit 1";
 		$result = $db->query($sql);
-		$RowCount = $db->num_rows($result);
-		if(empty($RowCount) || empty($ip)){
-			
+		//$RowCount = $db->num_rows($result);
+		if(empty($result) || empty($ip)){
 				echo "<META http-equiv=Content-Type content=\"text/html; charset=utf-8\">\r\n";
 				echo "对不起，你不能访问这里!";
 				exit;

@@ -1592,6 +1592,7 @@
 		$RBSingleMax =intval($_POST['rbsinglemax']);
 		$RBCntMax =intval($_POST['rbcntmax']);
 		$RBDayMax =intval($_POST['rbdaymax']);
+		$AgentSet = !empty($_POST['agentset']) ? $_POST['agentset'] : "";
 		$GameShutdownReason = isset($_POST['shutdownreason'])?FilterStr($_POST['shutdownreason']):"";
 		$GameShutdownReason = ChangeEncodeU2G($GameShutdownReason);
 		$arrReturn = array(array());
@@ -1625,6 +1626,8 @@
         $sql = "update sys_config set fldValue = '{$RBCntMax}' where fldVar = 'redbag_cnt_max' and fldType = 0";
         $result = $db->query($sql);
         $sql = "update sys_config set fldValue = '{$RBDayMax}' where fldVar = 'redbag_day_max' and fldType = 0";
+		$result = $db->query($sql);
+		$sql = "update sys_config set fldValue = '{$AgentSet}' where fldVar = 'agent_extr_radio' and fldType = 0";
         $result = $db->query($sql);
         
 		$msg = "操作成功";

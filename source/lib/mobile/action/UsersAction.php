@@ -214,7 +214,7 @@ class UsersAction extends BaseAction
                 $_SESSION['money'] = $data['money'];
 
                 $usersid = $arr["userid"];
-                $sql = "select u.isagent,a.id from users u, agent a where a.uid=u.id and  u.id = '{$usersid}' limit 1";
+                $sql = "select u.isagent,a.id from users u, agent a where a.uid=u.id and u.id='{$usersid}' limit 1";
                 $users = db::get_one($sql,'assoc');
                 if(!empty($users)){
                     $_SESSION['isagent'] = $users['isagent'];
@@ -230,15 +230,18 @@ class UsersAction extends BaseAction
                 $message = '帐号被冻结';
                 break;
             case '99': //数据库错误
-                $message = '登录失败';
+                $message = '登录失败，账号不存在.';
                 break;
             default:
                 $message = 'other';
                 break;
         }
-
+        if($message == "ok") {
+            header('location:mobile.php?c=game&a=index');
+        }
         return $this->result($arr['result'],$message);
     }
+
     function reg(){
         if($_POST)return $this->act_reg();
         $tj=Req::get('tj','intval');
@@ -487,6 +490,12 @@ class UsersAction extends BaseAction
                 $_SESSION["bankpoints"] = 0;
                 $_SESSION["exp"] = $arr["experience"];
                 $arrRet['cmd'] = 'ok';
+
+                setcookie("usersid", $arr["userid"]);
+                setcookie("username", $arr["username"]);
+                setcookie("password", $pass);
+                setcookie("reg", 1, time() + 8640);
+
                 $status=0;
                 break;
             case '1': //用户名重名
@@ -508,99 +517,7 @@ class UsersAction extends BaseAction
                 $arrRet['cmd'] = '未知错误';
                 break;
         }
-        return $this->result($status,$arrRet['cmd']);
-
-
-        $sql = "SELECT id,username,mobile,nickname FROM users WHERE username ='{$username}' or nickname='{$nickname}'";
-        $user = db::get_one($sql);
-
-        if ($user->id && $user->username == $username) return $this->result(1, '很抱歉！帐号重名了，请更改！');
-
-        if ($user->nickname == $nickname) return $this->result(1, '很抱歉!昵称重名，请更改！');
-
-        $sql = "SELECT 1 FROM deny_words WHERE deny_type = 'b' AND keyword LIKE '%{$nickname}%'";
-        $check_user = db::get_one($sql);
-        if ($check_user) return $this->result(1, '很抱歉!用户名含有不允许字符，请更改!');
-        //-- 注册赠送豆
-        $sql = 'SELECT reg_points,web_loginperience FROM web_config WHERE id = 1';
-        $point = db::get_one($sql);
-        //uid
-        $uid=$this->set_uid();
-        //注册
-        //$pass =$this->setPassword($pass);
-        $pass=md5($pass);
-        $data = array(
-            'id'=>$uid,
-            'username' => $username,
-            'nickname' => $nickname,
-            'password' => $pass,
-            'is_check_mobile' => 1,
-            'mobile' => $username,
-            'bankpwd' => $pass,
-            'points' => $point->reg_points,
-            'experience' => $point->web_loginperience,
-            'maxexperience' => $point->web_loginperience,
-            'time' => date('Y-m-d H:i:s'),
-            'regip' => $ip,
-            'tjid' => $tjid,
-            'usertype' => 0,
-            'loginip' => $ip,
-            'logintime' => date('Y-m-d H:i:s'));
-        db::_insert('users', $data);
-        if(!$uid)return $this->result(1,'注册失败' );
-        //-- 个人统计
-        $data = array('uid' => $uid, 'typeid' => 120, 'points' => $point->reg_points);
-        db::_insert('game_static', $data);
-
-        //-- 记录中央银行
-        if ($point->reg_points > 0) {
-            db::_query('UPDATE centerbank SET score = score -' . $point->reg_points . ' WHERE bankIdx = 6');
-        }
-
-        //-- 记录统计
-        $sql = 'SELECT 1 FROM webtj WHERE `time` = CURDATE()';
-        $tj = db::get_one($sql);
-        if ($tj) {
-            db::_query('UPDATE webtj SET regnum = regnum + 1,regpoints = regpoints + ' . $point->reg_points . '
-				WHERE `time` = CURDATE();');
-        } else {
-            db::_query('INSERT INTO webtj(`time`,regnum,regpoints) VALUES(CURDATE(),1,' . $point->reg_points . ');');
-        }
-
-        //-- 记录经验变化日志
-        if ($point->web_loginperience > 0) {
-            db::_query("INSERT INTO userslog(usersid, `time`, experience, logtype, `log`)
-				VALUES({$uid}, NOW(), " . $point->web_loginperience . ", 4, CONCAT('登录奖励', " . $point->web_loginperience . ", '经验值'))");
-        }
-        //-- 记录登录日志
-        db::_insert('login_success', array('uid' => $uid, 'username' => $username,
-            'nickname' => $nickname, 'point' => $point->reg_points,
-            'bankpoint' => 0,
-            'exp' => $point->web_loginperience,
-            'loginip' => $ip,
-            'login_time' => date('Y-m-d H:i:s')));
-
-        //-- 推荐人数统计
-        if ($tjid > 0) {
-            db::_query('UPDATE users SET tj_level1_count = tj_level1_count + 1 WHERE id = ' . $tjid);
-            db::_query('UPDATE users SET tj_level2_count = tj_level2_count + 1
-			WHERE id IN(SELECT * FROM(SELECT tjid FROM users WHERE id = ' . $tjid . ') t');
-            db::_query('UPDATE users SET tj_level3_count = tj_level3_count + 1 WHERE id IN(                SELECT * FROM(
-                    SELECT tjid FROM users WHERE id IN(SELECT tjid FROM users WHERE id = ' . $tjid . ')) t)');
-        }
-
-        $_SESSION["usersid"] = $uid;
-        $_SESSION["username"] = $username;
-        $_SESSION["password"] = $pass;
-        $_SESSION["nickname"] = $nickname;
-        $_SESSION["points"] = $point->reg_points;
-        $_SESSION["bankpoints"] = 0;
-        $_SESSION["exp"] = $point->web_loginperience;
-        setcookie("usersid", $uid);
-        setcookie("username", $username);
-        setcookie("password", $pass);
-        setcookie("reg", 1, time() + 8640);
-        return $this->result(0, 'ok');
+        return $this->result($arr["result"], $arrRet['cmd']);
     }
 
     function set_uid(){
@@ -648,6 +565,7 @@ class UsersAction extends BaseAction
         return $this->result(0,'修改成功!');
     }
     
+
     function getmymoney(){
     	$usersid = (int)$_SESSION['usersid'];
     	$sql='select points,back from users where id='.$usersid;
@@ -657,7 +575,6 @@ class UsersAction extends BaseAction
     	}else{
     		$scoreinfo['status'] = 1;
     	}
-    	 
     	echo json_encode($scoreinfo,JSON_UNESCAPED_UNICODE);
     }
     
@@ -710,15 +627,15 @@ class UsersAction extends BaseAction
     //游戏和彩票之间转账
     // mobile.php?c=users&a=mytransfer
     function mytransfer(){
-        if(IS_AJAX)return $this->Ajax_transfer();
+        if($_POST)return $this->Ajax_transfer();
 
         $this->display('user_mytransfer');
     }
     private function Ajax_transfer(){
-        $Score =Req::post('point','intval')?:0;
-        $Score*=1000;
-
-        $t=Req::post('t');
+        $Score = Req::post('point','intval')?:0;
+        $Score *= 1000;
+        $account = $_SESSION["username"];
+        $t = Req::post('t');
         $oprType = ($t=="save")?0:1;//0-游戏转入彩票 1-彩票转入游戏
         $ip = get_ip();
         $arrRet = array('cmd'=>'ok','msg'=>'');
@@ -727,50 +644,54 @@ class UsersAction extends BaseAction
         if(!is_numeric($Score) || $Score < 0){
             return $this->result(1,"数量必须为正整数!");
         }
-        $key = '';
-        $money = $Score/10;
-        $sign = strtoupper(md5($_SESSION["username"] . $money . $ip . $key));
-        $data = ['account'=>$_SESSION["username"],'money'=>$money,'ip'=>$ip,'sign'=>$sign];
+        $money = $Score / 10;
+        $key = 'eyuwHQlIAgt2rcNFdpBNKnsLZ8Fm2llg';
+        $sign = strtoupper(md5("account=" . $account . "&money=" . $money . "&key=" . $key));
+        $data = ['account'=>$account, 'money'=>$money, 'ip'=>$ip, 'sign'=>$sign];
+
         if (1==$oprType) {
-            //彩票转入游戏
+            //彩票转入游戏            
             $sql = "select points from users where id={$_SESSION['usersid']}";
             $res=db::get_one($sql,'assoc');
             $points = $res['points'];
             if ($points < $Score) {
                 return $this->result(1, '余额不足!');
-            }
-
-            $sql="update users set `points`=`points`-{$Score} where username='{$_SESSION["username"]}' and `points`-{$Score}>=0";
-            if(!db::_query($sql , false)){
-                db::_query('rollback');
-                return $this->result(1, '转入游戏失败[1],请联系管理员');
-            }else {
-                $arrRet['cmd'] = "0";
-                $arrRet['msg'] = "扣除成功!";
-                $this->RefreshPoints();
-                $url = 'http://192.168.0.120:13201/lottery/transfer2game';
-                $result = curl_post($url,$data);
-                $datas = json_decode($result);
-                if (0==$datas->errcode) {
-                    $arrRet['cmd'] = "0";
-                    $arrRet['msg'] = "操作成功!";
-                    $this->RefreshPoints();
+            } else {
+                $sql="update users set `points`=`points`-{$Score} where username='{$account}' and `points`-{$Score}>=0";
+                if(!db::_query($sql , false)){
+                    db::_query('rollback');
+                    return $this->result(1, '转入游戏失败[1],请联系管理员');
                 }else {
-                    $arrRet['cmd'] = "1";
-                    $arrRet['msg'] = $datas->errmsg;
+                    $url = 'http://192.168.0.120:13201/lottery/transfer2game';
+                    $result = curl_post($url,$data);
+                    $datas = json_decode($result);
+                    if (0==$datas->errcode) {
+                        $arrRet['cmd'] = "0";
+                        $arrRet['msg'] = "操作成功!";
+                        $this->RefreshPoints();
+                    }else {
+                        db::_query('rollback');
+                        $arrRet['cmd'] = "1";
+                        $arrRet['msg'] = $datas->errmsg;
+                    }
                 }
             }
         }elseif (0==$oprType) {
+            //file_put_contents('d:\\cp28gt_err.log',"mytransfer userid:".$_SESSION['usersid']."\n", FILE_APPEND);
+
             if ($money > $_SESSION['money']) {
                 return $this->result(1, '余额不足!');
             }
             //游戏转入彩票
             $url = 'http://192.168.0.120:13201/lottery/transfer2lottery';
             $result = curl_post($url,$data);
+            
+            //file_put_contents('d:\\cp28gt_err.log',"mytransfer points:".$result."\n", FILE_APPEND);
+            
             $datas = json_decode($result);
             if (0==$datas->errcode) {
                 $arrRet['cmd'] = "0";
-                $arrRet['msg'] = "操作成功!";
+                $arrRet['msg'] = "操作成功，请返回游戏中心首页查看余额!";
                 $this->RefreshPoints();
             }else {
                 $arrRet['cmd'] = "1";
@@ -789,31 +710,31 @@ class UsersAction extends BaseAction
 
     private function act_gamemoneyin() {
         checkIP();
-        $money =Req::request('money','intval')?:0;
-        $Score = $money * 10;
         $code = Req::request('code');
         $msg = Req::request('msg');
-        $account = Req::request('account');
-        $ip = Req::request('ip')?:get_ip();
-        $sign = Req::request('sign');
-        $key = '';
 
-        if(!$this->is_mobile($account)){
-            return $this->result(1,'请输入正确的手机号码');
-        }
+        $arrRet = array('cmd'=>$code,'msg'=>$msg);
 
-        $Score = intval($Score);
-        if(!is_numeric($Score) || $Score < 0){
-            return $this->result(1,"金额数量必须为正整数!");
-        }
+        if (0 == $code) {
 
-        $verify_sign = strtoupper(md5($code . $account . $money . $ip . $key));
+            $money =Req::request('money','intval')?:0;
+            $Score = $money * 10;
+            $account = Req::request('account');
+            $ip = Req::request('ip')?:get_ip();
+            $sign = Req::request('sign');
+            $key = 'eyuwHQlIAgt2rcNFdpBNKnsLZ8Fm2llg';
 
-        $arrRet = array('cmd'=>'ok','msg'=>'');
+            if(!$this->is_mobile($account)){
+                return $this->result(1,'请输入正确的手机号码');
+            }
+            $Score = intval($Score);
+            if(!is_numeric($Score) || $Score < 0){
+                return $this->result(1,"金额数量必须为正整数!");
+            }
 
-        if ($verify_sign==$sign) {
-            if (0==$code) {
-                //彩票转入游戏
+            //彩票转入游戏
+            $verify_sign = strtoupper(md5("code=" . $code . "&account=" . $account . "&money=" . $money . "&key=" . $key));
+            if ($verify_sign == $sign) {
                 $sql="update users set `points`=`points`+{$Score} where username='{$account}'";
                 if(!db::_query($sql , false)){
                     db::_query('rollback');
@@ -821,19 +742,24 @@ class UsersAction extends BaseAction
                 }else {
                     $arrRet['cmd'] = "0";
                     $arrRet['msg'] = "操作成功!";
-                    $this->RefreshPoints();
+                    //$this->RefreshPoints($account, 'uname');
                 }
-            }else {
+            } else {
                 $arrRet['cmd'] = "1";
-                $arrRet['msg'] = $msg;
+                $arrRet['msg'] = "sign签名校验失败：".$verify_sign;
             }
+
         }else {
-            $arrRet['cmd'] = "1";
-            $arrRet['msg'] = "sign签名校验失败：".$verify_sign;
+            switch($code) {
+                case 1 : $arrRet['msg'] = "服务器内部错误"; break;
+                case 5 : $arrRet['msg'] = "所在IP禁止访问"; break;
+                case 101 : $arrRet['msg'] = "非法参数"; break;
+                case 110 : $arrRet['msg'] = "账号没找到"; break;
+                case 206 : $arrRet['msg'] = "余额不足"; break;
+            }
         }
 
-        return $this->result($arrRet['cmd'],$arrRet['msg']);
-
+        return $this->result($arrRet['cmd'], $arrRet['msg']);
     }
     
     public function getLastPayAccount(){

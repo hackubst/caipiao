@@ -12,9 +12,9 @@
 <nav class="navbar navbar-default navbar-fixed-top">
     <div class="container-fluid" style="position:relative;">
         <div class="navbar-header">
-            <a href="{:url('game/index')}" class="navbar-brand" ><span class="glyphicon glyphicon-chevron-left icon"></span></a>
+            <a href="{:url('game/index')}" class="navbar-brand" onclick="javascript:void(0);"><img src="{$skin}new_imgs/main/bar_back.png"></a>
             <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#list_nav">
-                <span class="glyphicon glyphicon-option-horizontal"></span>
+                <img src="{$skin}new_imgs/main/bar_more.png"> 
             </button>
         </div>
 
@@ -26,11 +26,11 @@
                 <li><a href="{:url("game/auto/id/$id")}">自动投注</a></li>
             </ul>
         </div>
-        <p onclick="window.location.reload();" style="position:absolute; top:15px; left:50%; margin-left:-18px; font-size:16px;  text-shadow:2px 2px 3px #ccc;color: #ecc296;">{$game_name}</p>
+        <p onclick="window.location.reload();" class="navbar_title">{$game_name}</p>
     </div>
-
 </nav>
-<div id="main" style="margin-top:60px;margin-bottom:0px;">
+
+<div id="main">
     <div class="container-fluid">
         <div class="row">
             <div class="list-group white_bg" id="list">
@@ -64,9 +64,8 @@
                                 </div>
                                 <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3 pad0 press">
                                     <span v-if="v.status==1">{{v.points}}/{{v.hdpoints}}</span>
-                                    <span v-if="v.status==2" id="press"><button class="btn btn-info kj">
-                                            <span v-if="v.points>0">{{v.points}}</span><span v-else>投　注</span></button></span>
-                                    <span v-if="v.status==3"><button class="btn btn-warning kj">开奖中</button></span>
+                                    <span v-if="v.status==2" id="press"><button class="btn btn-info kj"><span v-if="v.points>0">{{v.points}}</span><span v-else>&nbsp;<!--投　注-->&nbsp;</span></button></span>
+                                    <span v-if="v.status==3"><button class="btn btn-warning kj">&nbsp;<!--开奖中-->&nbsp;</button></span>
                                 </div>
                             </div>
                         </div>
@@ -136,7 +135,7 @@
         getContent();
     });
     $(function () {
-        $("#list").on('click','.press',function () {
+        $("#list").on('click','#press',function () {
             if($(this).find(".btn").hasClass("btn-default")){
                 alert("投注已结束");//已过期
                 return false;
@@ -155,7 +154,7 @@
             //$(".status1").hide()
             return false;
         });
-        $("#list").on("click",".text-left",function () {
+        $("#list").on("click",".status1 .text-left",function () {
         	no=$(this).parents("a").attr("id");
             window.location="{:url("game/recorddetail/id/$id")}&no="+no;
             //window.location="{:url("game/record/id/$id")}";
@@ -193,19 +192,23 @@
             <!-- 选号区 -->
             <div class="small-show">
                 <div class="row small-btn small-36" id="press">
-                    {loop $pressoption $k $v}
-                    {if $k<10}
-                    <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2 pad0">
-                        <a id="tbNum<?php echo $k;?>" class="col-lg-2 btn btn-default small-bg">{$v}<div class="betXSmall">x{$odds[$k]}</div></a>
+                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" style="text-aling:center;">
+                        {loop $pressoption $k $v}
+                        {if $k<10}
+                        <div class="pad0" style="display:inline-block;width:16.66666%;">
+                            <a id="tbNum<?php echo $k;?>" class="col-lg-2 btn btn-default small-bg">
+                                <span style="display:block;line-height:21px;">{$v}</span>
+                                <span class="betXSmall">x{$odds[$k]}</span>
+                            </a>
+                        </div>
+                        {/if}
+                        {/loop}
                     </div>
-                    {/if}
-                    {/loop}
                 </div>
             </div>
             <!-- 选号区 -->
             
         </div>
-        
         
     </div>
 </div>

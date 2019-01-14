@@ -489,8 +489,8 @@ function checkIP()
     if($_SERVER['PHP_SELF'] != "/kdywlist-003.php"){
         //global $db;
         $sql = "select ip from admin_ips where ip='{$ip}' limit 1";
-        $result = db::get_one()($sql);
-        if(empty(result) || empty($ip)){
+        $result = db::get_one($sql);
+        if(empty($result) || empty($ip)){
             echo "<META http-equiv=Content-Type content=\"text/html; charset=utf-8\">\r\n";
             echo "对不起，你不能访问这里!";
             exit;
@@ -500,4 +500,32 @@ function checkIP()
 
 function globalFilterKey($str){
     return preg_match('/PHP_EOL|replace|group_concat|table|create|call|drop|database|alter|select|insert|update|delete|name_const|where|having|from|\sand\s|\sor\s|truncate|script|union|into|\'|\/\*|\*|\.\.\/|\.\/|#|load_file|outfile/i',$str,$matches);
+}
+
+/**
+ * curl请求
+ * @param $url
+ * @param array $data
+ * @return mixed
+ */
+function curl_post($url, $data = [])
+{
+	//file_put_contents('d:\\cp28gt_err.log',$url." begin request"."\n", FILE_APPEND);
+    //初始化
+    $curl = curl_init();
+    //设置抓取的url
+    curl_setopt($curl, CURLOPT_URL, $url);
+    //设置头文件的信息作为数据流输出
+    curl_setopt($curl, CURLOPT_HEADER, 0);
+    //设置获取的信息以文件流的形式返回，而不是直接输出
+    curl_setopt($curl, CURLOPT_RETURNTRANSFER, 1);
+    //设置post方式提交
+    curl_setopt($curl, CURLOPT_POST, 1);
+    curl_setopt($curl, CURLOPT_SSL_VERIFYPEER, false);
+    curl_setopt($curl, CURLOPT_POSTFIELDS, $data);
+    //执行命令
+    $result = curl_exec($curl);
+    //关闭url请求
+    curl_close($curl);
+    return $result;
 }

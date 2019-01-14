@@ -11,11 +11,11 @@ class LuckFarmCrawler extends BaseCrawler
 		$this->gameType = "gamexync";
 		$this->gameTypes = [36];
 		$this->crawlerUrls = array(
-								//0=>array('url'=>'http://www.cqcp.net/','method'=>'_parse_xync_home','useproxy'=>0,'referurl'=>''),
-								1=>array('url'=>'http://www.cqcp.net/game/xync/yu.aspx?name=','method'=>'_parse_xync','useproxy'=>0,'referurl'=>'http://www.cqcp.net/Trend/Xync/Xync.aspx?sType=ZH&type=QP'),
-								0=>array('url'=>'http://www.cqcp.net/game/xync/opencode.aspx?time=','method'=>'_parse_xync1','useproxy'=>0,'referurl'=>'http://www.cqcp.net/game/xync/'),
-								2=>array('url'=>'http://buy.cqcp.net/trend/lucky/xyncnumzh_chart.aspx','method'=>'_parse_xync2','useproxy'=>0,'referurl'=>'http://www.cqcp.net')
-								);
+			//0=>array('url'=>'http://www.cqcp.net/','method'=>'_parse_xync_home','useproxy'=>0,'referurl'=>''),
+			0=>array('url'=>'http://www.cqcp.net/game/xync/opencode.aspx?time=','method'=>'_parse_xync1','useproxy'=>0,'referurl'=>'http://www.cqcp.net/game/xync/'),
+			1=>array('url'=>'http://www.cqcp.net/game/xync/yu.aspx?name=','method'=>'_parse_xync','useproxy'=>0,'referurl'=>'http://www.cqcp.net/Trend/Xync/Xync.aspx?sType=ZH&type=QP'),
+			2=>array('url'=>'http://buy.cqcp.net/trend/lucky/xyncnumzh_chart.aspx','method'=>'_parse_xync2','useproxy'=>0,'referurl'=>'http://www.cqcp.net')
+		);
 	}
 	
 	

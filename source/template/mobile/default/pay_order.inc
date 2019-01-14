@@ -50,7 +50,7 @@ $(document).ready(function(){
             <a href="{:url('users/index')}" class="navbar-brand" ><span class="glyphicon glyphicon-chevron-left icon"></span></a>
             <a href="javascript:void(0);" class="btn refresh" onclick="window.location.reload();"><span class="glyphicon glyphicon-refresh"></span></a>
         </div>
-        <p style="position:absolute; top:15px; left:50%; margin-left:-30px; font-size:16px; text-shadow:2px 2px 3px #ccc;color: #ecc296;">在线充值</p>
+        <p class="navbar_title">在线充值</p>
     </div>
 </nav>
 <div id="main">

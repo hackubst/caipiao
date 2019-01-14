@@ -10,81 +10,79 @@
     <title>{$webname}</title>
 </head>
 <body>
+
 <nav class="navbar navbar-default navbar-fixed-top">
     <div class="container-fluid" style="position:relative;">
         <div class="navbar-header nav_header">
-            <a href="javascript:void(0);" class="navbar-brand" onclick="history.back();"><span
-                    class="glyphicon glyphicon-chevron-left icon"></span></a>
+            <a href="javascript:void(0);" class="navbar-brand" onclick="history.back();"><img src="{$skin}new_imgs/main/bar_back.png"></a>
+            <button type="button" class="navbar-toggle break" id="btn_refsh">
+                <img src="{$skin}new_imgs/main/bar_break.png">
+            </button>
         </div>
-        <p style="position:absolute; top:15px; left:50%; margin-left:-20px; font-size:16px; text-shadow:2px 2px 3px #ccc;color: #ecc296;">            自动投注</p>
+        <p class="navbar_title">自动投注</p>
     </div>
 </nav>
 
 
-<div id="main">
-    <div class="container-fluid">
-        <div class="row white_bg detailed_coin">
-            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 pad0">
-                <p>¥: <span class="red" id="money">{$info.points}</span></p>
-            </div>
-            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 pad0">
-                <p>银行: ¥<span class="red" id="bank">{$info.bankpoints}</span></p>
-            </div>
+<div id="main" class="container-fluid">
+    <div class="white_bg detailed_coin" style="padding:0px;">
+        <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 pad0">
+            <p>¥: <span class="red" id="money">{$info.points}</span></p>
+        </div>
+        <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 pad0">
+            <p>银行: ¥<span class="red" id="bank">{$info.bankpoints}</span></p>
         </div>
     </div>
     <div class='Edit'>
-
-        <ul class='new'>
-            <li>开始模式:
-                <select id='sltcurModel' name='select'>
+        <ul class='new' style="margin:10px auto;">
+            <li>
+                <lable>开始模式:</lable><select id='sltcurModel' name='select'>
                     {loop $list $k $v}
                     <option value='{$v.id}' {if $curr.autoid==$v.id}selected='selected'{/if}>{$v.tzname}</option>
                     {/loop}
                 </select>
             </li>
-            <li>开始期号: <input id='txtbeginno' name='txt' maxlength='12' type='text' value='{$curr.startNO}' onafterpaste="this.value=this.value.replace(/\D/g,'')" onkeyup="this.value=this.value.replace(/\D/g,'')" /></li>
-            <li>期数: <input id='txttzcount' name='txt' maxlength='8' type='text' value='{$curr.num}' onafterpaste="this.value=this.value.replace(/\D/g,'')" onkeyup="this.value=this.value.replace(/\D/g,'')" /></li>
-            <li>乐豆上限: <input id='txtmaxG' name='txt' maxlength='9' type='text' value='{$curr.maxG}' onafterpaste="this.value=this.value.replace(/\D/g,'')" onkeyup="this.value=this.value.replace(/\D/g,'')" /></li>
-            <li>下限: <input id='txtminG' type='text' maxlength='9' name='txt' value='{$curr.minG}' onafterpaste="this.value=this.value.replace(/\D/g,'')" onkeyup="this.value=this.value.replace(/\D/g,'')" /></li>
+            <li><lable>开始期号: </lable><input id='txtbeginno' name='txt' maxlength='12' type='text' value='{$curr.startNO}' onafterpaste="this.value=this.value.replace(/\D/g,'')" onkeyup="this.value=this.value.replace(/\D/g,'')" /></li>
+            <li><lable>投注期数: </lable><input id='txttzcount' name='txt' maxlength='8' type='text' value='{$curr.num}' onafterpaste="this.value=this.value.replace(/\D/g,'')" onkeyup="this.value=this.value.replace(/\D/g,'')" /></li>
+            <li><lable>金币上限: </lable><input id='txtmaxG' name='txt' maxlength='9' type='text' value='{$curr.maxG}' onafterpaste="this.value=this.value.replace(/\D/g,'')" onkeyup="this.value=this.value.replace(/\D/g,'')" /></li>
+            <li><lable>金币下限: </lable><input id='txtminG' type='text' maxlength='9' name='txt' value='{$curr.minG}' onafterpaste="this.value=this.value.replace(/\D/g,'')" onkeyup="this.value=this.value.replace(/\D/g,'')" /></li>
         </ul>
         <div class='table'>
             <table class='table_list table table-striped table-bordered table-hover' cellspacing='0px' style='border-collapse:collapse;'>
                 <tbody>
-                <tr>
-                    <th width='150'>模式</th>
-                    <th width='150'>乐豆</th>
-                    <th width='350'>赢用模式</th>
-                    <th width='350'>输用模式</th>
-                </tr>
-                {loop $list $k $v}
-                <tr>
-                    <td>{$v.tzname}</td>
-                    <td>{$v.tzpoints}</td>
-                    <td>
+                    <tr>
+                        <th width='150'>模式</th>
+                        <th width='150'>乐豆</th>
+                        <th width='350'>赢用模式</th>
+                        <th width='350'>输用模式</th>
+                    </tr>
+                    {loop $list $k $v}
+                    <tr>
+                        <td>{$v.tzname}</td>
+                        <td>{$v.tzpoints}</td>
+                        <td>
 
-                        <select id='slt_{$v.id}' onchange='changemodel(this)' name='select' ct='win' cid='{$v.id}'>
-                            {loop $list $sk $sv}
-                            <option value='{$sv.id}' {if $v.winid==$sv.id}selected='selected'{/if}>{$sv.tzname}</option>
-                            {/loop}
-                        </select>
-                    </td>
-                    <td>
-                        <select id='slt_{$v.id}' onchange='changemodel(this)' name='select' ct='loss' cid='{$v.id}'>
-                            {loop $list $sk $sv}
-                            <option value='{$sv.id}' {if $v.lossid==$sv.id}selected='selected'{/if}>{$sv.tzname}</option>
-                            {/loop}
-                    </td>
-                </tr>
-                {/loop}
-
+                            <select id='slt_{$v.id}' onchange='changemodel(this)' name='select' ct='win' cid='{$v.id}'>
+                                {loop $list $sk $sv}
+                                <option value='{$sv.id}' {if $v.winid==$sv.id}selected='selected'{/if}>{$sv.tzname}</option>
+                                {/loop}
+                            </select>
+                        </td>
+                        <td>
+                            <select id='slt_{$v.id}' onchange='changemodel(this)' name='select' ct='loss' cid='{$v.id}'>
+                                {loop $list $sk $sv}
+                                <option value='{$sv.id}' {if $v.lossid==$sv.id}selected='selected'{/if}>{$sv.tzname}</option>
+                                {/loop}
+                        </td>
+                    </tr>
+                    {/loop}
                 </tbody>
             </table>
-            <p class='tial'>
+            <p class='tial' style="text-align:center;">
+                <span class='ifo'> <a class="btn btn-warning" href="{:url("game/game/id/$act")}">返回游戏首页</a></span>
                 <span class='btn btn-danger' id='sSubmit' ca='{if $curr.start_auto_id}cancel{else}submit{/if}'>{if $curr.start_auto_id}取消自动投注{else}确定提交{/if}</span>
-		<span class='ifo'>
-			<a class="btn btn-warning" href="{:url("game/game/id/$act")}">返回游戏首页</a>
-		</span>
-            </p></div>
+            </p>
+        </div>
         <div class='tims'>
             <p>设置方法：</p>
             <p>1．“开始模式”选择第一次投注的模式.</p>
@@ -92,7 +90,8 @@
             <p>3．设置“乐豆上限”与“下限”限制,帐号内乐豆数达到限制数量后,自助投注自动停止.</p>
             <p>4．确认并开始自动投注后，系统将会在您指定的期数内帮您自动投注，不论你离线或在线都会持续运行,直到期数终止或您关闭为止.</p>
             <p>5．银行内的乐豆不能用于投注.</p>
-        </div></div>
+        </div>
+    </div>
     <script type="text/javascript">
         $(document).ready(function(){
             if($('#sSubmit').attr('ca') == 'cancel')changestat(0);
@@ -123,6 +122,7 @@
                     },'json');
                 }
             });
+            $('#btn_refsh').click(function(e){ window.location.reload(); });
         });
         function changemodel(o)
         {

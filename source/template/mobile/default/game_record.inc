@@ -12,9 +12,9 @@
 <nav class="navbar navbar-default navbar-fixed-top">
     <div class="container-fluid" style="position:relative;">
         <div class="navbar-header">
-            <a href="{:url("game/game/id/$id")}" class="navbar-brand" onclick="javascript:void(0);"><span class="glyphicon glyphicon-chevron-left icon"></span></a>
-            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#list_nav">
-                <span class="glyphicon glyphicon-option-horizontal"></span>
+            <a href="{:url("game/game/id/$id")}" class="navbar-brand" onclick="javascript:void(0);"><img src="{$skin}new_imgs/main/bar_back.png"></a>
+            <button type="button" class="navbar-toggle break" id="btn_refsh">
+                <img src="{$skin}new_imgs/main/bar_break.png">
             </button>
         </div>
 
@@ -25,7 +25,7 @@
                 <li><a href="trend.shtml">{$game_name}走势图</a></li>
             </ul>
         </div>
-        <p style="position:absolute; top:15px; left:50%; margin-left:-18px; font-size:16px;  text-shadow:2px 2px 3px #ccc;color: #ecc296;">{$game_name}</p>
+        <p class="navbar_title">{$game_name}</p>
     </div>
 
 </nav>
@@ -55,7 +55,7 @@
 
     </div>
 </div>
-{tpl foot}
+<!-- {tpl foot} -->
 <script type="text/javascript">
     $(function () {
         $("#list").on('click','#press',function () {
@@ -66,8 +66,8 @@
         $("#main").on("click",".item",function () {
             no=$(this).attr("rel");
             window.location="{:url("game/recorddetail/id/$id")}&no="+no;
-        })
-
+        });
+        $('#btn_refsh').click(function(e){ window.location.reload(); });
     })
 </script>
 </body>

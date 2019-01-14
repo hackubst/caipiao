@@ -12,25 +12,16 @@
 <nav class="navbar navbar-default navbar-fixed-top">
     <div class="container-fluid" style="position:relative;">
         <div class="navbar-header">
-            <a href="{:url("game/game/id/$id")}" class="navbar-brand" onclick="javascript:void(0);"><span class="glyphicon glyphicon-chevron-left icon"></span></a>
-            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#list_nav">
-                <span class="glyphicon glyphicon-option-horizontal"></span>
+            <a href="{:url("game/game/id/$id")}" class="navbar-brand" onclick="javascript:void(0);"><img src="{$skin}new_imgs/main/bar_back.png"></a>
+            <button type="button" class="navbar-toggle break" id="btn_refsh">
+                <img src="{$skin}new_imgs/main/bar_break.png">
             </button>
         </div>
-
-        <div class="collapse navbar-collapse" id="list_nav">
-            <ul class="nav navbar-nav navbar-right" style="display: none">
-                <li class="active"><a href="auto.shtml">自定义投注模式</a></li>
-                <li><a href="../member_mybank.shtml">小金库</a></li>
-                <li><a href="trend.shtml">{$game_name}走势图</a></li>
-            </ul>
-        </div>
-        <p style="position:absolute; top:15px; left:50%; margin-left:-18px; font-size:16px;  text-shadow:2px 2px 3px #ccc;color: #ecc296;">{$game_name}</p>
+        <p class="navbar_title">{$game_name}规则</p>
     </div>
-
 </nav>
 
-<div id="main" style="overflow: scroll">
+<div id="main" style="overflow:auto;">
     <div class="container-fluid">
         <div class="row">
             <!--
@@ -44,171 +35,165 @@
                 </tr>
             </table>
             -->
-            <table class="table table-hover table-striped text-center" style="font-size:12px;">
+            <table class="table table-hover table-striped table-bordered text-center" style="font-size:12px;">
                 {if $act == "0"}
-                <tr><td colspan='4'>计算机系统随机产生3个数字,每个数字范围0-9,每1分钟一期，24小时开奖</td></tr>
+                <tr><td class="title" colspan='4'>计算机系统随机产生3个数字,每个数字范围0-9,每1分钟一期，24小时开奖</td></tr>
 
                 <tr>
-                    <td width='120'>如第449159期</td>
+                    <td class="title" width='120'>如第449159期</td>
                     <td>0-9随机数</td>
                     <td>0-9随机数</td>
                     <td>0-9随机数</td>
-                    </tr>
-
+                </tr>
                 <tr>
-                    <td>结果</td>
+                    <td class="title">结果</td>
                     <td><li class='kj '>0</li></td>
                     <td><li class='kj '>9</li></td>
                     <td><li class='kj '>3</li></td>
-                    </tr>
-
+                </tr>
                 <tr>
-                    <td>开奖</td>
+                    <td class="title">开奖</td>
                     <td colspan=3><li class='kj '>0</li><i class="hja"></i><li class='kj '>9</li><i class="hja"></i><li class='kj '>3</li><i class="hdeng"></i><li class=''>12</li></td>
-                    </tr>
+                </tr>
                 {elseif $act == "1"}
-                <tr><td colspan='4'>计算机系统随机产生3个数字,每个数字范围1-6,每1分钟一期，24小时开奖</td></tr>
+                <tr><td class="title" colspan='4'>计算机系统随机产生3个数字,每个数字范围1-6,每1分钟一期，24小时开奖</td></tr>
 
                 <tr>
-                    <td width='120'>如第449159期</td>
+                    <td class="title" width='120'>如第449159期</td>
                     <td>1-6随机数</td>
                     <td>1-6随机数</td>
                     <td>1-6随机数</td>
-                    </tr>
-
+                </tr>
                 <tr>
-                    <td>结果</td>
+                    <td class="title">结果</td>
                     <td><li class='kj '>1</li></td>
                     <td><li class='kj '>4</li></td>
                     <td><li class='kj '>3</li></td>
-                    </tr>
-
+                </tr>
                 <tr>
-                    <td>开奖</td>
+                    <td class="title">开奖</td>
                     <td colspan=3><li class='kj '>1</li><i class="hja"></i><li class='kj '>4</li><i class="hja"></i><li class='kj '>3</li><i class="hdeng"></i><li class=''>8</li></td>
-                    </tr>
+                </tr>
                 {elseif $act == "2"}
                 <tr><td colspan='3'>计算机系统随机产生2个数字,每个数字范围1-6,每1分钟一期，24小时开奖</td></tr>
 
                 <tr>
-                    <td width='120'>如第449159期</td>
+                    <td class="title" width='120'>如第449159期</td>
                     <td>1-6随机数</td>
                     <td>1-6随机数</td>
-                    </tr>
-
+                </tr>
                 <tr>
-                    <td>结果</td>
+                    <td class="title">结果</td>
                     <td><li class='kj '>1</li></td>
                     <td><li class='kj '>4</li></td>
-                    </tr>
-
+                </tr>
                 <tr>
-                    <td>开奖</td>
+                    <td class="title">开奖</td>
                     <td colspan=2><li class='kj '>1</li><i class="hja"></i><li class='kj '>4</li><i class="hdeng"></i><li class=''>5</li></td>
-                    </tr>
+                </tr>
                 {elseif $act == "3" || $act == "32"}
-                <tr><td colspan='4'>采用北京福彩中心快乐8数据，每5分钟一期，每天179期，每天0-9点暂停开奖</td></tr>
+                <tr><td class="title" colspan='4'>采用北京福彩中心快乐8数据，每5分钟一期，每天179期，每天0-9点暂停开奖</td></tr>
 
                 <tr>
-                    <td width='120'>如第654574期</td>
+                    <td class="title" width='120'>如第654574期</td>
                     <td colspan='3'>02,04,07,08,18,22,25,30,35,36,43,49,50,53,59,66,69,71,74,75</td>
-                    </tr>
+                </tr>
 
                 <tr>
-                    <td width='120'>区位</td>
+                    <td class="title" width='120'>区位</td>
                     <td>第一区[第1/2/3/4/5/6位数字]</td>
                     <td>第二区[第7/8/9/10/11/12位数字]</td>
                     <td>第三区[第13/14/15/16/17/18位数字]</td>
-                    </tr>
+                </tr>
 
                 <tr>
-                    <td>数字</td>
+                    <td class="title">数字</td>
                     <td>02,04,07,08,18,22</td>
                     <td>25,30,35,36,43,49</td>
                     <td>50,53,59,66,69,71</td>
-                    </tr>
+                </tr>
 
                 <tr>
-                    <td>求和</td>
+                    <td class="title">求和</td>
                     <td>61</td>
                     <td>218</td>
                     <td>368</td>
-                    </tr>
+                </tr>
 
                 <tr>
-                    <td>计算</td>
+                    <td class="title">计算</td>
                     <td>取尾数</td>
                     <td>取尾数</td>
                     <td>取尾数</td>
-                    </tr>
+                </tr>
 
                 <tr>
-                    <td>结果</td>
+                    <td class="title">结果</td>
                     <td><li class='kj '>1</li></td>
                     <td><li class='kj '>8</li></td>
                     <td><li class='kj '>8</li></td>
-                    </tr>
+                </tr>
 
                 <tr>
-                    <td>开奖</td>
+                    <td class="title">开奖</td>
                     <td colspan=3><li class='kj '>1</li><i class="hja"></i><li class='kj '>8</li><i class="hja"></i><li class='kj '>8</li> <i class="hdeng"></i> <li class=''>17</li></td>
-                    </tr>
+                </tr>
                 {elseif $act == "25"}
-                <tr><td colspan='4'>采用北京福彩中心快乐8数据，每5分钟一期，每天179期，每天0-9点暂停开奖</td></tr>
+                <tr><td class="title" colspan='4'>采用北京福彩中心快乐8数据，每5分钟一期，每天179期，每天0-9点暂停开奖</td></tr>
 
                 <tr>
-                    <td width='120'>如第654574期</td>
+                    <td class="title" width='120'>如第654574期</td>
                     <td colspan='3'>02,04,07,08,18,22,25,30,35,36,43,49,50,53,59,66,69,71,74,75</td>
-                    </tr>
+                </tr>
 
                 <tr>
-                    <td width='120'>区位</td>
+                    <td class="title" width='120'>区位</td>
                     <td>第一区[第1/2/3/4/5/6位数字]</td>
                     <td>第二区[第7/8/9/10/11/12位数字]</td>
                     <td>第三区[第13/14/15/16/17/18位数字]</td>
-                    </tr>
+                </tr>
 
                 <tr>
-                    <td>数字</td>
+                    <td class="title">数字</td>
                     <td>02,04,07,08,18,22</td>
                     <td>25,30,35,36,43,49</td>
                     <td>50,53,59,66,69,71</td>
-                    </tr>
+                </tr>
 
                 <tr>
-                    <td>求和</td>
+                    <td class="title">求和</td>
                     <td>61</td>
                     <td>218</td>
                     <td>368</td>
-                    </tr>
+                </tr>
 
                 <tr>
-                    <td>计算</td>
+                    <td class="title">计算</td>
                     <td>取尾数</td>
                     <td>取尾数</td>
                     <td>取尾数</td>
-                    </tr>
+                </tr>
 
                 <tr>
-                    <td>结果</td>
+                    <td class="title">结果</td>
                     <td><li class='kj '>1</li></td>
                     <td><li class='kj '>8</li></td>
                     <td><li class='kj '>8</li></td>
-                    </tr>
+                </tr>
 
                 <tr>
-                    <td>开奖</td>
+                    <td class="title">开奖</td>
                     <td colspan=3><li class='kj '>1</li><i class="hja"></i><li class='kj '>8</li><i class="hja"></i><li class='kj '>8</li> <i class="hdeng"></i> <li class=''>17</li></td>
-                    </tr>
-                <tr><td colspan='4'>游戏总共有0-27共28位数字，0-13为小，14-27为大，奇数为单，偶数为双,以下赔率包含本金</td></tr>
+                </tr>
+                <tr><td class="title" colspan='4'>游戏总共有0-27共28位数字，0-13为小，14-27为大，奇数为单，偶数为双,以下赔率包含本金</td></tr>
                 <tr>
                     <td>大小单双</td>
                     <td>固定赔率2.1倍, 开13,14回本。</td>
-                    <td>小单</td>
+                    <td class="title">小单</td>
                     <td>固定4.6倍（包括1,3,5,7,9,11,13）,开13回本。</td>
                 </tr>  
                 <tr>
-                    <td>大单</td>
+                    <td class="title">大单</td>
                     <td>固定4.2倍（15,17,19,21,23,25,27）</td>
                     <td>小双</td>
                     <td>固定4.2倍（0.2.4.6.8.10.12)</td>
@@ -232,63 +217,63 @@
                     <td>固定2.9倍（2,5,8,11,14,17,20,23,26）</td>
                 </tr> 
                 {elseif $act == "26"}
-                <tr><td colspan='4'>采用北京福彩中心快乐8数据，每5分钟一期，每天179期，每天0-9点暂停开奖</td></tr>
+                <tr><td class="title" colspan='4'>采用北京福彩中心快乐8数据，每5分钟一期，每天179期，每天0-9点暂停开奖</td></tr>
 
                 <tr>
-                    <td width='120'>如第654574期</td>
+                    <td class="title" width='120'>如第654574期</td>
                     <td colspan='3'>02,04,07,08,18,22,25,30,35,36,43,49,50,53,59,66,69,71,74,75</td>
                     </tr>
 
                 <tr>
-                    <td width='120'>区位</td>
+                    <td class="title" width='120'>区位</td>
                     <td>第一区[第1/2/3/4/5/6位数字]</td>
                     <td>第二区[第7/8/9/10/11/12位数字]</td>
                     <td>第三区[第13/14/15/16/17/18位数字]</td>
                     </tr>
 
                 <tr>
-                    <td>数字</td>
+                    <td class="title">数字</td>
                     <td>02,04,07,08,18,22</td>
                     <td>25,30,35,36,43,49</td>
                     <td>50,53,59,66,69,71</td>
                     </tr>
 
                 <tr>
-                    <td>求和</td>
+                    <td class="title">求和</td>
                     <td>61</td>
                     <td>218</td>
                     <td>368</td>
                     </tr>
 
                 <tr>
-                    <td>计算</td>
+                    <td class="title">计算</td>
                     <td>取尾数</td>
                     <td>取尾数</td>
                     <td>取尾数</td>
                     </tr>
 
                 <tr>
-                    <td>结果</td>
+                    <td class="title">结果</td>
                     <td><li class='kj '>1</li></td>
                     <td><li class='kj '>8</li></td>
                     <td><li class='kj '>8</li></td>
                     </tr>
 
                 <tr>
-                    <td>开奖</td>
+                    <td class="title">开奖</td>
                     <td colspan=3><li class='kj '>1</li><i class="hja"></i><li class='kj '>8</li><i class="hja"></i><li class='kj '>8</li> <i class="hdeng"></i> <li class=''>17</li></td>
                     </tr>
-                <tr><td colspan='4'>游戏总共有0-27共28位数字，0-13为小，14-27为大，奇数为单，偶数为双,以下赔率包含本金</td></tr>
+                <tr><td class="title" colspan='4'>游戏总共有0-27共28位数字，0-13为小，14-27为大，奇数为单，偶数为双,以下赔率包含本金</td></tr>
                 <tr>
-                    <td>大小</td>
+                    <td class="title">大小</td>
                     <td>固定赔率1.98倍</td>
                     <td>单双</td>
                     <td>固定赔率1.98倍</td>
                 </tr>  
                 <tr>
-                    <td>小单</td>
+                    <td class="title">小单</td>
                     <td>固定3.68倍（1.3.5.7.9.11.13）</td>
-                    <td>大单</td>
+                    <td class="title">大单</td>
                     <td>固定4.2倍（15.17.19.21.23.25.27）</td>
                 </tr>  
                 <tr>
@@ -314,108 +299,104 @@
                     
                     
                 {elseif $act == "4" || $act == "33"}
-                <tr><td colspan='4'>采用北京福彩中心快乐8数据，每5分钟一期，每天179期，每天0-9点暂停开奖</td></tr>
+                <tr><td class="title" colspan='4'>采用北京福彩中心快乐8数据，每5分钟一期，每天179期，每天0-9点暂停开奖</td></tr>
 
                 <tr>
-                    <td width='120'>如第654574期</td>
+                    <td class="title" width='120'>如第654574期</td>
                     <td colspan='3'>02,04,07,08,18,22,25,30,35,36,43,49,50,53,59,66,69,71,74,75(从小到大依次排列)</td>
                     </tr>
 
                 <tr>
-                    <td width='120'>区位</td>
+                    <td class="title" width='120'>区位</td>
                     <td>第一区[第2/5/8/11/14/17位数字]</td>
                     <td>第二区[第3/6/9/12/15/18位数字]</td>
                     <td>第三区[第4/7/10/13/16/19位数字]</td>
                     </tr>
 
                 <tr>
-                    <td>数字</td>
+                    <td class="title">数字</td>
                     <td>04,18,30,43,53,69</td>
                     <td>07,22,35,49,59,71</td>
                     <td>08,25,36,50,66,74</td>
-                    </tr>
-
+                </tr>
                 <tr>
-                    <td>求和</td>
+                    <td class="title">求和</td>
                     <td>217</td>
                     <td>243</td>
                     <td>259</td>
-                    </tr>
-
+                </tr>
                 <tr>
-                    <td>计算</td>
+                    <td class="title">计算</td>
                     <td>取尾数</td>
                     <td>取尾数</td>
                     <td>取尾数</td>
-                    </tr>
-
+                </tr>
                 <tr>
-                    <td>结果</td>
+                    <td class="title">结果</td>
                     <td><li class='kj '>7</li></td>
                     <td><li class='kj '>3</li></td>
                     <td><li class='kj '>9</li></td>
-                    </tr>
-
+                </tr>
                 <tr>
-                    <td>开奖</td>
+                    <td class="title">开奖</td>
                     <td colspan=3><li class='kj '>7</li><i class="hja"></i><li class='kj '>3</li><i class="hja"></i><li class='kj '>9</li><i class="hdeng"></i><li class=''>19</li></td>
                     </tr>
                 {elseif $act == "41"}
-                <tr><td colspan='4'>采用北京福彩中心快乐8数据，每5分钟一期，每天179期，每天0-9点暂停开奖</td></tr>
+                <tr><td class="title" colspan='4'>采用北京福彩中心快乐8数据，每5分钟一期，每天179期，每天0-9点暂停开奖</td></tr>
 
                 <tr>
-                    <td width='120'>如第654574期</td>
+                    <td class="title" width='120'>如第654574期</td>
                     <td colspan='3'>02,04,07,08,18,22,25,30,35,36,43,49,50,53,59,66,69,71,74,75(从小到大依次排列)</td>
                     </tr>
 
                 <tr>
-                    <td width='120'>区位</td>
+                    <td class="title" width='120'>区位</td>
                     <td>第一区[第2/5/8/11/14/17位数字]</td>
                     <td>第二区[第3/6/9/12/15/18位数字]</td>
                     <td>第三区[第4/7/10/13/16/19位数字]</td>
                     </tr>
 
                 <tr>
-                    <td>数字</td>
+                    <td class="title">数字</td>
                     <td>04,18,30,43,53,69</td>
                     <td>07,22,35,49,59,71</td>
                     <td>08,25,36,50,66,74</td>
                     </tr>
 
                 <tr>
-                    <td>求和</td>
+                    <td class="title">求和</td>
                     <td>217</td>
                     <td>243</td>
                     <td>259</td>
                     </tr>
 
                 <tr>
-                    <td>计算</td>
+                    <td class="title">计算</td>
                     <td>取尾数</td>
                     <td>取尾数</td>
                     <td>取尾数</td>
                     </tr>
 
                 <tr>
-                    <td>结果</td>
+                    <td class="title">结果</td>
                     <td><li class='kj '>7</li></td>
                     <td><li class='kj '>3</li></td>
                     <td><li class='kj '>9</li></td>
                     </tr>
 
                 <tr>
-                    <td>开奖</td>
+                    <td class="title">开奖</td>
                     <td colspan=3><li class='kj '>7</li><i class="hja"></i><li class='kj '>3</li><i class="hja"></i><li class='kj '>9</li><i class="hdeng"></i><li class=''>19</li></td>
                     </tr>
-                <tr><td colspan='4'>游戏总共有0-27共28位数字，0-13为小，14-27为大，奇数为单，偶数为双,以下赔率包含本金</td></tr>
+                <tr><td class="title" colspan='4'>游戏总共有0-27共28位数字，0-13为小，14-27为大，奇数为单，偶数为双,以下赔率包含本金</td></tr>
                 <tr>
                     <td>大小单双</td>
                     <td>固定赔率2.1倍, 开13,14回本。</td>
-                    <td>小单</td>
+                    <td class="title">小单</td>
                     <td>固定4.6倍（包括1,3,5,7,9,11,13）,开13回本。</td>
                 </tr>  
                 <tr>
-                    <td>大单</td>
+                    <td class="title">大单</td>
                     <td>固定4.2倍（15,17,19,21,23,25,27）</td>
                     <td>小双</td>
                     <td>固定4.2倍（0.2.4.6.8.10.12)</td>
@@ -439,63 +420,63 @@
                     <td>固定2.9倍（2,5,8,11,14,17,20,23,26）</td>
                 </tr> 
                 {elseif $act == "42"}
-                <tr><td colspan='4'>采用北京福彩中心快乐8数据，每5分钟一期，每天179期，每天0-9点暂停开奖</td></tr>
+                <tr><td class="title" colspan='4'>采用北京福彩中心快乐8数据，每5分钟一期，每天179期，每天0-9点暂停开奖</td></tr>
 
                 <tr>
-                    <td width='120'>如第654574期</td>
+                    <td class="title" width='120'>如第654574期</td>
                     <td colspan='3'>02,04,07,08,18,22,25,30,35,36,43,49,50,53,59,66,69,71,74,75(从小到大依次排列)</td>
                     </tr>
 
                 <tr>
-                    <td width='120'>区位</td>
+                    <td class="title" width='120'>区位</td>
                     <td>第一区[第2/5/8/11/14/17位数字]</td>
                     <td>第二区[第3/6/9/12/15/18位数字]</td>
                     <td>第三区[第4/7/10/13/16/19位数字]</td>
                     </tr>
 
                 <tr>
-                    <td>数字</td>
+                    <td class="title">数字</td>
                     <td>04,18,30,43,53,69</td>
                     <td>07,22,35,49,59,71</td>
                     <td>08,25,36,50,66,74</td>
                     </tr>
 
                 <tr>
-                    <td>求和</td>
+                    <td class="title">求和</td>
                     <td>217</td>
                     <td>243</td>
                     <td>259</td>
                     </tr>
 
                 <tr>
-                    <td>计算</td>
+                    <td class="title">计算</td>
                     <td>取尾数</td>
                     <td>取尾数</td>
                     <td>取尾数</td>
                     </tr>
 
                 <tr>
-                    <td>结果</td>
+                    <td class="title">结果</td>
                     <td><li class='kj '>7</li></td>
                     <td><li class='kj '>3</li></td>
                     <td><li class='kj '>9</li></td>
                     </tr>
 
                 <tr>
-                    <td>开奖</td>
+                    <td class="title">开奖</td>
                     <td colspan=3><li class='kj '>7</li><i class="hja"></i><li class='kj '>3</li><i class="hja"></i><li class='kj '>9</li><i class="hdeng"></i><li class=''>19</li></td>
                     </tr>
-                <tr><td colspan='4'>游戏总共有0-27共28位数字，0-13为小，14-27为大，奇数为单，偶数为双,以下赔率包含本金</td></tr>
+                <tr><td class="title" colspan='4'>游戏总共有0-27共28位数字，0-13为小，14-27为大，奇数为单，偶数为双,以下赔率包含本金</td></tr>
                 <tr>
-                    <td>大小</td>
+                    <td class="title">大小</td>
                     <td>固定赔率1.98倍</td>
                     <td>单双</td>
                     <td>固定赔率1.98倍</td>
                 </tr>  
                 <tr>
-                    <td>小单</td>
+                    <td class="title">小单</td>
                     <td>固定3.68倍（1.3.5.7.9.11.13）</td>
-                    <td>大单</td>
+                    <td class="title">大单</td>
                     <td>固定4.2倍（15.17.19.21.23.25.27）</td>
                 </tr>  
                 <tr>
@@ -522,57 +503,57 @@
                     
                     
                 {elseif $act == "5"}
-                <tr><td colspan='4'>采用北京福彩中心快乐8数据，每5分钟一期，每天179期，每天0-9点暂停开奖</td></tr>
+                <tr><td class="title" colspan='4'>采用北京福彩中心快乐8数据，每5分钟一期，每天179期，每天0-9点暂停开奖</td></tr>
 
                 <tr>
-                    <td width='120'>如第654574期</td>
+                    <td class="title" width='120'>如第654574期</td>
                     <td colspan='3'>02,04,07,08,18,22,25,30,35,36,43,49,50,53,59,66,69,71,74,75(从小到大依次排列)</td>
                     </tr>
 
                 <tr>
-                    <td width='120'>区位</td>
+                    <td class="title" width='120'>区位</td>
                     <td>第一区[第1/4/7/10/13/16位数字]</td>
                     <td>第二区[第2/5/8/11/14/17位数字]</td>
                     <td>第三区[第3/6/9/12/15/18位数字]</td>
                     </tr>
 
                 <tr>
-                    <td>数字</td>
+                    <td class="title">数字</td>
                     <td>02,08,25,36,50,66</td>
                     <td>04,18,30,43,53,69</td>
                     <td>07,22,35,49,59,71</td>
                     </tr>
 
                 <tr>
-                    <td>求和</td>
+                    <td class="title">求和</td>
                     <td>187</td>
                     <td>217</td>
                     <td>243</td>
                     </tr>
 
                 <tr>
-                    <td>计算</td>
+                    <td class="title">计算</td>
                     <td>187除以6的余数 + 1</td>
                     <td>217除以6的余数 + 1</td>
                     <td>243除以6的余数 + 1</td>
                     </tr>
 
                 <tr>
-                    <td>结果</td>
+                    <td class="title">结果</td>
                     <td><li class='kj '>2</li></td>
                     <td><li class='kj '>2</li></td>
                     <td><li class='kj '>4</li></td>
                     </tr>
 
                 <tr>
-                    <td>开奖</td>
+                    <td class="title">开奖</td>
                     <td colspan=3><li class='kj '>2</li><i class="hja"></i><li class='kj '>2</li><i class="hja"></i><li class='kj '>4</li><i class="hdeng"></i><li class=''>8</li></td>
                     </tr>
                 {elseif $act == "6"}
                 <tr><td colspan='2'>采用北京福彩中心PK10数据，每5分钟一期，每天179期，每天0-9点暂停开奖</td></tr>
 
                 <tr>
-                    <td width='120'>如第449159期</td>
+                    <td class="title" width='120'>如第449159期</td>
                     <td><em class=''>06</em>
                         <em class=''>05</em>
                         <em class=''>01</em>
@@ -586,24 +567,24 @@
                     </tr>
 
                 <tr>
-                    <td>计算</td>
+                    <td class="title">计算</td>
                     <td>取期号尾数，尾数对应第几位数字为开奖号码，如果尾数为0取第10位</td>
                     </tr>
 
                 <tr>
-                    <td>结果</td>
+                    <td class="title">结果</td>
                     <td>第449153期的期号尾数是3,则取第3位，是1</td>
                     </tr>
 
                 <tr>
-                    <td>开奖</td>
+                    <td class="title">开奖</td>
                     <td colspan=3><li class=''>1</li></td>
                     </tr>
                 {elseif $act == "7"}
                 <tr><td colspan='2'>采用北京福彩中心PK10数据，每5分钟一期，每天179期，每天0-9点暂停开奖</td></tr>
 
                 <tr>
-                    <td width='120'>如第449159期</td>
+                    <td class="title" width='120'>如第449159期</td>
                     <td><em class=''>06</em>
                         <em class=''>05</em>
                         <em class=''>01</em>
@@ -617,118 +598,116 @@
                     </tr>
 
                 <tr>
-                    <td>计算</td>
+                    <td class="title">计算</td>
                     <td>开奖取首位</td>
-                    </tr>
-
+                </tr>
                 <tr>
-                    <td>开奖</td>
+                    <td class="title">开奖</td>
                     <td colspan=3><li class="">6</li></td>
                     </tr>
                 {elseif $act == "8" || $act == "35"}
-                <tr><td colspan='4'>采用加拿大快乐8数据，每4分钟一期，每天336期，每天19:00-20:00暂停开奖</td></tr>
+                <tr><td class="title" colspan='4'>采用加拿大快乐8数据，每4分钟一期，每天336期，每天19:00-20:00暂停开奖</td></tr>
 
                 <tr>
-                    <td width='120'>如第1773065期</td>
+                    <td class="title" width='120'>如第1773065期</td>
                     <td colspan='3'>01,06,07,13,15,28,31,32,33,35,40,43,44,53,57,62,64,65,68,80</td>
-                    </tr>
-
+                </tr>
                 <tr>
-                    <td>区位</td>
+                    <td class="title">区位</td>
                     <td>第一区[第2/5/8/11/14/17位数字]</td>
                     <td>第二区[第3/6/9/12/15/18位数字]</td>
                     <td>第三区[第4/7/10/13/16/19位数字]</td>
-                    </tr>
+                </tr>
 
                 <tr>
-                    <td>数字</td>
+                    <td class="title">数字</td>
                     <td>06,15,32,40,53,64</td>
                     <td>07,28,33,43,57,65</td>
                     <td>13,31,35,44,62,68</td>
-                    </tr>
+                </tr>
 
                 <tr>
-                    <td>求和</td>
+                    <td class="title">求和</td>
                     <td>210</td>
                     <td>233</td>
                     <td>253</td>
-                    </tr>
+                </tr>
 
                 <tr>
-                    <td>计算</td>
+                    <td class="title">计算</td>
                     <td>取尾数</td>
                     <td>取尾数</td>
                     <td>取尾数</td>
-                    </tr>
+                </tr>
 
                 <tr>
-                    <td>结果</td>
+                    <td class="title">结果</td>
                     <td><li class='kj '>0</li></td>
                     <td><li class='kj '>3</li></td>
                     <td><li class='kj '>3</li></td>
-                    </tr>
+                </tr>
 
                 <tr>
-                    <td>开奖</td>
+                    <td class="title">开奖</td>
                     <td colspan=3><li class='kj '>0</li><i class="hja"></i><li class='kj '>3</li><i class="hja"></i><li class='kj '>3</li><i class="hdeng"></i><li class=''>6</li></td>
-                    </tr>
+                </tr>
                     
                 {elseif $act == "27"}
-                <tr><td colspan='4'>采用加拿大快乐8数据，每4分钟一期，每天336期，每天19:00-20:00暂停开奖</td></tr>
+                <tr><td class="title" colspan='4'>采用加拿大快乐8数据，每4分钟一期，每天336期，每天19:00-20:00暂停开奖</td></tr>
 
                 <tr>
-                    <td width='120'>如第1773065期</td>
+                    <td class="title" width='120'>如第1773065期</td>
                     <td colspan='3'>01,06,07,13,15,28,31,32,33,35,40,43,44,53,57,62,64,65,68,80</td>
                     </tr>
 
                 <tr>
-                    <td>区位</td>
+                    <td class="title">区位</td>
                     <td>第一区[第2/5/8/11/14/17位数字]</td>
                     <td>第二区[第3/6/9/12/15/18位数字]</td>
                     <td>第三区[第4/7/10/13/16/19位数字]</td>
                     </tr>
 
                 <tr>
-                    <td>数字</td>
+                    <td class="title">数字</td>
                     <td>06,15,32,40,53,64</td>
                     <td>07,28,33,43,57,65</td>
                     <td>13,31,35,44,62,68</td>
                     </tr>
 
                 <tr>
-                    <td>求和</td>
+                    <td class="title">求和</td>
                     <td>210</td>
                     <td>233</td>
                     <td>253</td>
                     </tr>
 
                 <tr>
-                    <td>计算</td>
+                    <td class="title">计算</td>
                     <td>取尾数</td>
                     <td>取尾数</td>
                     <td>取尾数</td>
                     </tr>
 
                 <tr>
-                    <td>结果</td>
+                    <td class="title">结果</td>
                     <td><li class='kj '>0</li></td>
                     <td><li class='kj '>3</li></td>
                     <td><li class='kj '>3</li></td>
                     </tr>
 
                 <tr>
-                    <td>开奖</td>
+                    <td class="title">开奖</td>
                     <td colspan=3><li class='kj '>0</li><i class="hja"></i><li class='kj '>3</li><i class="hja"></i><li class='kj '>3</li><i class="hdeng"></i><li class=''>6</li></td>
                     </tr>
-                <tr><td colspan='4'>游戏总共有0-27共28位数字，0-13为小，14-27为大，奇数为单，偶数为双,以下赔率包含本金</td></tr>
+                <tr><td class="title" colspan='4'>游戏总共有0-27共28位数字，0-13为小，14-27为大，奇数为单，偶数为双,以下赔率包含本金</td></tr>
                 <tr>
                     <td>大小单双</td>
                     <td>固定赔率2.1倍, 开13,14回本。</td>
-                    <td>小单</td>
+                    <td class="title">小单</td>
                     <td>固定4.6倍（包括1,3,5,7,9,11,13）,开13回本。</td>
                 </tr>  
                 <tr>
-                    <td>大单</td>
+                    <td class="title">大单</td>
                     <td>固定4.2倍（15,17,19,21,23,25,27）</td>
                     <td>小双</td>
                     <td>固定4.2倍（0.2.4.6.8.10.12)</td>
@@ -752,63 +731,63 @@
                     <td>固定2.9倍（2,5,8,11,14,17,20,23,26）</td>
                 </tr> 
                 {elseif $act == "28"}
-                <tr><td colspan='4'>采用加拿大快乐8数据，每4分钟一期，每天336期，每天19:00-20:00暂停开奖</td></tr>
+                <tr><td class="title" colspan='4'>采用加拿大快乐8数据，每4分钟一期，每天336期，每天19:00-20:00暂停开奖</td></tr>
 
                 <tr>
-                    <td width='120'>如第1773065期</td>
+                    <td class="title" width='120'>如第1773065期</td>
                     <td colspan='3'>01,06,07,13,15,28,31,32,33,35,40,43,44,53,57,62,64,65,68,80</td>
                     </tr>
 
                 <tr>
-                    <td>区位</td>
+                    <td class="title">区位</td>
                     <td>第一区[第2/5/8/11/14/17位数字]</td>
                     <td>第二区[第3/6/9/12/15/18位数字]</td>
                     <td>第三区[第4/7/10/13/16/19位数字]</td>
                     </tr>
 
                 <tr>
-                    <td>数字</td>
+                    <td class="title">数字</td>
                     <td>06,15,32,40,53,64</td>
                     <td>07,28,33,43,57,65</td>
                     <td>13,31,35,44,62,68</td>
                     </tr>
 
                 <tr>
-                    <td>求和</td>
+                    <td class="title">求和</td>
                     <td>210</td>
                     <td>233</td>
                     <td>253</td>
                     </tr>
 
                 <tr>
-                    <td>计算</td>
+                    <td class="title">计算</td>
                     <td>取尾数</td>
                     <td>取尾数</td>
                     <td>取尾数</td>
                     </tr>
 
                 <tr>
-                    <td>结果</td>
+                    <td class="title">结果</td>
                     <td><li class='kj '>0</li></td>
                     <td><li class='kj '>3</li></td>
                     <td><li class='kj '>3</li></td>
                     </tr>
 
                 <tr>
-                    <td>开奖</td>
+                    <td class="title">开奖</td>
                     <td colspan=3><li class='kj '>0</li><i class="hja"></i><li class='kj '>3</li><i class="hja"></i><li class='kj '>3</li><i class="hdeng"></i><li class=''>6</li></td>
                     </tr>
-                <tr><td colspan='4'>游戏总共有0-27共28位数字，0-13为小，14-27为大，奇数为单，偶数为双,以下赔率包含本金</td></tr>
+                <tr><td class="title" colspan='4'>游戏总共有0-27共28位数字，0-13为小，14-27为大，奇数为单，偶数为双,以下赔率包含本金</td></tr>
                 <tr>
-                    <td>大小</td>
+                    <td class="title">大小</td>
                     <td>固定赔率1.98倍</td>
                     <td>单双</td>
                     <td>固定赔率1.98倍</td>
                 </tr>  
                 <tr>
-                    <td>小单</td>
+                    <td class="title">小单</td>
                     <td>固定3.68倍（1.3.5.7.9.11.13）</td>
-                    <td>大单</td>
+                    <td class="title">大单</td>
                     <td>固定4.2倍（15.17.19.21.23.25.27）</td>
                 </tr>  
                 <tr>
@@ -835,139 +814,139 @@
                     
                     
                 {elseif $act == "9"}
-                <tr><td colspan='4'>采用加拿大快乐8数据，每4分钟一期，每天336期，每天19:00-20:00暂停开奖</td></tr>
+                <tr><td class="title" colspan='4'>采用加拿大快乐8数据，每4分钟一期，每天336期，每天19:00-20:00暂停开奖</td></tr>
 
                 <tr>
-                    <td width='120'>如第1773065期</td>
+                    <td class="title" width='120'>如第1773065期</td>
                     <td colspan='3'>01,06,07,13,15,28,31,32,33,35,40,43,44,53,57,62,64,65,68,80</td>
                     </tr>
 
                 <tr>
-                    <td>区位</td>
+                    <td class="title">区位</td>
                     <td>第一区[第1/4/7/10/13/16位数字]</td>
                     <td>第二区[第2/5/8/11/14/17位数字]</td>
                     <td>第三区[第3/6/9/12/15/18位数字]</td>
                     </tr>
 
                 <tr>
-                    <td>数字</td>
+                    <td class="title">数字</td>
                     <td>01,13,31,35,44,62</td>
                     <td>06,15,32,40,53,64</td>
                     <td>07,28,33,43,57,65</td>
                     </tr>
 
                 <tr>
-                    <td>求和</td>
+                    <td class="title">求和</td>
                     <td>186</td>
                     <td>210</td>
                     <td>233</td>
                     </tr>
 
                 <tr>
-                    <td>计算</td>
+                    <td class="title">计算</td>
                     <td>186除以6的余数 + 1</td>
                     <td>210除以6的余数 + 1</td>
                     <td>233除以6的余数 + 1</td>
                     </tr>
 
                 <tr>
-                    <td>结果</td>
+                    <td class="title">结果</td>
                     <td><li class='kj '>1</li></td>
                     <td><li class='kj '>1</li></td>
                     <td><li class='kj '>6</li></td>
                     </tr>
 
                 <tr>
-                    <td>开奖</td>
+                    <td class="title">开奖</td>
                     <td colspan=3><li class='kj '>1</li><i class="hja"></i><li class='kj '>1</li><i class="hja"></i><li class='kj '>6</li><i class="hdeng"></i><li class=''>8</li></td>
                     </tr>
                 {elseif $act == "10"}
                 <tr><td colspan='3'>采用加拿大快乐8数据，每4分钟一期，每天336期，每天19:00-20:00暂停开奖</td></tr>
 
                 <tr>
-                    <td width='120'>如第1773065期</td>
+                    <td class="title" width='120'>如第1773065期</td>
                     <td colspan='2'>01,06,07,13,15,28,31,32,33,35,40,43,44,53,57,62,64,65,68,80</td>
                     </tr>
 
                 <tr>
-                    <td>区位</td>
+                    <td class="title">区位</td>
                     <td>第一区[第1/4/7/10/13/16位数字]</td>
                     <td>第三区[第3/6/9/12/15/18位数字]</td>
                     </tr>
 
                 <tr>
-                    <td>数字</td>
+                    <td class="title">数字</td>
                     <td>01,13,31,35,44,62</td>
                     <td>07,28,33,43,57,65</td>
                     </tr>
 
                 <tr>
-                    <td>求和</td>
+                    <td class="title">求和</td>
                     <td>186</td>
                     <td>233</td>
                     </tr>
 
                 <tr>
-                    <td>计算</td>
+                    <td class="title">计算</td>
                     <td>186除以6的余数 + 1</td>
                     <td>233除以6的余数 + 1</td>
                     </tr>
 
                 <tr>
-                    <td>结果</td>
+                    <td class="title">结果</td>
                     <td><li class='kj '>1</li></td>
                     <td><li class='kj '>6</li></td>
                     </tr>
 
                 <tr>
-                    <td>开奖</td>
+                    <td class="title">开奖</td>
                     <td colspan=3><li class='kj '>1</li><i class="hja"></i><li class='kj '>6</li><i class="hdeng"></i><li class=''>7</li></td>
                     </tr>
                 {elseif $act == "11"}
-                <tr><td colspan='4'>采用北京福彩中心快乐8数据，每5分钟一期，每天179期，每天0-9点暂停开奖</td></tr>
+                <tr><td class="title" colspan='4'>采用北京福彩中心快乐8数据，每5分钟一期，每天179期，每天0-9点暂停开奖</td></tr>
 
                 <tr>
-                    <td width='120'>如第654574期</td>
+                    <td class="title" width='120'>如第654574期</td>
                     <td colspan='3'>02,04,07,08,18,22,25,30,35,36,43,49,50,53,59,66,69,71,74,75(从小到大依次排列)</td>
                     </tr>
 
                 <tr>
-                    <td width='120'>区位</td>
+                    <td class="title" width='120'>区位</td>
                     <td>第一区[第1/2/3/4/5/6位数字]</td>
                     <td>第二区[第7/8/9/10/11/12位数字]</td>
                     <td>第三区[第13/14/15/16/17/18位数字]</td>
                     </tr>
 
                 <tr>
-                    <td>数字</td>
+                    <td class="title">数字</td>
                     <td>02,04,07,08,18,22</td>
                     <td>25,30,35,36,43,49</td>
                     <td>50,53,59,66,69,71</td>
                     </tr>
 
                 <tr>
-                    <td>求和</td>
+                    <td class="title">求和</td>
                     <td>61</td>
                     <td>218</td>
                     <td>368</td>
                     </tr>
 
                 <tr>
-                    <td>计算</td>
+                    <td class="title">计算</td>
                     <td>取尾数</td>
                     <td>取尾数</td>
                     <td>取尾数</td>
                     </tr>
 
                 <tr>
-                    <td>结果</td>
+                    <td class="title">结果</td>
                     <td><li class='kj '>1</li></td>
                     <td><li class='kj '>8</li></td>
                     <td><li class='kj '>8</li></td>
                     </tr>
 
                 <tr>
-                    <td>开奖</td>
+                    <td class="title">开奖</td>
                     <td colspan=3><li class='kj '>1</li><i class="hja"></i><li class='kj '>8</li><i class="hja"></i><li class='kj '>8</li><i class="hdeng"></i><li class='zh z2'></li></td>
                     </tr>
 
@@ -999,50 +978,50 @@
                     <td colspan='4' style='text-align:left'>&nbsp;<li class='zh z5'></li>  3个结果号码没有任何关联，如638,942,185</td>
                     </tr>
                 {elseif $act == "12"}
-                <tr><td colspan='4'>采用北京福彩中心快乐8数据，每5分钟一期，每天179期，每天0-9点暂停开奖</td></tr>
+                <tr><td class="title" colspan='4'>采用北京福彩中心快乐8数据，每5分钟一期，每天179期，每天0-9点暂停开奖</td></tr>
 
                 <tr>
-                    <td width='120'>如第654574期</td>
+                    <td class="title" width='120'>如第654574期</td>
                     <td colspan='3'>02,04,07,08,18,22,25,30,35,36,43,49,50,53,59,66,69,71,74,75(从小到大依次排列)</td>
                     </tr>
 
                 <tr>
-                    <td width='120'>区位</td>
+                    <td class="title" width='120'>区位</td>
                     <td>第一区[第2/5/8/11/14/17位数字]</td>
                     <td>第二区[第3/6/9/12/15/18位数字]</td>
                     <td>第三区[第4/7/10/13/16/19位数字]</td>
                     </tr>
 
                 <tr>
-                    <td>数字</td>
+                    <td class="title">数字</td>
                     <td>04,18,30,43,53,69</td>
                     <td>07,22,35,49,59,71</td>
                     <td>08,25,36,50,66,74</td>
                     </tr>
 
                 <tr>
-                    <td>求和</td>
+                    <td class="title">求和</td>
                     <td>217</td>
                     <td>243</td>
                     <td>259</td>
                     </tr>
 
                 <tr>
-                    <td>计算</td>
+                    <td class="title">计算</td>
                     <td>取尾数</td>
                     <td>取尾数</td>
                     <td>取尾数</td>
                     </tr>
 
                 <tr>
-                    <td>结果</td>
+                    <td class="title">结果</td>
                     <td><li class='kj '>7</li></td>
                     <td><li class='kj '>3</li></td>
                     <td><li class='kj '>9</li></td>
                     </tr>
 
                 <tr>
-                    <td>开奖</td>
+                    <td class="title">开奖</td>
                     <td colspan=3><li class='kj '>7</li><i class="hja"></i><li class='kj '>3</li><i class="hja"></i><li class='kj '>9</li><i class="hdeng"></i><li class='zh z5'></li></td>
                     </tr>
 
@@ -1074,50 +1053,50 @@
                     <td colspan='4' style='text-align:left'>&nbsp;<li class='zh z5'></li>  3个结果号码没有任何关联，如638,942,185</td>
                     </tr>
                 {elseif $act == "13"}
-                <tr><td colspan='4'>采用加拿大快乐8数据，每4分钟一期，每天336期，每天19:00-20:00暂停开奖</td></tr>
+                <tr><td class="title" colspan='4'>采用加拿大快乐8数据，每4分钟一期，每天336期，每天19:00-20:00暂停开奖</td></tr>
 
                 <tr>
-                    <td width='120'>如第1773065期</td>
+                    <td class="title" width='120'>如第1773065期</td>
                     <td colspan='3'>01,06,07,13,15,28,31,32,33,35,40,43,44,53,57,62,64,65,68,80(从小到大依次排列)</td>
                     </tr>
 
                 <tr>
-                    <td>区位</td>
+                    <td class="title">区位</td>
                     <td>第一区[第2/5/8/11/14/17位数字]</td>
                     <td>第二区[第3/6/9/12/15/18位数字]</td>
                     <td>第三区[第4/7/10/13/16/19位数字]</td>
                     </tr>
 
                 <tr>
-                    <td>数字</td>
+                    <td class="title">数字</td>
                     <td>06,15,32,40,53,64</td>
                     <td>07,28,33,43,57,65</td>
                     <td>13,31,35,44,62,68</td>
                     </tr>
 
                 <tr>
-                    <td>求和</td>
+                    <td class="title">求和</td>
                     <td>210</td>
                     <td>233</td>
                     <td>253</td>
                     </tr>
 
                 <tr>
-                    <td>计算</td>
+                    <td class="title">计算</td>
                     <td>取尾数</td>
                     <td>取尾数</td>
                     <td>取尾数</td>
                     </tr>
 
                 <tr>
-                    <td>结果</td>
+                    <td class="title">结果</td>
                     <td><li class='kj '>0</li></td>
                     <td><li class='kj '>3</li></td>
                     <td><li class='kj '>3</li></td>
                     </tr>
 
                 <tr>
-                    <td>开奖</td>
+                    <td class="title">开奖</td>
                     <td colspan=3><li class='kj '>0</li><i class="hja"></i><li class='kj '>3</li><i class="hja"></i><li class='kj '>3</li><i class="hdeng"></i><li class='zh z2'></li></td>
                     </tr>
 
@@ -1152,7 +1131,7 @@
                 <tr><td colspan='2'>采用北京福彩中心PK10数据，每5分钟一期，每天179期，每天0-9点暂停开奖</td></tr>
 
                 <tr>
-                    <td width='120'>如第449159期</td>
+                    <td class="title" width='120'>如第449159期</td>
                     <td><em class=''>06</em>
                         <em class=''>05</em>
                         <em class=''>01</em>
@@ -1166,24 +1145,24 @@
                     </tr>
 
                 <tr>
-                    <td>计算</td>
+                    <td class="title">计算</td>
                     <td>取开奖号码前3位之和</td>
                     </tr>
 
                 <tr>
-                    <td>结果</td>
+                    <td class="title">结果</td>
                     <td colspan=3><em class=''>06</em> + <em class=''>05</em> + <em class=''>01</em> = <li class=''>12</li></td>
                     </tr>
 
                 <tr>
-                    <td>开奖</td>
+                    <td class="title">开奖</td>
                     <td colspan=3><li class=''>12</li></td>
                     </tr>
                 {elseif $act == "15"}
                 <tr><td colspan='2'>计算机系统随机产生10个数字,数字范围1-10各不相同,每1分钟一期，24小时开奖</td></tr>
 
                 <tr>
-                    <td width='120'>如第449159期</td>
+                    <td class="title" width='120'>如第449159期</td>
                     <td><em class=''>06</em>
                         <em class=''>05</em>
                         <em class=''>01</em>
@@ -1197,19 +1176,19 @@
                     </tr>
 
                 <tr>
-                    <td>计算</td>
+                    <td class="title">计算</td>
                     <td>开奖取首位</td>
                     </tr>
 
                 <tr>
-                    <td>开奖</td>
+                    <td class="title">开奖</td>
                     <td colspan=3><li class=''>6</li></td>
                     </tr>
                 {elseif $act == "22"}
                 <tr><td colspan='2'>计算机系统随机产生10个数字,数字范围1-10各不相同,每1分钟一期，24小时开奖</td></tr>
 
                 <tr>
-                    <td width='120'>如第449159期</td>
+                    <td class="title" width='120'>如第449159期</td>
                     <td><em class=''>06</em>
                         <em class=''>05</em>
                         <em class=''>01</em>
@@ -1223,32 +1202,32 @@
                     </tr>
 
                 <tr>
-                    <td>计算</td>
+                    <td class="title">计算</td>
                     <td>开奖取前三个数字的和</td>
                     </tr>
 
                 <tr>
-                    <td>开奖</td>
+                    <td class="title">开奖</td>
                     <td colspan=3><li class=''>12</li></td>
                     </tr>
                 {elseif $act == "23"}
-                <tr><td colspan='4'>计算机系统随机产生3个数字,每个数字范围0-9,每1分钟一期，24小时开奖</td></tr>
+                <tr><td class="title" colspan='4'>计算机系统随机产生3个数字,每个数字范围0-9,每1分钟一期，24小时开奖</td></tr>
 
                 <tr>
-                    <td width='120'>如第654574期</td>
+                    <td class="title" width='120'>如第654574期</td>
                     <td>01</td>
                     <td>08</td>
                     <td>08</td>
                     </tr>
                 <tr>
-                    <td>结果</td>
+                    <td class="title">结果</td>
                     <td><li class='kj '>1</li></td>
                     <td><li class='kj '>8</li></td>
                     <td><li class='kj '>8</li></td>
                     </tr>
 
                 <tr>
-                    <td>开奖</td>
+                    <td class="title">开奖</td>
                     <td colspan=3><li class='kj '>1</li><i class="hja"></i><li class='kj '>8</li><i class="hja"></i><li class='kj '>8</li><i class="hdeng"></i><li class='zh z2'></li></td>
                     </tr>
 
@@ -1283,7 +1262,7 @@
                 <tr><td colspan='2'>计算机系统随机产生10个数字,数字范围1-10各不相同,每1分钟一期，24小时开奖</td></tr>
 
                 <tr>
-                    <td width='120'>如第449159期</td>
+                    <td class="title" width='120'>如第449159期</td>
                     <td><em class=''>06</em>
                         <em class=''>05</em>
                         <em class=''>01</em>
@@ -1297,19 +1276,19 @@
                     </tr>
 
                 <tr>
-                    <td>计算</td>
+                    <td class="title">计算</td>
                     <td>开奖取前两个数字的和</td>
                     </tr>
 
                 <tr>
-                    <td>开奖</td>
+                    <td class="title">开奖</td>
                     <td colspan=3><li class=''>11</li></td>
                     </tr>
                 {elseif $act == "16"}
                 <tr><td colspan='2'>采用北京福彩中心PK10数据，每5分钟一期，每天179期，每天0-9点暂停开奖</td></tr>
 
                 <tr>
-                    <td width='120'>如第449159期</td>
+                    <td class="title" width='120'>如第449159期</td>
                     <td><em class=''>06</em>
                         <em class=''>05</em>
                         <em class=''>01</em>
@@ -1323,19 +1302,19 @@
                     </tr>
 
                 <tr>
-                    <td>计算</td>
+                    <td class="title">计算</td>
                     <td>取第一位和最后一位比较，第一位大为龙，最后一位大为虎</td>
                     </tr>
 
                 <tr>
-                    <td>开奖</td>
+                    <td class="title">开奖</td>
                     <td colspan=3><em class=''>06</em> 大于 <em class=''>02</em>，结果为<li class='lh n1'>龙</li></td>
                     </tr>
                 {elseif $act == "17"}
                 <tr><td colspan='2'>采用北京福彩中心PK10数据，每5分钟一期，每天179期，每天0-9点暂停开奖</td></tr>
 
                 <tr>
-                    <td width='120'>如第449159期</td>
+                    <td class="title" width='120'>如第449159期</td>
                     <td><em class=''>06</em>
                         <em class=''>05</em>
                         <em class=''>01</em>
@@ -1349,117 +1328,117 @@
                     </tr>
 
                 <tr>
-                    <td>计算</td>
+                    <td class="title">计算</td>
                     <td>取开奖号码前两位之和</td>
                     </tr>
 
                 <tr>
-                    <td>开奖</td>
+                    <td class="title">开奖</td>
                     <td colspan=3><em class=''>06</em> + <em class=''>05</em> = <li class=''>11</li></td>
                     </tr>
                 {elseif $act == "18" || $act == "34"}
-                <tr><td colspan='4'>采用首尔快乐8数据，每1分半钟一期，每天5:00-7:00暂停开奖</td></tr>
+                <tr><td class="title" colspan='4'>采用首尔快乐8数据，每1分半钟一期，每天5:00-7:00暂停开奖</td></tr>
 
                 <tr>
-                    <td width='120'>如第1234567期</td>
+                    <td class="title" width='120'>如第1234567期</td>
                     <td colspan='3'>01,06,07,13,15,28,31,32,33,35,40,43,44,53,57,62,64,65,68,80(从小到大依次排列)</td>
                     </tr>
 
                 <tr>
-                    <td>区位</td>
+                    <td class="title">区位</td>
                     <td>第一区[第2/5/8/11/14/17位数字]</td>
                     <td>第二区[第3/6/9/12/15/18位数字]</td>
                     <td>第三区[第4/7/10/13/16/19位数字]</td>
                     </tr>
 
                 <tr>
-                    <td>数字</td>
+                    <td class="title">数字</td>
                     <td>06,15,32,40,53,64</td>
                     <td>07,28,33,43,57,65</td>
                     <td>13,31,35,44,62,68</td>
                     </tr>
 
                 <tr>
-                    <td>求和</td>
+                    <td class="title">求和</td>
                     <td>210</td>
                     <td>233</td>
                     <td>253</td>
                     </tr>
 
                 <tr>
-                    <td>计算</td>
+                    <td class="title">计算</td>
                     <td>取尾数</td>
                     <td>取尾数</td>
                     <td>取尾数</td>
                     </tr>
 
                 <tr>
-                    <td>结果</td>
+                    <td class="title">结果</td>
                     <td><li class='kj '>0</li></td>
                     <td><li class='kj '>3</li></td>
                     <td><li class='kj '>3</li></td>
                     </tr>
 
                 <tr>
-                    <td>开奖</td>
+                    <td class="title">开奖</td>
                     <td colspan=3><li class='kj '>0</li><i class="hja"></i><li class='kj '>3</li><i class="hja"></i><li class='kj '>3</li><i class="hdeng"></i><li class=''>6</li></td>
                     </tr>
                 {elseif $act == "30"}
-                <tr><td colspan='4'>采用首尔快乐8数据，每1分半钟一期，每天5:00-7:00暂停开奖</td></tr>
+                <tr><td class="title" colspan='4'>采用首尔快乐8数据，每1分半钟一期，每天5:00-7:00暂停开奖</td></tr>
 
                 <tr>
-                    <td width='120'>如第1234567期</td>
+                    <td class="title" width='120'>如第1234567期</td>
                     <td colspan='3'>01,06,07,13,15,28,31,32,33,35,40,43,44,53,57,62,64,65,68,80(从小到大依次排列)</td>
                     </tr>
 
                 <tr>
-                    <td>区位</td>
+                    <td class="title">区位</td>
                     <td>第一区[第2/5/8/11/14/17位数字]</td>
                     <td>第二区[第3/6/9/12/15/18位数字]</td>
                     <td>第三区[第4/7/10/13/16/19位数字]</td>
                     </tr>
 
                 <tr>
-                    <td>数字</td>
+                    <td class="title">数字</td>
                     <td>06,15,32,40,53,64</td>
                     <td>07,28,33,43,57,65</td>
                     <td>13,31,35,44,62,68</td>
                     </tr>
 
                 <tr>
-                    <td>求和</td>
+                    <td class="title">求和</td>
                     <td>210</td>
                     <td>233</td>
                     <td>253</td>
                     </tr>
 
                 <tr>
-                    <td>计算</td>
+                    <td class="title">计算</td>
                     <td>取尾数</td>
                     <td>取尾数</td>
                     <td>取尾数</td>
                     </tr>
 
                 <tr>
-                    <td>结果</td>
+                    <td class="title">结果</td>
                     <td><li class='kj '>0</li></td>
                     <td><li class='kj '>3</li></td>
                     <td><li class='kj '>3</li></td>
                     </tr>
 
                 <tr>
-                    <td>开奖</td>
+                    <td class="title">开奖</td>
                     <td colspan=3><li class='kj '>0</li><i class="hja"></i><li class='kj '>3</li><i class="hja"></i><li class='kj '>3</li><i class="hdeng"></i><li class=''>6</li></td>
                     </tr>
-                <tr><td colspan='4'>游戏总共有0-27共28位数字，0-13为小，14-27为大，奇数为单，偶数为双,以下赔率包含本金</td></tr>
+                <tr><td class="title" colspan='4'>游戏总共有0-27共28位数字，0-13为小，14-27为大，奇数为单，偶数为双,以下赔率包含本金</td></tr>
                 <tr>
                     <td>大小单双</td>
                     <td>固定赔率2.1倍, 开13,14回本。</td>
-                    <td>小单</td>
+                    <td class="title">小单</td>
                     <td>固定4.6倍（包括1,3,5,7,9,11,13）,开13回本。</td>
                 </tr>  
                 <tr>
-                    <td>大单</td>
+                    <td class="title">大单</td>
                     <td>固定4.2倍（15,17,19,21,23,25,27）</td>
                     <td>小双</td>
                     <td>固定4.2倍（0.2.4.6.8.10.12)</td>
@@ -1483,63 +1462,63 @@
                     <td>固定2.9倍（2,5,8,11,14,17,20,23,26）</td>
                 </tr> 
                 {elseif $act == "31"}
-                <tr><td colspan='4'>采用首尔快乐8数据，每1分半钟一期，每天5:00-7:00暂停开奖</td></tr>
+                <tr><td class="title" colspan='4'>采用首尔快乐8数据，每1分半钟一期，每天5:00-7:00暂停开奖</td></tr>
 
                 <tr>
-                    <td width='120'>如第1234567期</td>
+                    <td class="title" width='120'>如第1234567期</td>
                     <td colspan='3'>01,06,07,13,15,28,31,32,33,35,40,43,44,53,57,62,64,65,68,80(从小到大依次排列)</td>
                     </tr>
 
                 <tr>
-                    <td>区位</td>
+                    <td class="title">区位</td>
                     <td>第一区[第2/5/8/11/14/17位数字]</td>
                     <td>第二区[第3/6/9/12/15/18位数字]</td>
                     <td>第三区[第4/7/10/13/16/19位数字]</td>
                     </tr>
 
                 <tr>
-                    <td>数字</td>
+                    <td class="title">数字</td>
                     <td>06,15,32,40,53,64</td>
                     <td>07,28,33,43,57,65</td>
                     <td>13,31,35,44,62,68</td>
                     </tr>
 
                 <tr>
-                    <td>求和</td>
+                    <td class="title">求和</td>
                     <td>210</td>
                     <td>233</td>
                     <td>253</td>
                     </tr>
 
                 <tr>
-                    <td>计算</td>
+                    <td class="title">计算</td>
                     <td>取尾数</td>
                     <td>取尾数</td>
                     <td>取尾数</td>
                     </tr>
 
                 <tr>
-                    <td>结果</td>
+                    <td class="title">结果</td>
                     <td><li class='kj '>0</li></td>
                     <td><li class='kj '>3</li></td>
                     <td><li class='kj '>3</li></td>
                     </tr>
 
                 <tr>
-                    <td>开奖</td>
+                    <td class="title">开奖</td>
                     <td colspan=3><li class='kj '>0</li><i class="hja"></i><li class='kj '>3</li><i class="hja"></i><li class='kj '>3</li><i class="hdeng"></i><li class=''>6</li></td>
                     </tr>
-                <tr><td colspan='4'>游戏总共有0-27共28位数字，0-13为小，14-27为大，奇数为单，偶数为双,以下赔率包含本金</td></tr>
+                <tr><td class="title" colspan='4'>游戏总共有0-27共28位数字，0-13为小，14-27为大，奇数为单，偶数为双,以下赔率包含本金</td></tr>
                 <tr>
-                    <td>大小</td>
+                    <td class="title">大小</td>
                     <td>固定赔率1.98倍</td>
                     <td>单双</td>
                     <td>固定赔率1.98倍</td>
                 </tr>  
                 <tr>
-                    <td>小单</td>
+                    <td class="title">小单</td>
                     <td>固定3.68倍（1.3.5.7.9.11.13）</td>
-                    <td>大单</td>
+                    <td class="title">大单</td>
                     <td>固定4.2倍（15.17.19.21.23.25.27）</td>
                 </tr>  
                 <tr>
@@ -1565,139 +1544,139 @@
                     
                     
                 {elseif $act == "19"}
-                <tr><td colspan='4'>采用首尔快乐8数据，每1分半钟一期，每天5:00-7:00暂停开奖</td></tr>
+                <tr><td class="title" colspan='4'>采用首尔快乐8数据，每1分半钟一期，每天5:00-7:00暂停开奖</td></tr>
 
                 <tr>
-                    <td width='120'>如第1234567期</td>
+                    <td class="title" width='120'>如第1234567期</td>
                     <td colspan='3'>01,06,07,13,15,28,31,32,33,35,40,43,44,53,57,62,64,65,68,80(从小到大依次排列)</td>
                     </tr>
 
                 <tr>
-                    <td>区位</td>
+                    <td class="title">区位</td>
                     <td>第一区[第1/4/7/10/13/16位数字]</td>
                     <td>第二区[第2/5/8/11/14/17位数字]</td>
                     <td>第三区[第3/6/9/12/15/18位数字]</td>
                     </tr>
 
                 <tr>
-                    <td>数字</td>
+                    <td class="title">数字</td>
                     <td>01,13,31,35,44,62</td>
                     <td>06,15,32,40,53,64</td>
                     <td>07,28,33,43,57,65</td>
                     </tr>
 
                 <tr>
-                    <td>求和</td>
+                    <td class="title">求和</td>
                     <td>186</td>
                     <td>210</td>
                     <td>233</td>
                     </tr>
 
                 <tr>
-                    <td>计算</td>
+                    <td class="title">计算</td>
                     <td>186除以6的余数 + 1</td>
                     <td>210除以6的余数 + 1</td>
                     <td>233除以6的余数 + 1</td>
                     </tr>
 
                 <tr>
-                    <td>结果</td>
+                    <td class="title">结果</td>
                     <td><li class='kj '>1</li></td>
                     <td><li class='kj '>1</li></td>
                     <td><li class='kj '>6</li></td>
                     </tr>
 
                 <tr>
-                    <td>开奖</td>
+                    <td class="title">开奖</td>
                     <td colspan=3><li class='kj '>1</li><i class="hja"></i><li class='kj '>1</li><i class="hja"></i><li class='kj '>6</li><i class="hdeng"></i><li class=''>8</li></td>
                     </tr>
                 {elseif $act == "20"}
                 <tr><td colspan='3'>采用首尔快乐8数据，每1分半钟一期，每天5:00-7:00暂停开奖</td></tr>
 
                 <tr>
-                    <td width='120'>如第1234567期</td>
+                    <td class="title" width='120'>如第1234567期</td>
                     <td colspan='2'>01,06,07,13,15,28,31,32,33,35,40,43,44,53,57,62,64,65,68,80(从小到大依次排列)</td>
                     </tr>
 
                 <tr>
-                    <td>区位</td>
+                    <td class="title">区位</td>
                     <td>第一区[第1/4/7/10/13/16位数字]</td>
                     <td>第二区[第3/6/9/12/15/18位数字]</td>
                     </tr>
 
                 <tr>
-                    <td>数字</td>
+                    <td class="title">数字</td>
                     <td>01,13,31,35,44,62</td>
                     <td>07,28,33,43,57,65</td>
                     </tr>
 
                 <tr>
-                    <td>求和</td>
+                    <td class="title">求和</td>
                     <td>186</td>
                     <td>233</td>
                     </tr>
 
                 <tr>
-                    <td>计算</td>
+                    <td class="title">计算</td>
                     <td>186除以6的余数 + 1</td>
                     <td>233除以6的余数 + 1</td>
                     </tr>
 
                 <tr>
-                    <td>结果</td>
+                    <td class="title">结果</td>
                     <td><li class='kj '>1</li></td>
                     <td><li class='kj '>6</li></td>
                     </tr>
 
                 <tr>
-                    <td>开奖</td>
+                    <td class="title">开奖</td>
                     <td colspan=3><li class='kj '>1</li><i class="hja"></i><li class='kj '>6</li><i class="hdeng"></i><li class=''>7</li></td>
                     </tr>
                 {elseif $act == "21"}
-                <tr><td colspan='4'>采用首尔快乐8数据，每1分半钟一期，每天5:00-7:00暂停开奖</td></tr>
+                <tr><td class="title" colspan='4'>采用首尔快乐8数据，每1分半钟一期，每天5:00-7:00暂停开奖</td></tr>
 
                 <tr>
-                    <td width='120'>如第1234567期</td>
+                    <td class="title" width='120'>如第1234567期</td>
                     <td colspan='3'>01,06,07,13,15,28,31,32,33,35,40,43,44,53,57,62,64,65,68,80(从小到大依次排列)</td>
                     </tr>
 
                 <tr>
-                    <td>区位</td>
+                    <td class="title">区位</td>
                     <td>第一区[第2/5/8/11/14/17位数字]</td>
                     <td>第二区[第3/6/9/12/15/18位数字]</td>
                     <td>第三区[第4/7/10/13/16/19位数字]</td>
                     </tr>
 
                 <tr>
-                    <td>数字</td>
+                    <td class="title">数字</td>
                     <td>06,15,32,40,53,64</td>
                     <td>07,28,33,43,57,65</td>
                     <td>13,31,35,44,62,68</td>
                     </tr>
 
                 <tr>
-                    <td>求和</td>
+                    <td class="title">求和</td>
                     <td>210</td>
                     <td>233</td>
                     <td>253</td>
                     </tr>
 
                 <tr>
-                    <td>计算</td>
+                    <td class="title">计算</td>
                     <td>取尾数</td>
                     <td>取尾数</td>
                     <td>取尾数</td>
                     </tr>
 
                 <tr>
-                    <td>结果</td>
+                    <td class="title">结果</td>
                     <td><li class='kj '>0</li></td>
                     <td><li class='kj '>3</li></td>
                     <td><li class='kj '>3</li></td>
                     </tr>
 
                 <tr>
-                    <td>开奖</td>
+                    <td class="title">开奖</td>
                     <td colspan=3><li class='kj '>0</li><i class="hja"></i><li class='kj '>3</li><i class="hja"></i><li class='kj '>3</li><i class="hdeng"></i><li class='zh z2'></li></td>
                     </tr>
 
@@ -1759,42 +1738,42 @@
                 <tr><td colspan='3'>采用北京快乐8数据，每5分钟一期，每天00:00-09:00暂停开奖</td></tr>
 
                 <tr>
-                    <td width='120'>如第1234567期</td>
+                    <td class="title" width='120'>如第1234567期</td>
                     <td colspan='2'>01,06,07,13,15,28,31,32,33,35,40,43,44,53,57,62,64,65,68,80(从小到大依次排列)</td>
                     </tr>
 
                 <tr>
-                    <td>区位</td>
+                    <td class="title">区位</td>
                     <td>第一区[第1/4/7/10/13/16位数字]</td>
                     <td>第二区[第3/6/9/12/15/18位数字]</td>
                     </tr>
 
                 <tr>
-                    <td>数字</td>
+                    <td class="title">数字</td>
                     <td>01,13,31,35,44,62</td>
                     <td>07,28,33,43,57,65</td>
                     </tr>
 
                 <tr>
-                    <td>求和</td>
+                    <td class="title">求和</td>
                     <td>186</td>
                     <td>233</td>
                     </tr>
 
                 <tr>
-                    <td>计算</td>
+                    <td class="title">计算</td>
                     <td>186除以6的余数 + 1</td>
                     <td>233除以6的余数 + 1</td>
                     </tr>
 
                 <tr>
-                    <td>结果</td>
+                    <td class="title">结果</td>
                     <td><li class='kj '>1</li></td>
                     <td><li class='kj '>6</li></td>
                     </tr>
 
                 <tr>
-                    <td>开奖</td>
+                    <td class="title">开奖</td>
                     <td colspan=2><li class='kj '>1</li><i class="hja"></i><li class='kj '>6</li><i class="hdeng"></i><li class=''>7</li></td>
                     </tr>  
                     
@@ -1802,90 +1781,90 @@
                 <tr><td colspan='3'>采用北京快乐8数据，每5分钟一期，每天00:00-09:00暂停开奖</td></tr>
 
                 <tr>
-                    <td width='120'>如第1234567期</td>
+                    <td class="title" width='120'>如第1234567期</td>
                     <td colspan='2'>01,06,07,13,15,28,31,32,33,35,40,43,44,53,57,62,64,65,68,80(从小到大依次排列)</td>
                     </tr>
 
                 <tr>
-                    <td>区位</td>
+                    <td class="title">区位</td>
                     <td>第一区[第1/2/3/4/5/6位数字]</td>
                     <td>第二区[第13/14/15/16/17/18位数字]</td>
                     </tr>
 
                 <tr>
-                    <td>数字</td>
+                    <td class="title">数字</td>
                     <td>01,06,07,13,15,28</td>
                     <td>44,53,57,62,64,65</td>
                     </tr>
 
                 <tr>
-                    <td>求和</td>
+                    <td class="title">求和</td>
                     <td>70</td>
                     <td>345</td>
                     </tr>
 
                 <tr>
-                    <td>计算</td>
+                    <td class="title">计算</td>
                     <td>70除以6的余数 + 1</td>
                     <td>345除以6的余数 + 1</td>
                     </tr>
 
                 <tr>
-                    <td>结果</td>
+                    <td class="title">结果</td>
                     <td><li class='kj '>5</li></td>
                     <td><li class='kj '>4</li></td>
                     </tr>
 
                 <tr>
-                    <td>开奖</td>
+                    <td class="title">开奖</td>
                     <td colspan=2><li class='kj '>5</li><i class="hja"></i><li class='kj '>4</li><i class="hdeng"></i><li class=''>9</li></td>
                     </tr>  
                     
                 {elseif $act == "40"}
-                <tr><td colspan='4'>采用北京快乐8数据，每5分钟一期，每天00:00-09:00暂停开奖</td></tr>
+                <tr><td class="title" colspan='4'>采用北京快乐8数据，每5分钟一期，每天00:00-09:00暂停开奖</td></tr>
 
                 <tr>
-                    <td width='120'>如第1234567期</td>
+                    <td class="title" width='120'>如第1234567期</td>
                     <td colspan='3'>01,06,07,13,15,28,31,32,33,35,40,43,44,53,57,62,64,65,68,80(从小到大依次排列)</td>
                     </tr>
 
                 <tr>
-                    <td>区位</td>
+                    <td class="title">区位</td>
                     <td>第一区[第1/2/3/4/5/6位数字]</td>
                     <td>第二区[第7/8/9/10/11/12位数字]</td>
                     <td>第三区[第13/14/15/16/17/18位数字]</td>
                     </tr>
 
                 <tr>
-                    <td>数字</td>
+                    <td class="title">数字</td>
                     <td>01,06,07,13,15,28</td>
                     <td>31,32,33,35,40,43</td>
                     <td>44,53,57,62,64,65</td>
                     </tr>
 
                 <tr>
-                    <td>求和</td>
+                    <td class="title">求和</td>
                     <td>70</td>
                     <td>214</td>
                     <td>345</td>
                     </tr>
 
                 <tr>
-                    <td>计算</td>
+                    <td class="title">计算</td>
                     <td>70除以6的余数 + 1</td>
                     <td>214除以6的余数 + 1</td>
                     <td>345除以6的余数 + 1</td>
                     </tr>
 
                 <tr>
-                    <td>结果</td>
+                    <td class="title">结果</td>
                     <td><li class='kj '>5</li></td>
                     <td><li class='kj '>5</li></td>
                     <td><li class='kj '>4</li></td>
                     </tr>
 
                 <tr>
-                    <td>开奖</td>
+                    <td class="title">开奖</td>
                     <td colspan=3><li class='kj '>5</li><i class="hja"></i><li class='kj '>5</li><i class="hja"></i><li class='kj '>4</li><i class="hdeng"></i><li class=''>14</li></td>
                     </tr>  
                 {elseif $act == "37"}
@@ -2011,7 +1990,7 @@
 
     </div>
 </div>
-{tpl foot}
+<!-- {tpl foot} -->
 <script type="text/javascript">
     $(function () {
         $("#list").on('click','#press',function () {
@@ -2022,8 +2001,8 @@
         $("#main").on("click",".item",function () {
             no=$(this).attr("rel");
             window.location="{:url("game/item/id/$id")}&no="+no;
-        })
-
+        });
+        $('#btn_refsh').click(function(e){ window.location.reload(); });
     })
 </script>
 </body>

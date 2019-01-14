@@ -11,14 +11,16 @@ class PkCrawler extends BaseCrawler
 		$this->gameType = "gamepk";
 		$this->gameTypes = [6,7,14,16,17,29];
 		$this->crawlerUrls = array(
-								0=>array('url'=>'http://ho.apiplus.net/newly.do?token=t06f7eak&code=bjpk10&format=json','method'=>'_api','useproxy'=>0,'referurl'=>''),
-								//2=>array('url'=>'http://www.bwlc.net/bulletin/prevtrax.html?num=','method'=>'_parse_bwlc','useproxy'=>0,'referurl'=>'','useno'=>1),
-								//0=>array('url'=>'http://www.bwlc.net/bulletin/prevtrax.html','method'=>'_parse_bwlc','useproxy'=>0,'referurl'=>''),
-								//3=>array('url'=>'http://116.62.128.99/http.php?url=http://www.bwlc.net/bulletin/prevtrax.html?num=','method'=>'_parse_bwlc','useproxy'=>0,'referurl'=>'','useno'=>1),
-								//3=>array('url'=>'http://116.62.128.99/http.php?url=http://www.bwlc.net/bulletin/prevtrax.html','method'=>'_parse_bwlc','useproxy'=>0,'referurl'=>''),
-								//3=>array('url'=>'http://baidu.lecai.com/lottery/draw/view/557','method'=>'_pase_baidu','useproxy'=>0,'referurl'=>''),
-								1=>array('url'=>'http://api.api68.com/pks/getPksHistoryList.do?date=&lotCode=10001','method'=>'_pase_1680210','useproxy'=>0,'referurl'=>'http://www.1680100.com/html/PK10/pk10kai_history.html')
-								);
+			//http://e.apiplus.net/newly.do?token=t901e9adae3e34d1dk&code=bjpk10&format=json
+			//0=>array('url'=>'http://ho.apiplus.net/newly.do?token=t06f7eak&code=bjpk10&format=json','method'=>'_api','useproxy'=>0,'referurl'=>''),
+			//2=>array('url'=>'http://www.bwlc.net/bulletin/prevtrax.html?num=','method'=>'_parse_bwlc','useproxy'=>0,'referurl'=>'','useno'=>1),
+			//0=>array('url'=>'http://www.bwlc.net/bulletin/prevtrax.html','method'=>'_parse_bwlc','useproxy'=>0,'referurl'=>''),
+			//3=>array('url'=>'http://116.62.128.99/http.php?url=http://www.bwlc.net/bulletin/prevtrax.html?num=','method'=>'_parse_bwlc','useproxy'=>0,'referurl'=>'','useno'=>1),
+			//3=>array('url'=>'http://116.62.128.99/http.php?url=http://www.bwlc.net/bulletin/prevtrax.html','method'=>'_parse_bwlc','useproxy'=>0,'referurl'=>''),
+			//3=>array('url'=>'http://baidu.lecai.com/lottery/draw/view/557','method'=>'_pase_baidu','useproxy'=>0,'referurl'=>''),
+			0=>array('url'=>'http://e.apiplus.net/newly.do?token=t901e9adae3e34d1dk&code=bjpk10&format=json','method'=>'_api','useproxy'=>0,'referurl'=>''),
+			1=>array('url'=>'http://api.api68.com/pks/getPksHistoryList.do?date=&lotCode=10001','method'=>'_pase_1680210','useproxy'=>0,'referurl'=>'http://www.1680100.com/html/PK10/pk10kai_history.html')
+		);
 	}
 	
 	private function _api($contents){
@@ -171,7 +173,7 @@ class PkCrawler extends BaseCrawler
 		if(count($result) >= 4){
 			$this->switchGame(1);
 		}else{
-			;//$this->switchGame(0);
+			//$this->switchGame(0);
 		}
 		
 		return $ret;

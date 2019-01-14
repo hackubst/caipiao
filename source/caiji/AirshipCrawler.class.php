@@ -11,9 +11,11 @@ class AirshipCrawler extends BaseCrawler
 		$this->gameType = "gameairship";
 		$this->gameTypes = [43,44,45,46,47];
 		$this->crawlerUrls = array(
-								//1=>array('url'=>'http://www.luckyairship.com/history.html','method'=>'_parse_airship','useproxy'=>0,'referurl'=>'','useno'=>1),
-								0=>array('url'=>'http://ho.apiplus.net/newly.do?token=t0612bf7eak&code=mlaft&format=json','method'=>'_api','useproxy'=>0,'referurl'=>'')
-								);
+			//http://e.apiplus.net/newly.do?token=t901e9adae3e34d1dk&code=mlaft&format=json
+			//1=>array('url'=>'http://www.luckyairship.com/history.html','method'=>'_parse_airship','useproxy'=>0,'referurl'=>'','useno'=>1),
+			//0=>array('url'=>'http://ho.apiplus.net/newly.do?token=t0612bf7eak&code=mlaft&format=json','method'=>'_api','useproxy'=>0,'referurl'=>'')
+			0=>array('url'=>'http://e.apiplus.net/newly.do?token=t901e9adae3e34d1dk&code=mlaft&format=json','method'=>'_api','useproxy'=>0,'referurl'=>'')
+		);
 	}
 	
 	private function _api($contents){

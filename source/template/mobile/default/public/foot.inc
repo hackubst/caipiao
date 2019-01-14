@@ -39,9 +39,5 @@ $(document).ready(function(){
 
 
 </script>
-
-<!-- 
-<script src="https://s19.cnzz.com/z_stat.php?id=1264645851&web_id=1264645851" language="JavaScript"></script>
- -->
-           
+     
 </div>

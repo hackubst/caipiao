@@ -11,14 +11,15 @@ class CanadaCrawler extends BaseCrawler
 		$this->gameType = "gamecan";
 		$this->gameTypes = [8,9,10,13,27,28,35];
 		$this->crawlerUrls = array(
-								//0=>array('url'=>'http://47.74.129.187/jnd/caiji_jnd.php?key=get_cache','method'=>'_parse_jnd2','useproxy'=>0,'referurl'=>''),
-								//0=>array('url'=>'http://47.90.52.104:180/jnd.php?key=get_cache','method'=>'_parse_jnd','useproxy'=>0,'referurl'=>''),
-								//1=>array('url'=>'http://47.90.47.199:9999/jnd.php','method'=>'_parse_jnd','useproxy'=>0,'referurl'=>''),
-								0=>array('url'=>'http://ho.apiplus.net/newly.do?token=t06129bf7eak&code=cakeno&format=json','method'=>'_api','useproxy'=>0,'referurl'=>''),
-								//0=>array('url'=>'http://e.apiplus.net/newly.do?token=td7a4f3a2ak&code=cakeno&format=json','method'=>'_api','useproxy'=>0,'referurl'=>''),
-								1=>array('url'=>'http://47.91.250.227:9898/fetchcan1.php','method'=>'_parse_jnd','useproxy'=>0,'referurl'=>''),
-								2=>array('url'=>'http://47.91.250.227:9898/fetchcan2.php','method'=>'_parse_jnd','useproxy'=>0,'referurl'=>''),
-								);
+			//http://e.apiplus.net/newly.do?token=t901e9adae3e34d1dk&code=cakeno&format=json
+			//0=>array('url'=>'http://47.74.129.187/jnd/caiji_jnd.php?key=get_cache','method'=>'_parse_jnd2','useproxy'=>0,'referurl'=>''),
+			//0=>array('url'=>'http://47.90.52.104:180/jnd.php?key=get_cache','method'=>'_parse_jnd','useproxy'=>0,'referurl'=>''),
+			//1=>array('url'=>'http://47.90.47.199:9999/jnd.php','method'=>'_parse_jnd','useproxy'=>0,'referurl'=>''),
+			//0=>array('url'=>'http://ho.apiplus.net/newly.do?token=t06129bf7eak&code=cakeno&format=json','method'=>'_api','useproxy'=>0,'referurl'=>''),
+			0=>array('url'=>'http://e.apiplus.net/newly.do?token=t901e9adae3e34d1dk&code=cakeno&format=json','method'=>'_api','useproxy'=>0,'referurl'=>''),
+			1=>array('url'=>'http://47.91.250.227:9898/fetchcan1.php','method'=>'_parse_jnd','useproxy'=>0,'referurl'=>''),
+			2=>array('url'=>'http://47.91.250.227:9898/fetchcan2.php','method'=>'_parse_jnd','useproxy'=>0,'referurl'=>''),
+		);
 		
 	}
 	
@@ -273,7 +274,7 @@ class CanadaCrawler extends BaseCrawler
 		
 		foreach($this->crawlerUrls as $idx=>$source){
 			$contents = $this->httpGet($source['url'] , $source['useproxy'] , $source['referurl']);
-			$result = $this->$source['method']($contents);
+			$result = $this->$source['method']($contents); 
 			if(count($result) > 0){
 				$hasnewdata = 0;
 				if(count($rets) > 0){

@@ -1,10 +1,8 @@
 #!/bin/bash
 
-cd /alidata/www/kdy28/caiji
+cd /home/www/caipiao/caiji
 
-/alidata/server/php/bin/php rebortcash.php >/dev/null 2>&1 &
-
-
+/usr/bin/php rebortcash.php >/dev/null 2>&1 &
 
 
 

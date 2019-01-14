@@ -11,15 +11,17 @@ class BeijingCrawler extends BaseCrawler
 		$this->gameType = "gamebj";
 		$this->gameTypes = [3,4,5,11,12,25,26,32,33,38,39,40,41,42];
 		$this->crawlerUrls = array(
-								0=>array('url'=>'http://ho.apiplus.net/newly.do?token=t06e9bf7eak&code=bjkl8&format=json','method'=>'_api','useproxy'=>0,'referurl'=>''),
-								//0=>array('url'=>'http://chart.cp.360.cn/kaijiang/kl8/','method'=>'_parse_360','useproxy'=>0,'referurl'=>''),
-								//1=>array('url'=>'http://www.bwlc.net/bulletin/prevkeno.html?num=','method'=>'_parse_bwlc','useproxy'=>0,'referurl'=>''),
-								//3=>array('url'=>'http://www.bwlc.net/bulletin/prevkeno.html','method'=>'_parse_bwlc','useproxy'=>0,'referurl'=>''),
-								//4=>array('url'=>'http://116.62.128.99/http.php?url=http://www.bwlc.net/bulletin/prevkeno.html?num=','method'=>'_parse_bwlc','useproxy'=>0,'referurl'=>'','useno'=>1),
-								//4=>array('url'=>'http://116.62.128.99/http.php?url=http://www.bwlc.net/bulletin/prevkeno.html','method'=>'_parse_bwlc','useproxy'=>0,'referurl'=>''),
-								1=>array('url'=>'http://api.api68.com/LuckTwenty/getBaseLuckTwentyList.do?date=&lotCode=10014','method'=>'_pase_1680210','useproxy'=>0,'referurl'=>'http://www.1680100.com/html/beijinkl8/bjkl8_index.html'),
-								2=>array('url'=>'https://api.1399klc.com/LuZhu/Select?callback=&sc={%22LotteryCode%22:%22bjkl8%22,%22StatDate%22:%22'.date("Y-m-d" , time()).'%22}&quantity=15','method'=>'_1399klc','useproxy'=>0,'referurl'=>'')
-								);
+			//http://e.apiplus.net/newly.do?token=t901e9adae3e34d1dk&code=bjkl8&format=json
+			//0=>array('url'=>'http://ho.apiplus.net/newly.do?token=t06e9bf7eak&code=bjkl8&format=json','method'=>'_api','useproxy'=>0,'referurl'=>''),
+			//0=>array('url'=>'http://chart.cp.360.cn/kaijiang/kl8/','method'=>'_parse_360','useproxy'=>0,'referurl'=>''),
+			//1=>array('url'=>'http://www.bwlc.net/bulletin/prevkeno.html?num=','method'=>'_parse_bwlc','useproxy'=>0,'referurl'=>''),
+			//3=>array('url'=>'http://www.bwlc.net/bulletin/prevkeno.html','method'=>'_parse_bwlc','useproxy'=>0,'referurl'=>''),
+			//4=>array('url'=>'http://116.62.128.99/http.php?url=http://www.bwlc.net/bulletin/prevkeno.html?num=','method'=>'_parse_bwlc','useproxy'=>0,'referurl'=>'','useno'=>1),
+			//4=>array('url'=>'http://116.62.128.99/http.php?url=http://www.bwlc.net/bulletin/prevkeno.html','method'=>'_parse_bwlc','useproxy'=>0,'referurl'=>''),
+			0=>array('url'=>'http://e.apiplus.net/newly.do?token=t901e9adae3e34d1dk&code=bjkl8&format=json','method'=>'_api','useproxy'=>0,'referurl'=>''),
+			1=>array('url'=>'http://api.api68.com/LuckTwenty/getBaseLuckTwentyList.do?date=&lotCode=10014','method'=>'_pase_1680210','useproxy'=>0,'referurl'=>'http://www.1680100.com/html/beijinkl8/bjkl8_index.html'),
+			2=>array('url'=>'https://api.1399klc.com/LuZhu/Select?callback=&sc={%22LotteryCode%22:%22bjkl8%22,%22StatDate%22:%22'.date("Y-m-d" , time()).'%22}&quantity=15','method'=>'_1399klc','useproxy'=>0,'referurl'=>'')
+		);
 	}
 	
 
@@ -557,8 +559,7 @@ class BeijingCrawler extends BaseCrawler
 		}
 		$this->Logger("beijing11 {$NextNo} auto press:{$result[0][0]['result']}");
 	}
-	
-	
+		
 	private function getGameWWResult($kjNoArr){//蛋蛋外围开奖结果
 		$zjhA = $kjNoArr[0] + $kjNoArr[1] + $kjNoArr[2] + $kjNoArr[3] + $kjNoArr[4] + $kjNoArr[5];
 		$zjhB = $kjNoArr[6] + $kjNoArr[7] + $kjNoArr[8] + $kjNoArr[9] + $kjNoArr[10] + $kjNoArr[11];
@@ -607,8 +608,7 @@ class BeijingCrawler extends BaseCrawler
 		sort($result);
 		return $result;
 	}
-	
-	
+		
 	private function getGameDWResult($kjNoArr){//蛋蛋定位开奖结果
 		$zjhA = $kjNoArr[0] + $kjNoArr[1] + $kjNoArr[2] + $kjNoArr[3] + $kjNoArr[4] + $kjNoArr[5];
 		$zjhB = $kjNoArr[6] + $kjNoArr[7] + $kjNoArr[8] + $kjNoArr[9] + $kjNoArr[10] + $kjNoArr[11];
@@ -701,12 +701,7 @@ class BeijingCrawler extends BaseCrawler
 		sort($result);
 		return $result;
 	}
-	
-	
-	
-	
-	
-	
+		
 	private function getGameBJWWResult($kjNoArr){//北京外围开奖结果
 		$zjhA = $kjNoArr[1] + $kjNoArr[4] + $kjNoArr[7] + $kjNoArr[10] + $kjNoArr[13] + $kjNoArr[16];
 		$zjhB = $kjNoArr[2] + $kjNoArr[5] + $kjNoArr[8] + $kjNoArr[11] + $kjNoArr[14] + $kjNoArr[17];
@@ -755,8 +750,7 @@ class BeijingCrawler extends BaseCrawler
 		sort($result);
 		return $result;
 	}
-	
-	
+		
 	private function getGameBJDWResult($kjNoArr){//北京定位开奖结果
 		$zjhA = $kjNoArr[1] + $kjNoArr[4] + $kjNoArr[7] + $kjNoArr[10] + $kjNoArr[13] + $kjNoArr[16];
 		$zjhB = $kjNoArr[2] + $kjNoArr[5] + $kjNoArr[8] + $kjNoArr[11] + $kjNoArr[14] + $kjNoArr[17];
@@ -849,9 +843,7 @@ class BeijingCrawler extends BaseCrawler
 		sort($result);
 		return $result;
 	}
-	
-	
-	
+		
 }
 
 

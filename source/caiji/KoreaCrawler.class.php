@@ -18,14 +18,14 @@ class KoreaCrawler extends BaseCrawler
 		$this->gameType = "gamehg";
 		$this->gameTypes = [18,19,20,21,30,31,34];
 		$this->crawlerUrls = array(
-								//0=>array('url'=>$this->merOpenUrl.'?type=1&token='.$this->mertoken,'method'=>'_parse_apiunion','useproxy'=>0,'referurl'=>'')
-								//0=>array('url'=>'http://47.90.52.104:180/hg/new.php','method'=>'_parse_hg','useproxy'=>0,'referurl'=>''),
-								0=>array('url'=>'http://120.27.236.149:9921/open.php','method'=>'_parse_hg2','useproxy'=>0,'referurl'=>''),
-								////1=>array('url'=>'http://47.74.129.187/hg/','method'=>'_parse_hg','useproxy'=>0,'referurl'=>''),
-								//1=>array('url'=>'http://47.90.52.104:180/hg/caiji_hg.php','method'=>'_parse_hg','useproxy'=>0,'referurl'=>''),
-								//2=>array('url'=>'http://47.90.52.104:180/hg/api.php','method'=>'_parse_hg','useproxy'=>0,'referurl'=>''),
-								////0=>array('url'=>'http://c.apiplus.net/newly.do?token=8dcc1443d6644fb0&code=krkeno&format=json','method'=>'_parse_apiplus','useproxy'=>0,'referurl'=>'')
-								);
+			//0=>array('url'=>$this->merOpenUrl.'?type=1&token='.$this->mertoken,'method'=>'_parse_apiunion','useproxy'=>0,'referurl'=>'')
+			//0=>array('url'=>'http://47.90.52.104:180/hg/new.php','method'=>'_parse_hg','useproxy'=>0,'referurl'=>''),
+			0=>array('url'=>'http://120.27.236.149:9921/open.php','method'=>'_parse_hg2','useproxy'=>0,'referurl'=>''),
+			//1=>array('url'=>'http://47.74.129.187/hg/','method'=>'_parse_hg','useproxy'=>0,'referurl'=>''),
+			//1=>array('url'=>'http://47.90.52.104:180/hg/caiji_hg.php','method'=>'_parse_hg','useproxy'=>0,'referurl'=>''),
+			//2=>array('url'=>'http://47.90.52.104:180/hg/api.php','method'=>'_parse_hg','useproxy'=>0,'referurl'=>''),
+			//0=>array('url'=>'http://c.apiplus.net/newly.do?token=8dcc1443d6644fb0&code=krkeno&format=json','method'=>'_parse_apiplus','useproxy'=>0,'referurl'=>'')
+		);
 	}
 	
 	private function _parse_apiunion($contents){

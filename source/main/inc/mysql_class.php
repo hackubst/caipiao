@@ -188,7 +188,7 @@ class db {
 		while ($arr=$this->fetch_array($res)) {
 			$data[]=$arr;
 		}
-		file_put_contents($file_name, serialize($data));
+		//file_put_contents($file_name, serialize($data));
 		return $data;
 	}
 }

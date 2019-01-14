@@ -17,7 +17,7 @@
                     class="glyphicon glyphicon-chevron-left icon"></span></a>
             <button href="javascript:void(0);" class="btn btn-danger btn-md btn-tz" onclick="tz()">投注</button>
         </div>
-        <p style="position:absolute; top:15px; left:50%; margin-left:-20px; font-size:16px; text-shadow:2px 2px 3px #ccc;color: #ecc296;">            投注</p>
+        <p class="navbar_title">投注</p>
     </div>
 </nav>
 
