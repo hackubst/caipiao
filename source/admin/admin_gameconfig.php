@@ -24,88 +24,99 @@ include_once( dirname( __FILE__ )."/inc/function.php" );
 	<!-- 游戏设置 -->
     <div class="categorylist" id="div_GameConfig">
         <table class="tbtitle" width="99%" cellspacing="1" cellpadding="0" border="0" align="center" style="BACKGROUND: #cad9ea;" >				
-			<tr bgcolor="#FFFFFF">
-				<td>选择游戏</td>
-				<td colspan="7">
-					<select id = "sltGCGameList"> </select>
-				</td>
-			</tr>
-			<tr bgcolor="#FFFFFF">
-				<td width="125">记录号</td>
-				<td width="150"><label id="lblGCRecID"></label></td>
-				<td width="125">游戏类型</td>
-				<td width="170"><label id="lblGCGameType"></label></td>
-				<td width="125">游戏前缀</td>
-				<td><label id="lblGCTablePrefix"></label></td>
-			</tr>
-			<tr bgcolor="#FFFFFF">
-				<td>游戏名称</td>
-				<td><input type="text" id="txtGCGameName" style="width:100px" /></td>
-				<td>用户奖励经验</td>
-				<td><input id="txtGCJLExp" type="text" style="width:100px" /></td>
-				<td>奖励经验上限</td>
-				<td><input id="txtJLMaxExp" type="text" style="width:80px" /></td>
-			</tr>
-			<tr bgcolor="#FFFFFF">
-				<td>抽取投注万分比</td>
-				<td><input id="txtGCGoSamples" type="text" style="width:100px" /></td>
-				<td>vip奖励经验</td>
-				<td><input id="txtGCJLExpVIP" type="text" style="width:100px" /></td>
-				<td>vip奖励经验上限</td>
-				<td><input id="txtJLMaxExpVIP" type="text" style="width:80px" /></td>
-			</tr>
-			<tr bgcolor="#FFFFFF">
-				<td>开奖延迟</td>
-				<td><input type="text" id="txtGCKjDelay" style="width:100px" /> 秒</td>
-				<td>系统赢概率</td>
-				<td><input type="text" id="txtGCSysWinOdds" style="width:100px" /> 0-100</td>
-				<td>系统每天赢上下限</td>
-				<td><input id="txtGCSysWinMin" type="text" style="width:80px" /> 至 <input id="txtGCSysWinMax" type="text" style="width:80px" /></td>
-			</tr>
-			<tr bgcolor="#FFFFFF">
-				<td>投注截至</td>
-				<td><input type="text" id="txtGCTzClose" style="width:100px" /> 秒</td>
-				<td>奖励经验投注下限</td>
-				<td><input type="text" id="txtGCTzExp" style="width:100px" /> 分</td>
-				<td>投注上下限</td>
-				<td><input id="txtGCPressMin" type="text" style="width:80px" /> 至 <input id="txtGCPressMax" type="text" style="width:80px" /></td>
-			</tr> 
-			<tr bgcolor="#FFFFFF">
-				<td>排除号码数</td>
-				<td><input type="text" id="txtGCNoOpenNum" style="width:100px" /></td>
-				<td colspan="2">排除最大下注的号码数量</td>
-				<td>下盘开最小下注?</td>
-				<td>
-					<label id="lblNextOpenFlag"></label>
-					<input type="button" value="设置" id="btnGCOpenPressMin" class="btn-1" />
-					<input type="button" value="刷新" id="btnGCRefresh" class="btn-1" />
-				</td>
-			</tr> 
-			<tr bgcolor="#FFFFFF">
-				<td><font color="#FF0000">单个游戏停止开关</font></td>
-				<td colspan="5"><input id="cbxGameShutDown" type="checkbox" >停止该游戏(请谨慎使用,勾选保存后将立即生效)</td>
-			</tr> 
-			<tr bgcolor="#FFFFFF">
-				<td><font color="#FF0000">游戏停止原因</font></td>
-				<td colspan="5"><input type="text" id="txtShutdownReason" style="width:70%" /></td>
-			</tr> 
-			<tr bgcolor="#FFFFFF">
-				<td>标准赔率</td>
-				<td colspan="5"><input type="text" id="txtGCStdOdds" style="width:70%" />以|分隔</td>
-			</tr> 
-			<tr bgcolor="#FFFFFF">
-				<td>标准投注额</td>
-				<td colspan="5"><input type="text" id="txtGCSTdPress" style="width:70%" />以,分隔</td>
-			</tr> 
-			<tr bgcolor="#FFFFFF">
-				<td>扣分模式</td>
-				<td colspan="5"><input type="text" id="txtGCGameModel" style="width:70%" />分数,百分比,例:100,20|1000,15  <strong style="color:red;">(只针对急速)</strong></td>
-			</tr> 
-			<tr bgcolor="#FFFFFF">
-				<td></td>
-				<td colspan="5"><input type="button" value="保存更改" id="btnGCSaveConfig" class="btn-1" /></td>
-			</tr>                
-		</table>
+				<tr bgcolor="#FFFFFF">
+					<td colspan="8">
+						选择游戏
+						<select id = "sltGCGameList">
+                        </select>
+					</td>
+				</tr>
+				<tr bgcolor="#FFFFFF">
+					<td width="125">记录号</td>
+				  	<td width="150"><label id="lblGCRecID"></label></td>
+					<td width="110">游戏类型</td>
+				  	<td width="150"><label id="lblGCGameType"></label></td>
+					<td width="110">游戏前缀</td>
+			  	  	<td><label id="lblGCTablePrefix"></label></td>
+				</tr>
+				<tr bgcolor="#FFFFFF">
+					<td>游戏名称</td>
+				  	<td><input type="text" id="txtGCGameName" style="width:100px" /></td>
+					<td>用户奖励经验</td>
+				  	<td><input id="txtGCJLExp" type="text" style="width:100px" /></td>
+					<td>奖励经验上限</td>
+			  	  <td><input id="txtJLMaxExp" type="text" style="width:80px" /></td>
+				</tr>
+				<tr bgcolor="#FFFFFF">
+					<td>抽取投注万分比</td>
+				  	<td><input id="txtGCGoSamples" type="text" style="width:100px" /></td>
+					<td>vip奖励经验</td>
+				  	<td><input id="txtGCJLExpVIP" type="text" style="width:100px" /></td>
+					<td>vip奖励经验上限</td>
+			  	  <td><input id="txtJLMaxExpVIP" type="text" style="width:80px" /></td>
+				</tr>
+                <tr bgcolor="#FFFFFF">
+					<td>开奖延迟</td>
+				  	<td><input type="text" id="txtGCKjDelay" style="width:100px" />
+				  	  秒</td>
+					<td>系统赢概率</td>
+				  	<td><input type="text" id="txtGCSysWinOdds" style="width:100px" />
+			  	    0-100</td>
+					<td>系统每天赢上下限</td>
+		  	    <td><input id="txtGCSysWinMin" type="text" style="width:80px" />
+至
+  <input id="txtGCSysWinMax" type="text" style="width:80px" /></td>
+				</tr>
+                <tr bgcolor="#FFFFFF">
+					<td>投注截至</td>
+				  	<td><input type="text" id="txtGCTzClose" style="width:100px" />
+				  	  秒</td>
+					<td>奖励经验投注下限</td>
+				  	<td><input type="text" id="txtGCTzExp" style="width:100px" />
+				  	  分</td>
+					<td>投注上下限</td>
+                    <td>
+                        <input id="txtGCPressMin" type="text" style="width:80px" />
+                        至
+                        <input id="txtGCPressMax" type="text" style="width:80px" />                    </td>
+				</tr> 
+				<tr bgcolor="#FFFFFF">
+					<td>排除号码数</td>
+				  	<td><input type="text" id="txtGCNoOpenNum" style="width:100px" /></td>
+					<td>排除最大下注的号码数量</td>
+				  	<td></td>
+					<td>下盘开最小下注?</td>
+                    <td>
+                        <label id="lblNextOpenFlag"></label>
+                        <input type="button" value="设置" id="btnGCOpenPressMin" class="btn-1" />
+                        <input type="button" value="刷新" id="btnGCRefresh" class="btn-1" />
+                    </td>
+				</tr> 
+				<tr bgcolor="#FFFFFF">
+					<td><font color="#FF0000">单个游戏停止开关</font></td>
+				  	<td colspan="5"><input id="cbxGameShutDown" type="checkbox" >停止该游戏(请谨慎使用,勾选保存后将立即生效)</td>
+				</tr> 
+				<tr bgcolor="#FFFFFF">
+					<td><font color="#FF0000">游戏停止原因</font></td>
+				  	<td colspan="5"><input type="text" id="txtShutdownReason" style="width:200px" /></td>
+				</tr> 
+				<tr bgcolor="#FFFFFF">
+					<td>标准赔率</td>
+				  	<td colspan="5"><input type="text" id="txtGCStdOdds" style="width:600px" />以|分隔</td>
+				</tr> 
+				<tr bgcolor="#FFFFFF">
+					<td>标准投注额</td>
+				  	<td colspan="5"><input type="text" id="txtGCSTdPress" style="width:600px" />以,分隔</td>
+				</tr> 
+				<tr bgcolor="#FFFFFF">
+					<td>扣分模式(只针对急速)</td>
+				  	<td colspan="5"><input type="text" id="txtGCGameModel" style="width:600px" />分数,百分比,例:100,20|1000,15</td>
+				</tr> 
+				<tr bgcolor="#FFFFFF">
+					<td></td>
+				  	<td colspan="5"><input type="button" value="保存更改" id="btnGCSaveConfig" class="btn-1" /></td>
+				</tr>                
+			</table>
 	</div>
 </form>    
 </body>
@@ -266,10 +277,9 @@ include_once( dirname( __FILE__ )."/inc/function.php" );
 			alert("排除号码数必须为数字!");
 			return false;
         }
-        if($("#cbxGameShutDown").is(":checked")) { 
-			GameOpenFlag = "1";
-		}
-
+        if($("#cbxGameShutDown").is(":checked")) 
+        	GameOpenFlag = "1";
+        
         data += "&gametype=" + parseInt(GameType) + "&GameName=" + GameName + "&JLExp=" + parseInt(JLExp)
         		+ "&MaxExp=" + parseInt(MaxExp)
         		+ "&GoSamples=" + parseInt(GoSamples)
@@ -363,11 +373,10 @@ include_once( dirname( __FILE__ )."/inc/function.php" );
                     $("#txtGCGameModel").val(item.GameModel);
                     
                     $("#txtShutdownReason").val(item.game_shutdown_reason);
-                    // if(item.game_open_flag == "0")
-                    // { $("#cbxGameShutDown").attr("checked",false); }
-                    // else
-                    // { $("#cbxGameShutDown").attr("checked",true); }
-					document.getElementById('cbxGameShutDown').checked = (item.game_open_flag != "0");
+                    if(item.game_open_flag == "0")
+                    	$("#cbxGameShutDown").attr("checked",false);
+                    else
+                        $("#cbxGameShutDown").attr("checked",true);
                  }
 			}
 

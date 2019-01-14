@@ -56,8 +56,6 @@ include_once( dirname( __FILE__ )."/inc/function.php" );
 			<tr bgcolor="#f5fafe">
 				<td align="center">用户ID</td>
 				<td align="center">名称</td>
-				<td align="center">上级用户</td>
-				<td align="center">层级</td>
 				<td align="center">添加时间</td> 
 				<td align="center">总分</td>
 				<td align="center">铺货</td>
@@ -224,8 +222,6 @@ include_once( dirname( __FILE__ )."/inc/function.php" );
                     tbody += "<tr bgcolor='#FFFFFF'>" +
                             "<td>" + item.UserID +"</td>" +
                             "<td>" + item.AgentName +"</td>" + 
-                            "<td>" + item.PID +"</td>" + 
-                            "<td>" + item.Level +"</td>" + 
                             "<td>" + item.AddTime +"</td>" + 
                             "<td>" + item.TotalPoints +"</td>" +
                             "<td>" + item.DistributeMoney +"</td>" + 

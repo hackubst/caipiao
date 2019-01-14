@@ -1056,8 +1056,6 @@
 		$arrRows[$i]["CanRecCard"] = $row["can_reccard"];
 		$arrRows[$i]["IsRecommend"] = $row["is_recommend"];
 		$arrRows[$i]["State"] = $row["state"];
-		$arrRows[$i]["PID"] = $row["pid"];
-		$arrRows[$i]["Level"] = $row["level"];
 		
 		$arrRows[0]["cmd"] = $act;
 		$arrRows[0]["msg"] = "ok";
@@ -1117,7 +1115,6 @@
 	{
 		global $db;
 		
-		$PID = isset($_POST['pid'])?FilterStr($_POST['pid']):"";
 		$UserID = isset($_POST['userid'])?FilterStr($_POST['userid']):"";
 		$bcMoney = intval($_POST["bcmoney"]);
 		
@@ -1141,7 +1138,7 @@
             echo json_encode($arrReturn);
             return;
 		}
-		$sql = "call web_agent_add({$PID},{$UserID},'{$AgentName}',{$bcMoney},{$bcRate},{$rcRate},{$rcpfRate},{$CanRecCard},{$IsRecommend},{$State})";
+		$sql = "call web_agent_add({$UserID},'{$AgentName}',{$bcMoney},{$bcRate},{$rcRate},{$rcpfRate},{$CanRecCard},{$IsRecommend},{$State})";
 		$arrT = $db->Mysqli_Multi_Query($sql);
 		$msg = "";
 		switch($arrT[0][0]["result"])
@@ -1154,9 +1151,6 @@
 				break;
 			case 2:
 				$msg = "帐号不存在";
-				break;
-			case 2:
-				$msg = "上级用户ID不是有效的代理用户";
 				break;
 			case 99:
 				$msg = "系统错误";
@@ -1176,7 +1170,6 @@
 	function CheckAgentUserID($act)
 	{
 		global $db;
-		$Type = intval($_POST['t']);
 		$UserID = intval($_POST['userid']);
 		$arrReturn = array(array("cmd"=>"","msg"=>""));
 		if($UserID == 0)
@@ -1191,22 +1184,11 @@
 		$result = $db->query($sql);
 		if($rs = $db->fetch_array($result))
 		{
-			if($Type == 1)
-			{
-				$arrReturn[0]["cmd"] = "err";
-				$arrReturn[0]["msg"] = "该用户已经被其他代理绑定了!";
-				ArrayChangeEncode($arrReturn);
-				echo json_encode($arrReturn);
-				return;
-			}
-		} 
-		else if($Type == 2) 
-		{
 			$arrReturn[0]["cmd"] = "err";
-			$arrReturn[0]["msg"] = "该用户不是代理用户，不能做为上级代理绑定!";
-			ArrayChangeEncode($arrReturn);
-			echo json_encode($arrReturn);
-			return;
+            $arrReturn[0]["msg"] = "该用户已经被其他代理绑定了!";
+            ArrayChangeEncode($arrReturn);
+            echo json_encode($arrReturn);
+            return;
 		}
 		$sql = "select id,nickname,mobile,`time` from users where id = '{$UserID}'";
 		$result = $db->query($sql);
@@ -1288,17 +1270,12 @@
 		{   
 			//对返回数据进行包装
             $arrRows[$i]["UserID"] = "<a href='index.php?url=".urlencode("admin_singleuser.php?idx={$row["uid"]}")."' target='_blank'>{$row["uid"]}</a>";
-			$arrRows[$i]["AgentName"] = $row["agent_name"];
-			
-			$arrRows[$i]["PID"] = "<a href='index.php?url=".urlencode("admin_singleuser.php?idx={$row["pid"]}")."' target='_blank'>{$row["pid"]}</a>";
-			$arrRows[$i]["Level"] = $row["level"]."级";
-
+            $arrRows[$i]["AgentName"] = $row["agent_name"];
             $arrRows[$i]["AddTime"] = $row["add_time"];
             $arrRows[$i]["TotalPoints"] = Trans($row["totalpoints"]);
 			$arrRows[$i]["DistributeMoney"] = Trans($row["distribute_money"]);
 			$arrRows[$i]["BalanceMoney"] = Trans($row["cash"] - $row["distribute_money"]);
 			$arrRows[$i]["LastLoginTime"] = $row["last_logintime"];
-
 			$IPInfo = "<a href='http://www.ip138.com/ips.asp?ip={$row["last_loginip"]}' target='_blank'>". $row["last_loginip"] ."</a>";
 			$IPInfo .= "&nbsp;<a href='index.php?url=".urlencode("admin_patchuser.php?type=loginip&word={$row["last_loginip"]}")."' target='_blank'>批</a>";
 			

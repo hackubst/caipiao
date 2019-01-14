@@ -34,14 +34,6 @@ include_once( dirname( __FILE__ )."/inc/function.php" );
 				<td>绑定用户ID</td>
 			</tr>
 			<tr bgcolor="#FFFFFF">
-				<td>上级代理用户ID</td>
-				<td> 
-					<input id="txtParentUserID" type="text" style="width:110px" />
-					<input type="button" value="检测" id="btnCheckParentUserID" class="btn-1"/>
-				</td>
-				<td>关联上级代理用户ID</td>
-			</tr>
-			<tr bgcolor="#FFFFFF">
 				<td>进卡折扣</td>
 				<td><input id="txtBuyCardRate" type="text" value="1.00" style="width:100px" />
 				</td>
@@ -59,7 +51,8 @@ include_once( dirname( __FILE__ )."/inc/function.php" );
 				</td>
 				<td>0表示没利润，利润是1%请输入0.01</td>
 			</tr>	
-						
+			
+			
 			<tr bgcolor="#FFFFFF">
 				<td>铺货分</td>
 				<td><input id="txtDistributeMoney" type="text" value="10000000" style="width:100px" />
@@ -107,14 +100,7 @@ include_once( dirname( __FILE__ )."/inc/function.php" );
 					<label id="lblEUserID"></label>	
 				</td>
 				<td></td>
-			</tr>
-			<tr bgcolor="#FFFFFF">
-				<td>上级代理用户ID</td>
-				<td> 
-					<label id="lblEParentUserID"></label>	
-				</td>
-				<td></td>
-			</tr>
+			</tr>	
 			<tr bgcolor="#FFFFFF">
 				<td>绑定时间</td>
 				<td> 
@@ -219,18 +205,7 @@ include_once( dirname( __FILE__ )."/inc/function.php" );
 				alert("请输入要绑定的用户数字ID");
 				return;
 			}
-            var data = "action=check_agentuserid&userid=" + userid + "&t=1";
-            SendAjax(data);
-		});
-		//检测上级代理用户ID
-		$("#btnCheckParentUserID").click(function(){
-			var userid = $("#txtParentUserID").val();
-			if(userid == "" || isNaN(userid))
-			{
-				alert("请输入要绑定的用户数字ID");
-				return;
-			}
-            var data = "action=check_agentuserid&userid=" + userid + "&t=2";
+            var data = "action=check_agentuserid&userid=" + userid;
             SendAjax(data);
 		});
 	});
@@ -238,7 +213,6 @@ include_once( dirname( __FILE__ )."/inc/function.php" );
 	{
 		var data = "action=addnew_agent";
 		var UserID = $.trim($("#txtUserID").val()); 
-		var PUserID = $.trim($("#txtParentUserID").val()); 
 		var AgentName = $.trim($("#txtAgentName").val());
 		var bcRate = $.trim($("#txtBuyCardRate").val()); 
 		var rcRate = $.trim($("#txtRecCardRate").val());
@@ -273,7 +247,7 @@ include_once( dirname( __FILE__ )."/inc/function.php" );
 			alert("进卡利润错误，要介于0-1之间");
         }
 		
-		data += "&pid=" + PUserID + "&userid=" + UserID + "&bcrate=" + bcRate + "&rcrate=" + rcRate + "&rcpfrate=" + rcpfRate + "&bcmoney=" + dbMoney
+		data += "&userid=" + UserID + "&bcrate=" + bcRate + "&rcrate=" + rcRate + "&rcpfrate=" + rcpfRate + "&bcmoney=" + dbMoney
 				 + "&canreccard=" + canRecCard + "&isrecommend=" + isRecommend + "&state="+ State +"&agentname=" + AgentName;
 		SendAjax(data);
 	}
