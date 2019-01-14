@@ -1,4 +1,5 @@
 <?php
+header('Access-Control-Allow-Origin:*');
 header('Content-type:text/html;charset=utf-8');
 define('KKROOT', dirname(__FILE__));
 define('ROOT', dirname(__DIR__));

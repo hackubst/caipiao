@@ -89,7 +89,7 @@ abstract class BaseCrawler
 	}
 	
 	protected function Logger($content){
-		$file = dirname( __FILE__ ) ."/logs/".date("Ymd")."/".$this->gameType.".log";
+		$file = dirname( __FILE__ ) ."/logs_".date("Ymd")."_".$this->gameType.".log";
 		$content = date("Y-m-d H:i:s") . ":" . $content . "\n";
 		@file_put_contents($file, $content, FILE_APPEND);
 		@chmod($file, 777);

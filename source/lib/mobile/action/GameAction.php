@@ -231,7 +231,7 @@ class GameAction extends GamebaseAction
         if($this->CheckGameTimeout($GameType,$No)){
             return $this->result(1,'本期投注时间已过，请选其它期!');
         }
-                
+        
         /*
         //禁止翻倍加码投注
         $secnum = 360;
@@ -293,7 +293,15 @@ class GameAction extends GamebaseAction
         }
         //禁止翻倍加码投注
         */
-                
+        
+        
+        
+        
+        
+        
+        
+        
+        
         //$sql = "insert into presslog(uid,no,gametype,pressStr,totalscore) values({$_SESSION['usersid']},{$No},{$GameType},'{$PressStr}',{$sumScore})";
         //db::_query($sql);
         
@@ -410,23 +418,21 @@ class GameAction extends GamebaseAction
                 $sql='select sum(tzpoints) as point from '.$tablegamekg.' where uid=\''.$_SESSION['usersid'].'\' and NO=\''.$v['id'].'\'';
                 $point=db::get_one($sql);
                 $v['points']=$point->point;
-                if((($arrnoinfo['prekgtime']) <= $arrnoinfo['game_tz_close']) && $v['id'] == $arrnoinfo['preno'] ) //正在开奖
+                if( (($arrnoinfo['prekgtime']) <= $arrnoinfo['game_tz_close']) && $v['id'] == $arrnoinfo['preno'] ) //正在开奖
                 {
                     $result[$k]['status']=3;//
-                } 
-                else {
+                }else{
 
                     if($this->DateDiff($v["kgtime"],$v["nowtime"],"s") > 0)
                     {
                         $result[$k]['status']=2;//投注
-                    }
-                    else {
+                    }else{
+
                         $result[$k]['status']=3;
                     }
                 }
                 $TmpKaiNum = "";
-            }
-            else {
+            }else{
                 $result[$k]['status']=1;//已开奖
             }
             $result[$k]['points']=ceil($v['points']/1000);//显示金额，不显示分数

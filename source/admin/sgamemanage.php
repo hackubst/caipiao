@@ -1625,7 +1625,7 @@
         $sql = "update sys_config set fldValue = '{$RBCntMax}' where fldVar = 'redbag_cnt_max' and fldType = 0";
         $result = $db->query($sql);
         $sql = "update sys_config set fldValue = '{$RBDayMax}' where fldVar = 'redbag_day_max' and fldType = 0";
-        $result = $db->query($sql);
+		$result = $db->query($sql);
         
 		$msg = "操作成功";
 		$arrReturn[0]["cmd"] = $act;

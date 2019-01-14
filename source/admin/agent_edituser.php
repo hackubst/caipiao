@@ -51,8 +51,7 @@ include_once( dirname( __FILE__ )."/inc/function.php" );
 				</td>
 				<td>0表示没利润，利润是1%请输入0.01</td>
 			</tr>	
-			
-			
+
 			<tr bgcolor="#FFFFFF">
 				<td>铺货分</td>
 				<td><input id="txtDistributeMoney" type="text" value="10000000" style="width:100px" />
@@ -100,7 +99,7 @@ include_once( dirname( __FILE__ )."/inc/function.php" );
 					<label id="lblEUserID"></label>	
 				</td>
 				<td></td>
-			</tr>	
+			</tr>
 			<tr bgcolor="#FFFFFF">
 				<td>绑定时间</td>
 				<td> 
@@ -205,7 +204,7 @@ include_once( dirname( __FILE__ )."/inc/function.php" );
 				alert("请输入要绑定的用户数字ID");
 				return;
 			}
-            var data = "action=check_agentuserid&userid=" + userid;
+            var data = "action=check_agentuserid&userid=" + userid + "&t=1";
             SendAjax(data);
 		});
 	});

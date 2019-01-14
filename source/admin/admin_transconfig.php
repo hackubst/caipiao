@@ -26,7 +26,7 @@ include_once( dirname( __FILE__ )."/inc/function.php" );
         <table class="tbtitle" width="99%" cellspacing="1" cellpadding="0" border="0" align="center" style="BACKGROUND: #cad9ea;" >	
 				<tr bgcolor="#FFFFFF">
 					<td width="200">转账手续费</td>
-				  	<td width="200"><input id="txtTransOdds" type="text" style="width:100px" />%</td>
+				  	<td width="250"><input id="txtTransOdds" type="text" style="width:100px" />%</td>
 					<td>0-100</td>
 				</tr>
                 <tr bgcolor="#FFFFFF">
@@ -184,7 +184,7 @@ include_once( dirname( __FILE__ )."/inc/function.php" );
                     $("#txtRedBagSigleMax").val(item.redbag_single_max); 
                     $("#txtRedBagCntMax").val(item.redbag_cnt_max); 
                     $("#txtRedBagDayMax").val(item.redbag_day_max); 
-                    
+
                     if(item.game_open_flag == "0")
                     	$("#cbxGameShutDown").attr("checked",false);
                     else
