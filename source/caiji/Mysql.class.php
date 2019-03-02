@@ -1,7 +1,7 @@
 <?php
 include_once(dirname( __FILE__ ) ."/config.php");
 
-class db{
+class db {
 	private $dbhost;
 	private $dbuser;
 	private $dbpw;

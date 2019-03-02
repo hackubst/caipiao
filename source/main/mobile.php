@@ -1,6 +1,13 @@
 <?php
 header('Access-Control-Allow-Origin:*');
 header('Content-type:text/html;charset=utf-8');
+
+$a=!empty($_GET["a"]) ? $_GET["a"] : "";
+$c=!empty($_GET['c']) ? $_GET["c"] : "";
+if ($a=="" || $c="") {
+    header('location:mnull.html');
+}
+
 define('KKROOT', dirname(__FILE__));
 define('ROOT', dirname(__DIR__));
 

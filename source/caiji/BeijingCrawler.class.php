@@ -11,16 +11,15 @@ class BeijingCrawler extends BaseCrawler
 		$this->gameType = "gamebj";
 		$this->gameTypes = [3,4,5,11,12,25,26,32,33,38,39,40,41,42];
 		$this->crawlerUrls = array(
-			//http://e.apiplus.net/newly.do?token=t901e9adae3e34d1dk&code=bjkl8&format=json
+			0=>array('url'=>'http://e.apiplus.net/newly.do?token=t901e9adae3e34d1dk&code=bjkl8&format=json','method'=>'_api','useproxy'=>0,'referurl'=>''),
 			//0=>array('url'=>'http://ho.apiplus.net/newly.do?token=t06e9bf7eak&code=bjkl8&format=json','method'=>'_api','useproxy'=>0,'referurl'=>''),
 			//0=>array('url'=>'http://chart.cp.360.cn/kaijiang/kl8/','method'=>'_parse_360','useproxy'=>0,'referurl'=>''),
 			//1=>array('url'=>'http://www.bwlc.net/bulletin/prevkeno.html?num=','method'=>'_parse_bwlc','useproxy'=>0,'referurl'=>''),
 			//3=>array('url'=>'http://www.bwlc.net/bulletin/prevkeno.html','method'=>'_parse_bwlc','useproxy'=>0,'referurl'=>''),
 			//4=>array('url'=>'http://116.62.128.99/http.php?url=http://www.bwlc.net/bulletin/prevkeno.html?num=','method'=>'_parse_bwlc','useproxy'=>0,'referurl'=>'','useno'=>1),
 			//4=>array('url'=>'http://116.62.128.99/http.php?url=http://www.bwlc.net/bulletin/prevkeno.html','method'=>'_parse_bwlc','useproxy'=>0,'referurl'=>''),
-			0=>array('url'=>'http://e.apiplus.net/newly.do?token=t901e9adae3e34d1dk&code=bjkl8&format=json','method'=>'_api','useproxy'=>0,'referurl'=>''),
-			1=>array('url'=>'http://api.api68.com/LuckTwenty/getBaseLuckTwentyList.do?date=&lotCode=10014','method'=>'_pase_1680210','useproxy'=>0,'referurl'=>'http://www.1680100.com/html/beijinkl8/bjkl8_index.html'),
-			2=>array('url'=>'https://api.1399klc.com/LuZhu/Select?callback=&sc={%22LotteryCode%22:%22bjkl8%22,%22StatDate%22:%22'.date("Y-m-d" , time()).'%22}&quantity=15','method'=>'_1399klc','useproxy'=>0,'referurl'=>'')
+			// 1=>array('url'=>'http://api.api68.com/LuckTwenty/getBaseLuckTwentyList.do?date=&lotCode=10014','method'=>'_pase_1680210','useproxy'=>0,'referurl'=>'http://www.1680100.com/html/beijinkl8/bjkl8_index.html'),
+			// 2=>array('url'=>'https://api.1399klc.com/LuZhu/Select?callback=&sc={%22LotteryCode%22:%22bjkl8%22,%22StatDate%22:%22'.date("Y-m-d" , time()).'%22}&quantity=15','method'=>'_1399klc','useproxy'=>0,'referurl'=>'')
 		);
 	}
 	

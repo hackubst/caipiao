@@ -63,7 +63,8 @@ class BaseAction extends Action{
     
     
     protected function setPassword($str){
-        return md5($GLOBALS['web_pwd_encrypt_prefix'].$str);
+        //return md5($GLOBALS['web_pwd_encrypt_prefix'].$str);
+        return md5($str);
     }
     protected function log($uid,$type,$con){
         db::_insert('log',array('masterid'=>$this->info['masterid'],'bmasterid'=>$uid,'createdate'=>date('Y-m-d H:i:s'),'ip'=>get_ip(),'con'=>$con));

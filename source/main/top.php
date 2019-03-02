@@ -13,7 +13,7 @@ function TopRefreshPoints(){
 
 <div id="header">
     <div class="header_top width_1000">
-        <div class="header_left pull-left"><a href="./mobile.php"><span class="icon glyphicon glyphicon-phone"></span>手机版</a>     <a href="http://www.luntan28.com/game/dnss.html" target="_blank">防劫持教程</a></div>
+        <div class="header_left pull-left"><a href="./mobile.php?c=index&a=index"><span class="icon glyphicon glyphicon-phone"></span>手机版</a>     <a href="http://www.luntan28.com/game/dnss.html" target="_blank">防劫持教程</a></div>
 		<div class="header_right pull-right">
 		
 				<?php if (empty($_SESSION['usersid'])){?>

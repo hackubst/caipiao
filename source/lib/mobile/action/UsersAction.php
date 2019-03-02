@@ -184,11 +184,7 @@ class UsersAction extends BaseAction
         if(!$this->is_mobile($data['mobile'])){
             return $this->result(1,'请输入正确的手机号码');
         }
-        // if(strlen($data['password'])<6 || strlen($data['password'])>20){
-        //     return $this->result(1,'请保持密码在6-20位之间');
-        // }
-        //$data['password']=$this->setPassword($data['password']);
-        $data['password']=md5($data['password']);
+        $data['password']=$this->setPassword($data['password']);
         if($_SESSION['username']) //用户正在使用
         {
             //return $this->result(1,'用户正在使用');
@@ -340,95 +336,95 @@ class UsersAction extends BaseAction
         return $this->result($status,$arrRet['cmd']);
 
 
-        $sql = "SELECT id,username,mobile,nickname FROM users WHERE username ='{$username}' or nickname='{$nickname}'";
-        $user = db::get_one($sql);
+        // $sql = "SELECT id,username,mobile,nickname FROM users WHERE username ='{$username}' or nickname='{$nickname}'";
+        // $user = db::get_one($sql);
 
-        if ($user->id && $user->username == $username) return $this->result(1, '很抱歉！帐号重名了，请更改！');
+        // if ($user->id && $user->username == $username) return $this->result(1, '很抱歉！帐号重名了，请更改！');
 
-        if ($user->nickname == $nickname) return $this->result(1, '很抱歉!昵称重名，请更改！');
+        // if ($user->nickname == $nickname) return $this->result(1, '很抱歉!昵称重名，请更改！');
 
-        $sql = "SELECT 1 FROM deny_words WHERE deny_type = 'b' AND keyword LIKE '%{$nickname}%'";
-        $check_user = db::get_one($sql);
-        if ($check_user) return $this->result(1, '很抱歉!用户名含有不允许字符，请更改!');
-        //-- 注册赠送豆
-        $sql = 'SELECT reg_points,web_loginperience FROM web_config WHERE id = 1';
-        $point = db::get_one($sql);
-        //uid
-        $uid=$this->set_uid();
-        //注册
-        $pass =$this->setPassword($pass);
-        $data = array(
-            'id'=>$uid,
-            'username' => $username,
-            'nickname' => $nickname,
-            'password' => $pass,
-            'is_check_mobile' => 1,
-            'mobile' => $username,
-            'bankpwd' => $pass,
-            'points' => $point->reg_points,
-            'experience' => $point->web_loginperience,
-            'maxexperience' => $point->web_loginperience,
-            'time' => date('Y-m-d H:i:s'),
-            'regip' => $ip,
-            'tjid' => $tjid,
-            'usertype' => 0,
-            'loginip' => $ip,
-            'logintime' => date('Y-m-d H:i:s'));
-        db::_insert('users', $data);
-        if(!$uid)return $this->result(1,'注册失败' );
-        //-- 个人统计
-        $data = array('uid' => $uid, 'typeid' => 120, 'points' => $point->reg_points);
-        db::_insert('game_static', $data);
+        // $sql = "SELECT 1 FROM deny_words WHERE deny_type = 'b' AND keyword LIKE '%{$nickname}%'";
+        // $check_user = db::get_one($sql);
+        // if ($check_user) return $this->result(1, '很抱歉!用户名含有不允许字符，请更改!');
+        // //-- 注册赠送豆
+        // $sql = 'SELECT reg_points,web_loginperience FROM web_config WHERE id = 1';
+        // $point = db::get_one($sql);
+        // //uid
+        // $uid=$this->set_uid();
+        // //注册
+        // $pass =$this->setPassword($pass);
+        // $data = array(
+        //     'id'=>$uid,
+        //     'username' => $username,
+        //     'nickname' => $nickname,
+        //     'password' => $pass,
+        //     'is_check_mobile' => 1,
+        //     'mobile' => $username,
+        //     'bankpwd' => $pass,
+        //     'points' => $point->reg_points,
+        //     'experience' => $point->web_loginperience,
+        //     'maxexperience' => $point->web_loginperience,
+        //     'time' => date('Y-m-d H:i:s'),
+        //     'regip' => $ip,
+        //     'tjid' => $tjid,
+        //     'usertype' => 0,
+        //     'loginip' => $ip,
+        //     'logintime' => date('Y-m-d H:i:s'));
+        // db::_insert('users', $data);
+        // if(!$uid)return $this->result(1,'注册失败' );
+        // //-- 个人统计
+        // $data = array('uid' => $uid, 'typeid' => 120, 'points' => $point->reg_points);
+        // db::_insert('game_static', $data);
 
-        //-- 记录中央银行
-        if ($point->reg_points > 0) {
-            db::_query('UPDATE centerbank SET score = score -' . $point->reg_points . ' WHERE bankIdx = 6');
-        }
+        // //-- 记录中央银行
+        // if ($point->reg_points > 0) {
+        //     db::_query('UPDATE centerbank SET score = score -' . $point->reg_points . ' WHERE bankIdx = 6');
+        // }
 
-        //-- 记录统计
-        $sql = 'SELECT 1 FROM webtj WHERE `time` = CURDATE()';
-        $tj = db::get_one($sql);
-        if ($tj) {
-            db::_query('UPDATE webtj SET regnum = regnum + 1,regpoints = regpoints + ' . $point->reg_points . '
-				WHERE `time` = CURDATE();');
-        } else {
-            db::_query('INSERT INTO webtj(`time`,regnum,regpoints) VALUES(CURDATE(),1,' . $point->reg_points . ');');
-        }
+        // //-- 记录统计
+        // $sql = 'SELECT 1 FROM webtj WHERE `time` = CURDATE()';
+        // $tj = db::get_one($sql);
+        // if ($tj) {
+        //     db::_query('UPDATE webtj SET regnum = regnum + 1,regpoints = regpoints + ' . $point->reg_points . '
+		// 		WHERE `time` = CURDATE();');
+        // } else {
+        //     db::_query('INSERT INTO webtj(`time`,regnum,regpoints) VALUES(CURDATE(),1,' . $point->reg_points . ');');
+        // }
 
-        //-- 记录经验变化日志
-        if ($point->web_loginperience > 0) {
-            db::_query("INSERT INTO userslog(usersid, `time`, experience, logtype, `log`)
-				VALUES({$uid}, NOW(), " . $point->web_loginperience . ", 4, CONCAT('登录奖励', " . $point->web_loginperience . ", '经验值'))");
-        }
-        //-- 记录登录日志
-        db::_insert('login_success', array('uid' => $uid, 'username' => $username,
-            'nickname' => $nickname, 'point' => $point->reg_points,
-            'bankpoint' => 0,
-            'exp' => $point->web_loginperience,
-            'loginip' => $ip,
-            'login_time' => date('Y-m-d H:i:s')));
+        // //-- 记录经验变化日志
+        // if ($point->web_loginperience > 0) {
+        //     db::_query("INSERT INTO userslog(usersid, `time`, experience, logtype, `log`)
+		// 		VALUES({$uid}, NOW(), " . $point->web_loginperience . ", 4, CONCAT('登录奖励', " . $point->web_loginperience . ", '经验值'))");
+        // }
+        // //-- 记录登录日志
+        // db::_insert('login_success', array('uid' => $uid, 'username' => $username,
+        //     'nickname' => $nickname, 'point' => $point->reg_points,
+        //     'bankpoint' => 0,
+        //     'exp' => $point->web_loginperience,
+        //     'loginip' => $ip,
+        //     'login_time' => date('Y-m-d H:i:s')));
 
-        //-- 推荐人数统计
-        if ($tjid > 0) {
-            db::_query('UPDATE users SET tj_level1_count = tj_level1_count + 1 WHERE id = ' . $tjid);
-            db::_query('UPDATE users SET tj_level2_count = tj_level2_count + 1
-			WHERE id IN(SELECT * FROM(SELECT tjid FROM users WHERE id = ' . $tjid . ') t');
-            db::_query('UPDATE users SET tj_level3_count = tj_level3_count + 1 WHERE id IN(                SELECT * FROM(
-                    SELECT tjid FROM users WHERE id IN(SELECT tjid FROM users WHERE id = ' . $tjid . ')) t)');
-        }
+        // //-- 推荐人数统计
+        // if ($tjid > 0) {
+        //     db::_query('UPDATE users SET tj_level1_count = tj_level1_count + 1 WHERE id = ' . $tjid);
+        //     db::_query('UPDATE users SET tj_level2_count = tj_level2_count + 1
+		// 	WHERE id IN(SELECT * FROM(SELECT tjid FROM users WHERE id = ' . $tjid . ') t');
+        //     db::_query('UPDATE users SET tj_level3_count = tj_level3_count + 1 WHERE id IN(                SELECT * FROM(
+        //             SELECT tjid FROM users WHERE id IN(SELECT tjid FROM users WHERE id = ' . $tjid . ')) t)');
+        // }
 
-        $_SESSION["usersid"] = $uid;
-        $_SESSION["username"] = $username;
-        $_SESSION["password"] = $pass;
-        $_SESSION["nickname"] = $nickname;
-        $_SESSION["points"] = $point->reg_points;
-        $_SESSION["bankpoints"] = 0;
-        $_SESSION["exp"] = $point->web_loginperience;
-        setcookie("usersid", $uid);
-        setcookie("username", $username);
-        setcookie("password", $pass);
-        setcookie("reg", 1, time() + 8640);
-        return $this->result(0, 'ok');
+        // $_SESSION["usersid"] = $uid;
+        // $_SESSION["username"] = $username;
+        // $_SESSION["password"] = $pass;
+        // $_SESSION["nickname"] = $nickname;
+        // $_SESSION["points"] = $point->reg_points;
+        // $_SESSION["bankpoints"] = 0;
+        // $_SESSION["exp"] = $point->web_loginperience;
+        // setcookie("usersid", $uid);
+        // setcookie("username", $username);
+        // setcookie("password", $pass);
+        // setcookie("reg", 1, time() + 8640);
+        // return $this->result(0, 'ok');
         
     }
 
@@ -471,9 +467,7 @@ class UsersAction extends BaseAction
             return $this->result(1, "注册失败!");
         }
 
-        //$pass=$this->setPassword($data['password']);
-        $pass=md5($data['password']);
-        //unset($data['cpassword']);
+        $pass=$this->setPassword($data['password']);
         $ip=Req::post('ip')?:get_ip();
 
         $sql = "call web_user_mobile_reg(0,0,'{$username}','{$nickname}','{$pass}','{$ip}',{$tjid},'{$source}')";

@@ -12,7 +12,7 @@ class CQSSCCrawler extends BaseCrawler
 		$this->gameTypes = [37];
 		$this->crawlerUrls = array(
 			//0=>array('url'=>'http://www.cqcp.net/','method'=>'_parse_cqssc_home','useproxy'=>0,'referurl'=>''),
-			0=>array('url'=>'http://buy.cqcp.net/Game/GetNum.aspx?iType=3&time=','method'=>'_parse_cqssc','useproxy'=>0,'referurl'=>'http://buy.cqcp.net/game/cqssc/'),
+			//0=>array('url'=>'http://buy.cqcp.net/Game/GetNum.aspx?iType=3&time=','method'=>'_parse_cqssc','useproxy'=>0,'referurl'=>'http://buy.cqcp.net/game/cqssc/'),
 			1=>array('url'=>'http://www.cqcp.net/game/ssc/','method'=>'_parse_cqssc_home2','useproxy'=>0,'referurl'=>''),
 			3=>array('url'=>'https://fx.cp2y.com/cqssckj/','method'=>'_parse_cp2y_com','useproxy'=>0,'referurl'=>'https://www.cp2y.com'),
 			2=>array('url'=>'http://caipiao.163.com/award/cqssc/','method'=>'_parse_163_com','useproxy'=>0,'referurl'=>'http://caipiao.163.com'),

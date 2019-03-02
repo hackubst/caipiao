@@ -5,7 +5,7 @@ error_reporting(E_ALL ^ E_NOTICE);
 include_once(dirname( __FILE__ ) ."/Mysql.class.php");
 
 $db = new db();
-$sql = "select id,uid,change_points,thetime,remark from user_score_changelog where status=0 and remark in ('手动投注后','自动投注后','开奖后')";
+$sql = "select id,uid,change_points,thetime,remark from user_score_changelog where status=0 and remark in ('手动投注后','自动投注后','开奖后')长度";
 $logres = $db->getAll($sql);
 foreach($logres as $log){
     $sql = "select username from users where id={$log['uid']}";
