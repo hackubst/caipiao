@@ -815,34 +815,34 @@
 			$divTable .= "\t\t\t<td colspan=3><em class='regular06'></em> + <em class='regular05'></em> = <li class='mh m11'></li></td>\r\n";
 			$divTable .= "\t\n</tr>\r\n";
 		}
-		else if($act == "18" || $act == "34") //首尔28
+		else if($act == "18" || $act == "34") //腾讯28
 		{
-			$divTable .= "\t\t<tr><td colspan='4'>采用首尔快乐8数据，每1分半钟一期，每天5:00-7:00暂停开奖</td></tr>\r\n";
+			$divTable .= "\t\t<tr><td colspan='4'>采用腾讯QQ用户在线数据，每分钟一期，每天1440期，全天24小时不间断开放。游戏说明：由于腾讯在线只能查询到当期在线数据无法查询历史记录，故请需要核对数据正确性的玩家及时刷新官网数据对比。数据来源：https://mma.qq.com/cgi-bin/im/online</td></tr>\r\n";
 			
 			$divTable .= "\t\t<tr>\r\n";
 			$divTable .= "\t\t\t<td width='120'>如第1234567期</td>\r\n";
-			$divTable .= "\t\t\t<td colspan='3'>01,06,07,13,15,28,31,32,33,35,40,43,44,53,57,62,64,65,68,80(从小到大依次排列)</td>\r\n";
+			$divTable .= "\t\t\t<td colspan='3'>299301594</td>\r\n";
 			$divTable .= "\t\n</tr>\r\n";
 			
 			$divTable .= "\t\t<tr>\r\n";
 			$divTable .= "\t\t\t<td>区位</td>\r\n";
-			$divTable .= "\t\t\t<td>第一区[第2/5/8/11/14/17位数字]</td>\r\n";
-			$divTable .= "\t\t\t<td>第二区[第3/6/9/12/15/18位数字]</td>\r\n";
-			$divTable .= "\t\t\t<td>第三区[第4/7/10/13/16/19位数字]</td>\r\n";
+			$divTable .= "\t\t\t<td>第一区[第1/4/7位数字]从右到左</td>\r\n";
+			$divTable .= "\t\t\t<td>第二区[第2/5/8位数字]从右到左</td>\r\n";
+			$divTable .= "\t\t\t<td>第三区[第1/2/3/4/5/6/7/8位数字]从右到左</td>\r\n";
 			$divTable .= "\t\n</tr>\r\n";
 			
 			$divTable .= "\t\t<tr>\r\n";
 			$divTable .= "\t\t\t<td>数字</td>\r\n";
-			$divTable .= "\t\t\t<td>06,15,32,40,53,64</td>\r\n";
-			$divTable .= "\t\t\t<td>07,28,33,43,57,65</td>\r\n";
-			$divTable .= "\t\t\t<td>13,31,35,44,62,68</td>\r\n";
+			$divTable .= "\t\t\t<td>4,1,9</td>\r\n";
+			$divTable .= "\t\t\t<td>9,0,9</td>\r\n";
+			$divTable .= "\t\t\t<td>4,9,5,1,0,3,9,9</td>\r\n";
 			$divTable .= "\t\n</tr>\r\n";
 			
 			$divTable .= "\t\t<tr>\r\n";
 			$divTable .= "\t\t\t<td>求和</td>\r\n";
-			$divTable .= "\t\t\t<td>210</td>\r\n";
-			$divTable .= "\t\t\t<td>233</td>\r\n";
-			$divTable .= "\t\t\t<td>253</td>\r\n";
+			$divTable .= "\t\t\t<td>14</td>\r\n";
+			$divTable .= "\t\t\t<td>18</td>\r\n";
+			$divTable .= "\t\t\t<td>40</td>\r\n";
 			$divTable .= "\t\n</tr>\r\n";
 			
 			$divTable .= "\t\t<tr>\r\n";
@@ -854,156 +854,96 @@
 			
 			$divTable .= "\t\t<tr>\r\n";
 			$divTable .= "\t\t\t<td>结果</td>\r\n";
+			$divTable .= "\t\t\t<td><li class='kj kj_4'></li></td>\r\n";
+			$divTable .= "\t\t\t<td><li class='kj kj_8'></li></td>\r\n";
 			$divTable .= "\t\t\t<td><li class='kj kj_0'></li></td>\r\n";
-			$divTable .= "\t\t\t<td><li class='kj kj_3'></li></td>\r\n";
-			$divTable .= "\t\t\t<td><li class='kj kj_3'></li></td>\r\n";
 			$divTable .= "\t\n</tr>\r\n";
 			
 			$divTable .= "\t\t<tr>\r\n";
 			$divTable .= "\t\t\t<td>开奖</td>\r\n";
-			$divTable .= "\t\t\t<td colspan=3><li class='kj kj_0'></li><i class=\"hja\"></i><li class='kj kj_3'></li><i class=\"hja\"></i><li class='kj kj_3'></li><i class=\"hdeng\"></i><li class='mh m6'></li></td>\r\n";
+			$divTable .= "\t\t\t<td colspan=3><li class='kj kj_4'></li><i class=\"hja\"></i><li class='kj kj_8'></li><i class=\"hja\"></i><li class='kj kj_0'></li><i class=\"hdeng\"></i><li class='mh m12'></li></td>\r\n";
 			$divTable .= "\t\n</tr>\r\n";
 		}
-		else if($act == "19") //首尔16
+		else if($act == "19") //腾讯16
 		{
-			$divTable .= "\t\t<tr><td colspan='4'>采用首尔快乐8数据，每1分半钟一期，每天5:00-7:00暂停开奖</td></tr>\r\n";
+			$divTable .= "\t\t<tr><td colspan='4'>采用腾讯QQ用户在线数据，每分钟一期，每天1440期，全天24小时不间断开放。游戏说明：由于腾讯在线只能查询到当期在线数据无法查询历史记录，故请需要核对数据正确性的玩家及时刷新官网数据对比。数据来源：https://mma.qq.com/cgi-bin/im/online</td></tr>\r\n";
 			
 			$divTable .= "\t\t<tr>\r\n";
 			$divTable .= "\t\t\t<td width='120'>如第1234567期</td>\r\n";
-			$divTable .= "\t\t\t<td colspan='3'>01,06,07,13,15,28,31,32,33,35,40,43,44,53,57,62,64,65,68,80(从小到大依次排列)</td>\r\n";
+			$divTable .= "\t\t\t<td colspan='3'>299301594</td>\r\n";
 			$divTable .= "\t\n</tr>\r\n";
 			
 			$divTable .= "\t\t<tr>\r\n";
 			$divTable .= "\t\t\t<td>区位</td>\r\n";
-			$divTable .= "\t\t\t<td>第一区[第1/4/7/10/13/16位数字]</td>\r\n";
-			$divTable .= "\t\t\t<td>第二区[第2/5/8/11/14/17位数字]</td>\r\n";
-			$divTable .= "\t\t\t<td>第三区[第3/6/9/12/15/18位数字]</td>\r\n";
-			$divTable .= "\t\n</tr>\r\n";
-			
-			$divTable .= "\t\t<tr>\r\n";
-			$divTable .= "\t\t\t<td>数字</td>\r\n";
-			$divTable .= "\t\t\t<td>01,13,31,35,44,62</td>\r\n";
-			$divTable .= "\t\t\t<td>06,15,32,40,53,64</td>\r\n";
-			$divTable .= "\t\t\t<td>07,28,33,43,57,65</td>\r\n";
-			$divTable .= "\t\n</tr>\r\n";
-			
-			$divTable .= "\t\t<tr>\r\n";
-			$divTable .= "\t\t\t<td>求和</td>\r\n";
-			$divTable .= "\t\t\t<td>186</td>\r\n";
-			$divTable .= "\t\t\t<td>210</td>\r\n";
-			$divTable .= "\t\t\t<td>233</td>\r\n";
-			$divTable .= "\t\n</tr>\r\n";
-			
-			$divTable .= "\t\t<tr>\r\n";
-			$divTable .= "\t\t\t<td>计算</td>\r\n";
-			$divTable .= "\t\t\t<td>186除以6的余数 + 1</td>\r\n";
-			$divTable .= "\t\t\t<td>210除以6的余数 + 1</td>\r\n";
-			$divTable .= "\t\t\t<td>233除以6的余数 + 1</td>\r\n";
+			$divTable .= "\t\t\t<td>第一区[从右到左第1/4/7的数字之和除以6的余数+1]</td>\r\n";
+			$divTable .= "\t\t\t<td>第二区[从右到左第3/6/9的数字之和除以6的余数+1]</td>\r\n";
+			$divTable .= "\t\t\t<td>第三区[从右到左第2/5/8的数字之和除以6的余数+1]</td>\r\n";
 			$divTable .= "\t\n</tr>\r\n";
 			
 			$divTable .= "\t\t<tr>\r\n";
 			$divTable .= "\t\t\t<td>结果</td>\r\n";
+			$divTable .= "\t\t\t<td><li class='kj kj_3'></li></td>\r\n";
+			$divTable .= "\t\t\t<td><li class='kj kj_5'></li></td>\r\n";
 			$divTable .= "\t\t\t<td><li class='kj kj_1'></li></td>\r\n";
-			$divTable .= "\t\t\t<td><li class='kj kj_1'></li></td>\r\n";
-			$divTable .= "\t\t\t<td><li class='kj kj_6'></li></td>\r\n";
 			$divTable .= "\t\n</tr>\r\n";
 			
 			$divTable .= "\t\t<tr>\r\n";
 			$divTable .= "\t\t\t<td>开奖</td>\r\n";
-			$divTable .= "\t\t\t<td colspan=3><li class='kj kj_1'></li><i class=\"hja\"></i><li class='kj kj_1'></li><i class=\"hja\"></i><li class='kj kj_6'></li><i class=\"hdeng\"></i><li class='mh m8'></li></td>\r\n";
+			$divTable .= "\t\t\t<td colspan=3><li class='kj kj_3'></li><i class=\"hja\"></i><li class='kj kj_5'></li><i class=\"hja\"></i><li class='kj 1'></li><i class=\"hdeng\"></i><li class='mh m9'></li></td>\r\n";
 			$divTable .= "\t\n</tr>\r\n";
 		}
-		else if($act == "20") //首尔11
+		else if($act == "20") //腾讯11
 		{
-			$divTable .= "\t\t<tr><td colspan='3'>采用首尔快乐8数据，每1分半钟一期，每天5:00-7:00暂停开奖</td></tr>\r\n";
+			$divTable .= "\t\t<tr><td colspan='3'>采用腾讯QQ用户在线数据，每分钟一期，每天1440期，全天24小时不间断开放。游戏说明：由于腾讯在线只能查询到当期在线数据无法查询历史记录，故请需要核对数据正确性的玩家及时刷新官网数据对比。数据来源：https://mma.qq.com/cgi-bin/im/online</td></tr>\r\n";
 			
 			$divTable .= "\t\t<tr>\r\n";
 			$divTable .= "\t\t\t<td width='120'>如第1234567期</td>\r\n";
-			$divTable .= "\t\t\t<td colspan='2'>01,06,07,13,15,28,31,32,33,35,40,43,44,53,57,62,64,65,68,80(从小到大依次排列)</td>\r\n";
+			$divTable .= "\t\t\t<td colspan='2'>299301594</td>\r\n";
 			$divTable .= "\t\n</tr>\r\n";
 			
 			$divTable .= "\t\t<tr>\r\n";
 			$divTable .= "\t\t\t<td>区位</td>\r\n";
-			$divTable .= "\t\t\t<td>第一区[第1/4/7/10/13/16位数字]</td>\r\n";
-			$divTable .= "\t\t\t<td>第二区[第3/6/9/12/15/18位数字]</td>\r\n";
-			$divTable .= "\t\n</tr>\r\n";
-			
-			$divTable .= "\t\t<tr>\r\n";
-			$divTable .= "\t\t\t<td>数字</td>\r\n";
-			$divTable .= "\t\t\t<td>01,13,31,35,44,62</td>\r\n";
-			$divTable .= "\t\t\t<td>07,28,33,43,57,65</td>\r\n";
-			$divTable .= "\t\n</tr>\r\n";
-			
-			$divTable .= "\t\t<tr>\r\n";
-			$divTable .= "\t\t\t<td>求和</td>\r\n";
-			$divTable .= "\t\t\t<td>186</td>\r\n";
-			$divTable .= "\t\t\t<td>233</td>\r\n";
-			$divTable .= "\t\n</tr>\r\n";
-			
-			$divTable .= "\t\t<tr>\r\n";
-			$divTable .= "\t\t\t<td>计算</td>\r\n";
-			$divTable .= "\t\t\t<td>186除以6的余数 + 1</td>\r\n";
-			$divTable .= "\t\t\t<td>233除以6的余数 + 1</td>\r\n";
+			$divTable .= "\t\t\t<td>第一区[从右到左第1/4/7的数字之和除以6的余数+1]</td>\r\n";
+			$divTable .= "\t\t\t<td>第二区[从右到左第2/5/8的数字之和除以6的余数+1]</td>\r\n";
 			$divTable .= "\t\n</tr>\r\n";
 			
 			$divTable .= "\t\t<tr>\r\n";
 			$divTable .= "\t\t\t<td>结果</td>\r\n";
+			$divTable .= "\t\t\t<td><li class='kj kj_3'></li></td>\r\n";
 			$divTable .= "\t\t\t<td><li class='kj kj_1'></li></td>\r\n";
-			$divTable .= "\t\t\t<td><li class='kj kj_6'></li></td>\r\n";
 			$divTable .= "\t\n</tr>\r\n";
 			
 			$divTable .= "\t\t<tr>\r\n";
 			$divTable .= "\t\t\t<td>开奖</td>\r\n";
-			$divTable .= "\t\t\t<td colspan=3><li class='kj kj_1'></li><i class=\"hja\"></i><li class='kj kj_6'></li><i class=\"hdeng\"></i><li class='mh m7'></li></td>\r\n";
+			$divTable .= "\t\t\t<td colspan=3><li class='kj kj_3'></li><i class=\"hja\"></i><li class='kj kj_1'></li><i class=\"hdeng\"></i><li class='mh m4'></li></td>\r\n";
 			$divTable .= "\t\n</tr>\r\n";
 		}
-		else if($act == "21") //首尔36 
+		else if($act == "21") //腾讯36
 		{
-			$divTable .= "\t\t<tr><td colspan='4'>采用首尔快乐8数据，每1分半钟一期，每天5:00-7:00暂停开奖</td></tr>\r\n";
+			$divTable .= "\t\t<tr><td colspan='4'>采用腾讯QQ用户在线数据，每分钟一期，每天1440期，全天24小时不间断开放。游戏说明：由于腾讯在线只能查询到当期在线数据无法查询历史记录，故请需要核对数据正确性的玩家及时刷新官网数据对比。数据来源：https://mma.qq.com/cgi-bin/im/online</td></tr>\r\n";
 			
 			$divTable .= "\t\t<tr>\r\n";
 			$divTable .= "\t\t\t<td width='120'>如第1234567期</td>\r\n";
-			$divTable .= "\t\t\t<td colspan='3'>01,06,07,13,15,28,31,32,33,35,40,43,44,53,57,62,64,65,68,80(从小到大依次排列)</td>\r\n";
+			$divTable .= "\t\t\t<td colspan='3'>299301594</td>\r\n";
 			$divTable .= "\t\n</tr>\r\n";
 			
 			$divTable .= "\t\t<tr>\r\n";
 			$divTable .= "\t\t\t<td>区位</td>\r\n";
-			$divTable .= "\t\t\t<td>第一区[第2/5/8/11/14/17位数字]</td>\r\n";
-			$divTable .= "\t\t\t<td>第二区[第3/6/9/12/15/18位数字]</td>\r\n";
-			$divTable .= "\t\t\t<td>第三区[第4/7/10/13/16/19位数字]</td>\r\n";
-			$divTable .= "\t\n</tr>\r\n";
-			
-			$divTable .= "\t\t<tr>\r\n";
-			$divTable .= "\t\t\t<td>数字</td>\r\n";
-			$divTable .= "\t\t\t<td>06,15,32,40,53,64</td>\r\n";
-			$divTable .= "\t\t\t<td>07,28,33,43,57,65</td>\r\n";
-			$divTable .= "\t\t\t<td>13,31,35,44,62,68</td>\r\n";
-			$divTable .= "\t\n</tr>\r\n";
-			
-			$divTable .= "\t\t<tr>\r\n";
-			$divTable .= "\t\t\t<td>求和</td>\r\n";
-			$divTable .= "\t\t\t<td>210</td>\r\n";
-			$divTable .= "\t\t\t<td>233</td>\r\n";
-			$divTable .= "\t\t\t<td>253</td>\r\n";
-			$divTable .= "\t\n</tr>\r\n";
-			
-			$divTable .= "\t\t<tr>\r\n";
-			$divTable .= "\t\t\t<td>计算</td>\r\n";
-			$divTable .= "\t\t\t<td>取尾数</td>\r\n";
-			$divTable .= "\t\t\t<td>取尾数</td>\r\n";
-			$divTable .= "\t\t\t<td>取尾数</td>\r\n";
+			$divTable .= "\t\t\t<td>第一区[取百位]从右到左</td>\r\n";
+			$divTable .= "\t\t\t<td>第二区[取十位]从右到左</td>\r\n";
+			$divTable .= "\t\t\t<td>第三区[取个位]从右到左</td>\r\n";
 			$divTable .= "\t\n</tr>\r\n";
 			
 			$divTable .= "\t\t<tr>\r\n";
 			$divTable .= "\t\t\t<td>结果</td>\r\n";
-			$divTable .= "\t\t\t<td><li class='kj kj_0'></li></td>\r\n";
-			$divTable .= "\t\t\t<td><li class='kj kj_3'></li></td>\r\n";
-			$divTable .= "\t\t\t<td><li class='kj kj_3'></li></td>\r\n";
+			$divTable .= "\t\t\t<td><li class='kj kj_5'></li></td>\r\n";
+			$divTable .= "\t\t\t<td><li class='kj kj_9'></li></td>\r\n";
+			$divTable .= "\t\t\t<td><li class='kj kj_4'></li></td>\r\n";
 			$divTable .= "\t\n</tr>\r\n";
 			
 			$divTable .= "\t\t<tr>\r\n";
 			$divTable .= "\t\t\t<td>开奖</td>\r\n";
-			$divTable .= "\t\t\t<td colspan=3><li class='kj kj_0'></li><i class=\"hja\"></i><li class='kj kj_3'></li><i class=\"hja\"></i><li class='kj kj_3'></li><i class=\"hdeng\"></i><li class='zh z2'></li></td>\r\n";
+			$divTable .= "\t\t\t<td colspan=3><li class='kj kj_5'></li><i class=\"hja\"></i><li class='kj kj_9'></li><i class=\"hja\"></i><li class='kj kj_4'></li><i class=\"hdeng\"></i><li class='zh z4'></li></td>\r\n";
 			$divTable .= "\t\n</tr>\r\n";
 			
 			$divTable .= "\t\t<tr>\r\n";
@@ -1493,33 +1433,33 @@
 			</td>
 			</tr>\r\n";
 		}
-		else if($act == "30")
+		else if($act == "30")//腾讯外围
 		{
-			$divTable .= "\t\t<tr><td colspan='4'>采用首尔快乐8数据，每1分半钟一期，每天5:00-07:00暂停开奖</td></tr>\r\n";
+			$divTable .= "\t\t<tr><td colspan='4'>采用腾讯QQ用户在线数据，每分钟一期，每天1440期，全天24小时不间断开放。游戏说明：由于腾讯在线只能查询到当期在线数据无法查询历史记录，故请需要核对数据正确性的玩家及时刷新官网数据对比。数据来源：https://mma.qq.com/cgi-bin/im/online</td></tr>\r\n";
 			$divTable .= "\t\t<tr>\r\n";
-			$divTable .= "\t\t\t<td width='120'>如第1674529期</td>\r\n";
-			$divTable .= "\t\t\t<td colspan='3'>7 14 18 23 25 28 30 31 39 41 46 50 51 53 57 59 66 71 72 75(从小到大依次排列)</td>\r\n";
+			$divTable .= "\t\t\t<td width='120'>如第1234567期</td>\r\n";
+			$divTable .= "\t\t\t<td colspan='3'>299301594</td>\r\n";
 	
 			$divTable .= "\t\t</tr>\r\n";
 			$divTable .= "\t\t<tr>\r\n";
 			$divTable .= "\t\t\t<td width='120'>区位</td>\r\n";
-			$divTable .= "\t\t\t<td>第一区[第2/5/8/11/14/17位数字]</td>\r\n";
-			$divTable .= "\t\t\t<td>第二区[第3/6/9/12/15/18位数字]</td>\r\n";
-			$divTable .= "\t\t\t<td>第三区[第4/7/10/13/16/19位数字]</td>\r\n";
+			$divTable .= "\t\t\t<td>第一区[第1/4/7位数字]从右到左</td>\r\n";
+			$divTable .= "\t\t\t<td>第二区[第2/5/8位数字]从右到左</td>\r\n";
+			$divTable .= "\t\t\t<td>第三区[第1/2/3/4/5/6/7/8位数字]从右到左</td>\r\n";
 			
 			$divTable .= "\t\t</tr>\r\n";
 			$divTable .= "\t\t<tr>\r\n";
 			$divTable .= "\t\t\t<td>数字</td>\r\n";
-			$divTable .= "\t\t\t<td>14,25,31,46,53,66</td>\r\n";
-			$divTable .= "\t\t\t<td>18,28,39,50,57,71</td>\r\n";
-			$divTable .= "\t\t\t<td>23,30,41,51,59,72</td>\r\n";
+			$divTable .= "\t\t\t<td>4,1,9</td>\r\n";
+			$divTable .= "\t\t\t<td>9,0,9</td>\r\n";
+			$divTable .= "\t\t\t<td>4,9,5,1,0,3,9,9</td>\r\n";
 			
 			$divTable .= "\t\t</tr>\r\n";
 			$divTable .= "\t\t<tr>\r\n";
 			$divTable .= "\t\t\t<td>求和</td>\r\n";
-			$divTable .= "\t\t\t<td>235</td>\r\n";
-			$divTable .= "\t\t\t<td>263</td>\r\n";
-			$divTable .= "\t\t\t<td>276</td>\r\n";
+			$divTable .= "\t\t\t<td>14</td>\r\n";
+			$divTable .= "\t\t\t<td>18</td>\r\n";
+			$divTable .= "\t\t\t<td>40</td>\r\n";
 			
 			$divTable .= "\t\t</tr>\r\n";
 			$divTable .= "\t\t<tr>\r\n";
@@ -1531,14 +1471,14 @@
 			$divTable .= "\t\t</tr>\r\n";
 			$divTable .= "\t\t<tr>\r\n";
 			$divTable .= "\t\t\t<td>结果</td>\r\n";
-			$divTable .= "\t\t\t<td><li class='kj kj_5'></li></td>\r\n";
-			$divTable .= "\t\t\t<td><li class='kj kj_3'></li></td>\r\n";
-			$divTable .= "\t\t\t<td><li class='kj kj_6'></li></td>\r\n";
+			$divTable .= "\t\t\t<td><li class='kj kj_4'></li></td>\r\n";
+			$divTable .= "\t\t\t<td><li class='kj kj_8'></li></td>\r\n";
+			$divTable .= "\t\t\t<td><li class='kj kj_0'></li></td>\r\n";
 			
 			$divTable .= "\t\t</tr>\r\n";
 			$divTable .= "\t\t<tr>\r\n";
 			$divTable .= "\t\t\t<td>开奖</td>\r\n";
-			$divTable .= "\t\t\t<td colspan=3><li class='kj kj_5'></li><i class=\"hja\"></i><li class='kj kj_3'></li><i class=\"hja\"></i><li class='kj kj_6'></li> <i class=\"hdeng\"></i> <li class='mh m14'></li></td>\r\n";
+			$divTable .= "\t\t\t<td colspan=3><li class='kj kj_4'></li><i class=\"hja\"></i><li class='kj kj_8'></li><i class=\"hja\"></i><li class='kj kj_0'></li> <i class=\"hdeng\"></i> <li class='mh m12'></li></td>\r\n";
 			
 			$divTable .= "\t\t</tr>\r\n";
 			$divTable .= "\t\t<tr>\r\n";
@@ -1575,33 +1515,33 @@
 			$divTable .= "\t\t\t<td  align=\"left\">固定2.9倍（2,5,8,11,14,17,20,23,26）</td>\r\n";
 			$divTable .= "\t\t</tr>\r\n";
 		}
-		else if($act == "31")
+		else if($act == "31")//腾讯定位
 		{
-			$divTable .= "\t\t<tr><td colspan='4'>采用首尔快乐8数据，每1分半钟一期，每天5:00-07:00暂停开奖</td></tr>\r\n";
+			$divTable .= "\t\t<tr><td colspan='4'>采用腾讯QQ用户在线数据，每分钟一期，每天1440期，全天24小时不间断开放。游戏说明：由于腾讯在线只能查询到当期在线数据无法查询历史记录，故请需要核对数据正确性的玩家及时刷新官网数据对比。数据来源：https://mma.qq.com/cgi-bin/im/online</td></tr>\r\n";
 			$divTable .= "\t\t<tr>\r\n";
-			$divTable .= "\t\t\t<td width='120'>如第1674529期</td>\r\n";
-			$divTable .= "\t\t\t<td colspan='3'>7 14 18 23 25 28 30 31 39 41 46 50 51 53 57 59 66 71 72 75(从小到大依次排列)</td>\r\n";
+			$divTable .= "\t\t\t<td width='120'>如第1234567期</td>\r\n";
+			$divTable .= "\t\t\t<td colspan='3'>299301594</td>\r\n";
 	
 			$divTable .= "\t\t</tr>\r\n";
 			$divTable .= "\t\t<tr>\r\n";
 			$divTable .= "\t\t\t<td width='120'>区位</td>\r\n";
-			$divTable .= "\t\t\t<td>第一区[第2/5/8/11/14/17位数字]</td>\r\n";
-			$divTable .= "\t\t\t<td>第二区[第3/6/9/12/15/18位数字]</td>\r\n";
-			$divTable .= "\t\t\t<td>第三区[第4/7/10/13/16/19位数字]</td>\r\n";
+			$divTable .= "\t\t\t<td>第一区[第1/4/7位数字]从右到左</td>\r\n";
+			$divTable .= "\t\t\t<td>第二区[第2/5/8位数字]从右到左</td>\r\n";
+			$divTable .= "\t\t\t<td>第三区[第1/2/3/4/5/6/7/8位数字]从右到左</td>\r\n";
 			
 			$divTable .= "\t\t</tr>\r\n";
 			$divTable .= "\t\t<tr>\r\n";
 			$divTable .= "\t\t\t<td>数字</td>\r\n";
-			$divTable .= "\t\t\t<td>14,25,31,46,53,66</td>\r\n";
-			$divTable .= "\t\t\t<td>18,28,39,50,57,71</td>\r\n";
-			$divTable .= "\t\t\t<td>23,30,41,51,59,72</td>\r\n";
+			$divTable .= "\t\t\t<td>4,1,9</td>\r\n";
+			$divTable .= "\t\t\t<td>9,0,9</td>\r\n";
+			$divTable .= "\t\t\t<td>4,9,5,1,0,3,9,9</td>\r\n";
 			
 			$divTable .= "\t\t</tr>\r\n";
 			$divTable .= "\t\t<tr>\r\n";
 			$divTable .= "\t\t\t<td>求和</td>\r\n";
-			$divTable .= "\t\t\t<td>235</td>\r\n";
-			$divTable .= "\t\t\t<td>263</td>\r\n";
-			$divTable .= "\t\t\t<td>276</td>\r\n";
+			$divTable .= "\t\t\t<td>14</td>\r\n";
+			$divTable .= "\t\t\t<td>18</td>\r\n";
+			$divTable .= "\t\t\t<td>40</td>\r\n";
 			
 			$divTable .= "\t\t</tr>\r\n";
 			$divTable .= "\t\t<tr>\r\n";
@@ -1613,14 +1553,14 @@
 			$divTable .= "\t\t</tr>\r\n";
 			$divTable .= "\t\t<tr>\r\n";
 			$divTable .= "\t\t\t<td>结果</td>\r\n";
-			$divTable .= "\t\t\t<td><li class='kj kj_5'></li></td>\r\n";
-			$divTable .= "\t\t\t<td><li class='kj kj_3'></li></td>\r\n";
-			$divTable .= "\t\t\t<td><li class='kj kj_6'></li></td>\r\n";
+			$divTable .= "\t\t\t<td><li class='kj kj_4'></li></td>\r\n";
+			$divTable .= "\t\t\t<td><li class='kj kj_8'></li></td>\r\n";
+			$divTable .= "\t\t\t<td><li class='kj kj_0'></li></td>\r\n";
 			
 			$divTable .= "\t\t</tr>\r\n";
 			$divTable .= "\t\t<tr>\r\n";
 			$divTable .= "\t\t\t<td>开奖</td>\r\n";
-			$divTable .= "\t\t\t<td colspan='3'><li class='kj kj_5'></li><i class=\"hja\"></i><li class='kj kj_3'></li><i class=\"hja\"></i><li class='kj kj_6'></li> <i class=\"hdeng\"></i> <li class='mh m14'></li></td>\r\n";
+			$divTable .= "\t\t\t<td colspan='3'><li class='kj kj_4'></li><i class=\"hja\"></i><li class='kj kj_8'></li><i class=\"hja\"></i><li class='kj kj_0'></li> <i class=\"hdeng\"></i> <li class='mh m12'></li></td>\r\n";
 			
 			$divTable .= "\t\t</tr>\r\n";
 			$divTable .= "\t\t<tr><td colspan=\"4\">游戏总共有0-27共28位数字，0-13为小，14-27为大，奇数为单，偶数为双,以下赔率包含本金</td></tr>\r\n";
@@ -2309,6 +2249,162 @@
 			$divTable .= "\t\t\t<td colspan=3><em class='regular06'></em> + <em class='regular05'></em> = <li class='mh m11'></li></td>\r\n";
 			$divTable .= "\t\n</tr>\r\n";
 		}
+        else if($act == '49'){//腾讯分分彩
+            $divTable .= "\t\t<tr><td colspan='2'>采用腾讯QQ用户在线数据，每分钟一期，每天1440期，全天24小时不间断开放。具体游戏规则如下:</td></tr>\r\n";
+
+            $divTable .= "\t\t<tr>\r\n";
+            $divTable .= "\t\t\t<td width='120' style='color:red;' colspan='2'>例如：第2025227期腾讯在线人数为：321765934，第一球：4+5+1，尾数为0，第二球3+6+2尾数为1，第三球：4+3+9+5+6+7+1+2尾数为7，第四球：4+9+2尾数为5，第五球：3+5+7尾数为5</td>\r\n";
+            $divTable .= "\t\n</tr>\r\n";
+
+            $divTable .= "\t\t<tr>\r\n";
+            $divTable .= "\t\t\t<td width='120' style='color:red;' colspan='2'>取值范围：取腾讯在线人数的1、4、7位数（从右到左）和的尾数为第一球，2、5、8位数（从右到左）和的尾数为第二球，1、2、3、4、5、6、7、8位数总和的尾数为第三球，1、3、8位数（从右到左）和的尾数为第四球，2、4、6位数（从右到左）和的尾数为第五球。</td>\r\n";
+            $divTable .= "\t\n</tr>\r\n";
+
+            $divTable .= "\t\t<tr>\r\n";
+            $divTable .= "\t\t\t<td width='120' style='color:red;' colspan='2'>1.第一球~第五球：</td>\r\n";
+            $divTable .= "\t\n</tr>\r\n";
+
+            $divTable .= "\t\t<tr>\r\n";
+            $divTable .= "\t\t\t<td style='color:red;'>第一球特~第五球特：</td>\r\n";
+            $divTable .= "\t\t\t<td>第一球、第二球、第三球、第四球、第五球：指下注的每一球与开出之号码其开奖顺序及开奖号码从左到右</td>\r\n";
+            $divTable .= "\t\n</tr>\r\n";
+
+            $divTable .= "\t\t<tr>\r\n";
+            $divTable .= "\t\t\t<td style='color:red;'>单双大小：</td>\r\n";
+            $divTable .= "\t\t\t<td>根据相应单项投注第一球特 ~ 第五球特开出的球号，判断胜负。</td>\r\n";
+            $divTable .= "\t\n</tr>\r\n";
+
+            $divTable .= "\t\t<tr>\r\n";
+            $divTable .= "\t\t\t<td style='color:red;'>大小：</td>\r\n";
+            $divTable .= "\t\t\t<td>根据相应单项投注的第一球特 ~ 第五球特开出的球号大於或等於5为特码大，小於或等於4为特码小。</td>\r\n";
+            $divTable .= "\t\n</tr>\r\n";
+
+            $divTable .= "\t\t<tr>\r\n";
+            $divTable .= "\t\t\t<td style='color:red;'>单双：</td>\r\n";
+            $divTable .= "\t\t\t<td>根据相应单项投注的第一球特 ~ 第五球特开出的球号为双数叫特双，如2、6；特码为单数叫特单，如1、3。</td>\r\n";
+            $divTable .= "\t\n</tr>\r\n";
+
+            $divTable .= "\t\t<tr>\r\n";
+            $divTable .= "\t\t\t<td style='color:red;' colspan='2'>2.总和单双大小：</td>\r\n";
+            $divTable .= "\t\n</tr>\r\n";
+
+            $divTable .= "\t\t<tr>\r\n";
+            $divTable .= "\t\t\t<td style='color:red;'>大小：</td>\r\n";
+            $divTable .= "\t\t\t<td>根据相应单项投注的第一球特 ~ 第五球特开出的球号大於或等於23为特码大，小於或等於22为特码小。</td>\r\n";
+            $divTable .= "\t\n</tr>\r\n";
+
+            $divTable .= "\t\t<tr>\r\n";
+            $divTable .= "\t\t\t<td style='color:red;'>单双：</td>\r\n";
+            $divTable .= "\t\t\t<td>根据相应单项投注的第一球特 ~ 第五球特开出的球号数字总和值是双数为总和双，数字总和值是单数为总和单。</td>\r\n";
+            $divTable .= "\t\n</tr>\r\n";
+
+            $divTable .= "\t\t<tr>\r\n";
+            $divTable .= "\t\t\t<td style='color:red;' colspan='2' >3.前三特殊玩法： 豹子 > 顺子 > 对子 > 半顺 > 杂六 。</td>\r\n";
+            $divTable .= "\t\n</tr>\r\n";
+
+            $divTable .= "\t\t<tr>\r\n";
+            $divTable .= "\t\t\t<td style='color:red;'>豹子：</td>\r\n";
+            $divTable .= "\t\t\t<td>中奖号码的一二三球都相同。----如中奖号码为000、111、999等，中奖号码的一二三球数字相同，则投注豹子者视为中奖，其它视为不中奖。</td>\r\n";
+            $divTable .= "\t\n</tr>\r\n";
+
+            $divTable .= "\t\t<tr>\r\n";
+            $divTable .= "\t\t\t<td style='color:red;'>顺子：</td>\r\n";
+            $divTable .= "\t\t\t<td>中奖号码的一二三球都相连，不分顺序。（数字9、0、1相连）----如中奖号码为123、901、321、546等，中奖号码一二三球百位数字相连，则投注顺子者视为中奖，其它视为不中奖。</td>\r\n";
+            $divTable .= "\t\n</tr>\r\n";
+
+            $divTable .= "\t\t<tr>\r\n";
+            $divTable .= "\t\t\t<td style='color:red;'>对子：</td>\r\n";
+            $divTable .= "\t\t\t<td>中奖号码的一二三球任意两位数字相同。（不包括豹子）----如中奖号码为001，112、696，中奖号码有两位数字相同，则投注对子者视为中奖，其它视为不中奖。如果开奖号码为豹子,则对子视为不中奖。如中奖号码为001，112、696，中奖号码有两位数字相同，则投注对子者视为中奖，其它视为不中奖。</td>\r\n";
+            $divTable .= "\t\n</tr>\r\n";
+
+            $divTable .= "\t\t<tr>\r\n";
+            $divTable .= "\t\t\t<td style='color:red;'>半顺：</td>\r\n";
+            $divTable .= "\t\t\t<td>中奖号码的一二三球任意两位数字相连，不分顺序。（不包括顺子、对子。）----如中奖号码为125、540、390、706，中奖号码有两位数字相连，则投注半顺者视为中奖，其它视为不中奖。如果开奖号码为顺子、对子,则半顺视为不中奖。--如中奖号码为123、901、556、233，视为不中奖。</td>\r\n";
+            $divTable .= "\t\n</tr>\r\n";
+
+            $divTable .= "\t\t<tr>\r\n";
+            $divTable .= "\t\t\t<td style='color:red;'>杂六：</td>\r\n";
+            $divTable .= "\t\t\t<td>不包括豹子、对子、顺子、半顺的所有中奖号码。----如中奖号码为157，中奖号码位数之间无关联性，则投注杂六者视为中奖，其它视为不中奖。</td>\r\n";
+            $divTable .= "\t\n</tr>\r\n";
+
+            $divTable .= "\t\t<tr>\r\n";
+            $divTable .= "\t\t\t<td style='color:red;' colspan='2' >4.中三特殊玩法： 豹子 > 顺子 > 对子 > 半顺 > 杂六 。</td>\r\n";
+            $divTable .= "\t\n</tr>\r\n";
+
+            $divTable .= "\t\t<tr>\r\n";
+            $divTable .= "\t\t\t<td style='color:red;'>豹子：</td>\r\n";
+            $divTable .= "\t\t\t<td>中奖号码的二三四球都相同。----如中奖号码为000、111、999等，中奖号码的二三四球相同，则投注豹子者视为中奖，其它视为不中奖。</td>\r\n";
+            $divTable .= "\t\n</tr>\r\n";
+
+            $divTable .= "\t\n<tr>\r\n";
+            $divTable .= "\t\t\t<td style='color:red;'>顺子：</td>\r\n";
+            $divTable .= "\t\t\t<td>中奖号码的二三四球都相连，不分顺序。（数字9、0、1相连）----如中奖号码为123、901、321、546等，中奖号码二三四球相连，则投注顺子者视为中奖，其它视为不中奖。</td>\r\n";
+            $divTable .= "\t\n</tr>\r\n";
+
+            $divTable .= "\t\n<tr>\r\n";
+            $divTable .= "\t\t\t<td style='color:red;'>对子：</td>\r\n";
+            $divTable .= "\t\t\t<td>中奖号码的二三四球相同。（不包括豹子）----如中奖号码为001，112、696，中奖号码有两位数字相同，则投注对子者视为中奖，其它视为不中奖。如果开奖号码为豹子,则对子视为不中奖。如中奖号码为001，112、696，中奖号码有两位数字相同，则投注对子者视为中奖，其它视为不中奖。</td>\r\n";
+            $divTable .= "\t\n</tr>\r\n";
+
+            $divTable .= "\t\n<tr>\r\n";
+            $divTable .= "\t\t\t<td style='color:red;'>半顺：</td>\r\n";
+            $divTable .= "\t\t\t<td>中奖号码的二三四球数字相连，不分顺序。（不包括顺子、对子。）----如中奖号码为125、540、390、706，中奖号码有两位数字相连，则投注半顺者视为中奖，其它视为不中奖。如果开奖号码为顺子、对子,则半顺视为不中奖。--如中奖号码为123、901、556、233，视为不中奖。</td>\r\n";
+            $divTable .= "\t\n</tr>\r\n";
+
+            $divTable .= "\t\n<tr>\r\n";
+            $divTable .= "\t\t\t<td style='color:red;'>杂六：</td>\r\n";
+            $divTable .= "\t\t\t<td>不包括豹子、对子、顺子、半顺的所有中奖号码。----如中奖号码为157，中奖号码位数之间无关联性，则投注杂六者视为中奖，其它视为不中奖。</td>\r\n";
+            $divTable .= "\t\n</tr>\r\n";
+
+            $divTable .= "\t\n<tr>\r\n";
+            $divTable .= "\t\t\t<td style='color:red;' colspan='2'>6.后三特殊玩法： 豹子 > 顺子 > 对子 > 半顺 > 杂六 。</td>\r\n";
+            $divTable .= "\t\n</tr>\r\n";
+
+            $divTable .= "\t\t<tr>\r\n";
+            $divTable .= "\t\t\t<td style='color:red;'>豹子：</td>\r\n";
+            $divTable .= "\t\t\t<td>中奖号码的二三四球都相同。----如中奖号码为000、111、999等，中奖号码的二三四球相同，则投注豹子者视为中奖，其它视为不中奖。</td>\r\n";
+            $divTable .= "\t\n</tr>\r\n";
+
+            $divTable .= "\t\n<tr>\r\n";
+            $divTable .= "\t\t\t<td style='color:red;'>顺子：</td>\r\n";
+            $divTable .= "\t\t\t<td>中奖号码的二三四球都相连，不分顺序。（数字9、0、1相连）----如中奖号码为123、901、321、546等，中奖号码二三四球相连，则投注顺子者视为中奖，其它视为不中奖。</td>\r\n";
+            $divTable .= "\t\n</tr>\r\n";
+
+            $divTable .= "\t\n<tr>\r\n";
+            $divTable .= "\t\t\t<td style='color:red;'>对子：</td>\r\n";
+            $divTable .= "\t\t\t<td>中奖号码的二三四球相同。（不包括豹子）----如中奖号码为001，112、696，中奖号码有两位数字相同，则投注对子者视为中奖，其它视为不中奖。如果开奖号码为豹子,则对子视为不中奖。如中奖号码为001，112、696，中奖号码有两位数字相同，则投注对子者视为中奖，其它视为不中奖。</td>\r\n";
+            $divTable .= "\t\n</tr>\r\n";
+
+            $divTable .= "\t\n<tr>\r\n";
+            $divTable .= "\t\t\t<td style='color:red;'>半顺：</td>\r\n";
+            $divTable .= "\t\t\t<td>中奖号码的二三四球数字相连，不分顺序。（不包括顺子、对子。）----如中奖号码为125、540、390、706，中奖号码有两位数字相连，则投注半顺者视为中奖，其它视为不中奖。如果开奖号码为顺子、对子,则半顺视为不中奖。--如中奖号码为123、901、556、233，视为不中奖。</td>\r\n";
+            $divTable .= "\t\n</tr>\r\n";
+
+            $divTable .= "\t\n<tr>\r\n";
+            $divTable .= "\t\t\t<td style='color:red;'>杂六：</td>\r\n";
+            $divTable .= "\t\t\t<td>不包括豹子、对子、顺子、半顺的所有中奖号码。----如中奖号码为157，中奖号码位数之间无关联性，则投注杂六者视为中奖，其它视为不中奖。</td>\r\n";
+            $divTable .= "\t\n</tr>\r\n";
+
+            $divTable .= "\t\n<tr>\r\n";
+            $divTable .= "\t\t\t<td style='color:red;' colspan='2'>7.龙虎和特殊玩法： 龙 > 虎 > 和 （0为最小，9为最大）。</td>\r\n";
+            $divTable .= "\t\n</tr>\r\n";
+
+            $divTable .= "\t\n<tr>\r\n";
+            $divTable .= "\t\t\t<td style='color:red;'>龙：</td>\r\n";
+            $divTable .= "\t\t\t<td>开出之号码第一球（万位）的中奖号码大于第五球（个位）的中奖号码，如 第一球开出4 第五球开出2；第一球开出9 第五球开出8；第一球开出5 第五球开出1...中奖为龙。</td>\r\n";
+            $divTable .= "\t\n</tr>\r\n";
+
+            $divTable .= "\t\n<tr>\r\n";
+            $divTable .= "\t\t\t<td style='color:red;'>虎：</td>\r\n";
+            $divTable .= "\t\t\t<td>开出之号码第一球（万位）的中奖号码小于第五球（个位）的中奖号码，如 第一球开出7 第五球开出9；第一球开出3 第五球开出5；第一球开出5 第五球开出8...中奖为虎。</td>\r\n";
+            $divTable .= "\t\n</tr>\r\n";
+
+            $divTable .= "\t\n<tr>\r\n";
+            $divTable .= "\t\t\t<td style='color:red;'>和：</td>\r\n";
+            $divTable .= "\t\t\t<td>开出之号码第一球（万位）的中奖号码等于第五球（个位）的中奖号码，例如开出结果：2***2则投注和局者视为中奖，其它视为不中奖。</td>\r\n";
+            $divTable .= "\t\n</tr>\r\n";
+
+        }
 		
 		
 		$divTable .= "\t</tbody>\r\n";

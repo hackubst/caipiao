@@ -148,32 +148,32 @@ class GamebaseAction extends BaseAction
                 $tablegame_users_tz = "gamepkgyj_users_tz";
                 break;
             case "18":
-                $tablegame = "gamehg28";
-                $tablegame_auto = "gamehg28_auto";
-                $tablegame_auto_tz = "gamehg28_auto_tz";
-                $tablegame_kg_users_tz = "gamehg28_kg_users_tz";
-                $tablegame_users_tz = "gamehg28_users_tz";
+                $tablegame = "gametx28";
+                $tablegame_auto = "gametx28_auto";
+                $tablegame_auto_tz = "gametx28_auto_tz";
+                $tablegame_kg_users_tz = "gametx28_kg_users_tz";
+                $tablegame_users_tz = "gametx28_users_tz";
                 break;
             case "19":
-                $tablegame = "gamehg16";
-                $tablegame_auto = "gamehg16_auto";
-                $tablegame_auto_tz = "gamehg16_auto_tz";
-                $tablegame_kg_users_tz = "gamehg16_kg_users_tz";
-                $tablegame_users_tz = "gamehg16_users_tz";
+                $tablegame = "gametx16";
+                $tablegame_auto = "gametx16_auto";
+                $tablegame_auto_tz = "gametx16_auto_tz";
+                $tablegame_kg_users_tz = "gametx16_kg_users_tz";
+                $tablegame_users_tz = "gametx16_users_tz";
                 break;
             case "20":
-                $tablegame = "gamehg11";
-                $tablegame_auto = "gamehg11_auto";
-                $tablegame_auto_tz = "gamehg11_auto_tz";
-                $tablegame_kg_users_tz = "gamehg11_kg_users_tz";
-                $tablegame_users_tz = "gamehg11_users_tz";
+                $tablegame = "gametx11";
+                $tablegame_auto = "gametx11_auto";
+                $tablegame_auto_tz = "gametx11_auto_tz";
+                $tablegame_kg_users_tz = "gametx11_kg_users_tz";
+                $tablegame_users_tz = "gametx11_users_tz";
                 break;
             case "21":
-                $tablegame = "gamehg36";
-                $tablegame_auto = "gamehg36_auto";
-                $tablegame_auto_tz = "gamehg36_auto_tz";
-                $tablegame_kg_users_tz = "gamehg36_kg_users_tz";
-                $tablegame_users_tz = "gamehg36_users_tz";
+                $tablegame = "gametx36";
+                $tablegame_auto = "gametx36_auto";
+                $tablegame_auto_tz = "gametx36_auto_tz";
+                $tablegame_kg_users_tz = "gametx36_kg_users_tz";
+                $tablegame_users_tz = "gametx36_users_tz";
                 break;
 			case "22":
 				$tablegame = "gamefast22";
@@ -232,18 +232,18 @@ class GamebaseAction extends BaseAction
 				$tablegame_users_tz = "gamepksc_users_tz";
 				break;
 			case "30":
-				$tablegame = "gamehgww";
-				$tablegame_auto = "gamehgww_auto";
-				$tablegame_auto_tz = "gamehgww_auto_tz";
-				$tablegame_kg_users_tz = "gamehgww_kg_users_tz";
-				$tablegame_users_tz = "gamehgww_users_tz";
+				$tablegame = "gametxww";
+				$tablegame_auto = "gametxww_auto";
+				$tablegame_auto_tz = "gametxww_auto_tz";
+				$tablegame_kg_users_tz = "gametxww_kg_users_tz";
+				$tablegame_users_tz = "gametxww_users_tz";
 				break;
 			case "31":
-				$tablegame = "gamehgdw";
-				$tablegame_auto = "gamehgdw_auto";
-				$tablegame_auto_tz = "gamehgdw_auto_tz";
-				$tablegame_kg_users_tz = "gamehgdw_kg_users_tz";
-				$tablegame_users_tz = "gamehgdw_users_tz";
+				$tablegame = "gametxdw";
+				$tablegame_auto = "gametxdw_auto";
+				$tablegame_auto_tz = "gametxdw_auto_tz";
+				$tablegame_kg_users_tz = "gametxdw_kg_users_tz";
+				$tablegame_users_tz = "gametxdw_users_tz";
 				break;
 			case "32":
 				$tablegame = "game28gd";
@@ -260,11 +260,11 @@ class GamebaseAction extends BaseAction
 				$tablegame_users_tz = "gamebj28gd_users_tz";
 				break;
 			case "34":
-				$tablegame = "gamehg28gd";
-				$tablegame_auto = "gamehg28gd_auto";
-				$tablegame_auto_tz = "gamehg28gd_auto_tz";
-				$tablegame_kg_users_tz = "gamehg28gd_kg_users_tz";
-				$tablegame_users_tz = "gamehg28gd_users_tz";
+				$tablegame = "gametx28gd";
+				$tablegame_auto = "gametx28gd_auto";
+				$tablegame_auto_tz = "gametx28gd_auto_tz";
+				$tablegame_kg_users_tz = "gametx28gd_kg_users_tz";
+				$tablegame_users_tz = "gametx28gd_users_tz";
 				break;
 			case "35":
 				$tablegame = "gamecan28gd";
@@ -357,7 +357,13 @@ class GamebaseAction extends BaseAction
 				$tablegame_kg_users_tz = "gameairshiplh_kg_users_tz";
 				$tablegame_users_tz = "gameairshiplh_users_tz";
 				break;
-					
+            case "49":
+                $tablegame = "gametxffc";
+                $tablegame_auto = "gametxffc_auto";
+                $tablegame_auto_tz = "gametxffc_auto_tz";
+                $tablegame_kg_users_tz = "gametxffc_kg_users_tz";
+                $tablegame_users_tz = "gametxffc_users_tz";
+                break;
 				
             default:
                 break;

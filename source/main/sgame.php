@@ -64,8 +64,8 @@
 			$MinuteAdd = "4";
 		else if(in_array($act,[8,9,10,13,27,28,35]))//加拿大源
 			$MinuteAdd = "13";
-		else if(in_array($act,[18,19,20,21,30,31,34]))//韩国源
-			$MinuteAdd = "6";
+		else if(in_array($act,[18,19,20,21,30,31,34,49]))//腾讯源
+			$MinuteAdd = "4";
 		else if(in_array($act,[36]))//幸运农场
 			$MinuteAdd = "40";
 		else if(in_array($act,[37])){//重庆时时彩
@@ -112,7 +112,7 @@
 			$divTable .= "\t\t\t<th>中奖</th>\r\n";
 		}else if(in_array($act,[29,36])){//赛车
 			$divTable .= "\t\t\t<th colspan='8'>中奖</th>\r\n";
-		}else if(in_array($act,[37])){//时时彩
+		}else if(in_array($act,[37,49])){//时时彩
 			$divTable .= "\t\t\t<th colspan='7'>中奖</th>\r\n";
 		}else if(in_array($act,[32,33,34,35])){//固定
 			;
@@ -214,7 +214,7 @@
 					//$value_kj="<i style='width:20px;'></i>".show_num($arrTmpKg[8],3);
 					$TmpKaiNum = "{$kjNumberStr}";//{$value_kj}
 				}
-				else if(in_array($act,[37]))
+				else if(in_array($act,[37,49]))
 				{
 					$kjNumberStr = "";
 					if(count($arrTmpKg) == 6){
@@ -342,7 +342,7 @@
 			$divTable .= "\t\t\t<td>" . date("m-d H:i:s",strtotime($rs["kgtime"])) . "</td>\r\n";
 			
 			//if ($rs['kj'] == 0 || $act ==15 || $act == 2 || $act == 1 || $act == 0 || $act == 6 || $act == 14 || $act == 7 || $act == 16 || $act == 17 || $act == 22 || $act == 23 || $act == 24 || $act == 29 || $act == 36 || $act == 37){
-			if ($rs['kj'] == 0 || in_array($act , [0,1,2,6,7,14,15,16,17,22,23,24,29,36,37,43,44,45,46,47])){//未开奖或是急速类或PK，飞艇类
+			if ($rs['kj'] == 0 || in_array($act , [0,1,2,6,7,14,15,16,17,22,23,24,29,36,37,49,43,44,45,46,47])){//未开奖或是急速类或PK，飞艇类
 				$divTable .= "\t\t\t<td class='regular' valign='middle'>{$TmpKaiNum} </td>\r\n";
 			}else{
 				$divTable .= "\t\t\t<td class='regular' valign='middle'>{$TmpKaiNum}　<a href=\"javascript:openrecord('{$rs['id']}',840,400,'sgame_open_recode.php?act={$act}&id={$rs['id']}');\" class='btn btn-danger validate' style='outline: medium;' >验证</a></td>\r\n";
@@ -580,7 +580,7 @@
 				}
 				
 				
-			}else if(in_array($act,[37])){//重庆时时彩
+			}else if(in_array($act,[37,49])){//重庆时时彩
 				$arrKJResult = explode("|",$rs["kgjg"]);
 				
 				if(count($arrKJResult) == 6){

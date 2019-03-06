@@ -379,32 +379,32 @@ function GetGameTableName($act,$t)
 			$tablegame_users_tz = "gamepkgyj_users_tz";
 			break;
 		case "18":
-			$tablegame = "gamehg28";
-			$tablegame_auto = "gamehg28_auto";
-			$tablegame_auto_tz = "gamehg28_auto_tz";
-			$tablegame_kg_users_tz = "gamehg28_kg_users_tz";
-			$tablegame_users_tz = "gamehg28_users_tz";
+			$tablegame = "gametx28";
+			$tablegame_auto = "gametx28_auto";
+			$tablegame_auto_tz = "gametx28_auto_tz";
+			$tablegame_kg_users_tz = "gametx28_kg_users_tz";
+			$tablegame_users_tz = "gametx28_users_tz";
 			break;
 		case "19":
-			$tablegame = "gamehg16";
-			$tablegame_auto = "gamehg16_auto";
-			$tablegame_auto_tz = "gamehg16_auto_tz";
-			$tablegame_kg_users_tz = "gamehg16_kg_users_tz";
-			$tablegame_users_tz = "gamehg16_users_tz";
+			$tablegame = "gametx16";
+			$tablegame_auto = "gametx16_auto";
+			$tablegame_auto_tz = "gametx16_auto_tz";
+			$tablegame_kg_users_tz = "gametx16_kg_users_tz";
+			$tablegame_users_tz = "gametx16_users_tz";
 			break;
 		case "20":
-			$tablegame = "gamehg11";
-			$tablegame_auto = "gamehg11_auto";
-			$tablegame_auto_tz = "gamehg11_auto_tz";
-			$tablegame_kg_users_tz = "gamehg11_kg_users_tz";
-			$tablegame_users_tz = "gamehg11_users_tz";
+			$tablegame = "gametx11";
+			$tablegame_auto = "gametx11_auto";
+			$tablegame_auto_tz = "gametx11_auto_tz";
+			$tablegame_kg_users_tz = "gametx11_kg_users_tz";
+			$tablegame_users_tz = "gametx11_users_tz";
 			break;
 		case "21":
-			$tablegame = "gamehg36";
-			$tablegame_auto = "gamehg36_auto";
-			$tablegame_auto_tz = "gamehg36_auto_tz";
-			$tablegame_kg_users_tz = "gamehg36_kg_users_tz";
-			$tablegame_users_tz = "gamehg36_users_tz";
+			$tablegame = "gametx36";
+			$tablegame_auto = "gametx36_auto";
+			$tablegame_auto_tz = "gametx36_auto_tz";
+			$tablegame_kg_users_tz = "gametx36_kg_users_tz";
+			$tablegame_users_tz = "gametx36_users_tz";
 			break;
 		case "22":
 			$tablegame = "gamefast22";
@@ -463,18 +463,18 @@ function GetGameTableName($act,$t)
 			$tablegame_users_tz = "gamepksc_users_tz";
 			break;
 		case "30":
-			$tablegame = "gamehgww";
-			$tablegame_auto = "gamehgww_auto";
-			$tablegame_auto_tz = "gamehgww_auto_tz";
-			$tablegame_kg_users_tz = "gamehgww_kg_users_tz";
-			$tablegame_users_tz = "gamehgww_users_tz";
+			$tablegame = "gametxww";
+			$tablegame_auto = "gametxww_auto";
+			$tablegame_auto_tz = "gametxww_auto_tz";
+			$tablegame_kg_users_tz = "gametxww_kg_users_tz";
+			$tablegame_users_tz = "gametxww_users_tz";
 			break;
 		case "31":
-			$tablegame = "gamehgdw";
-			$tablegame_auto = "gamehgdw_auto";
-			$tablegame_auto_tz = "gamehgdw_auto_tz";
-			$tablegame_kg_users_tz = "gamehgdw_kg_users_tz";
-			$tablegame_users_tz = "gamehgdw_users_tz";
+			$tablegame = "gametxdw";
+			$tablegame_auto = "gametxdw_auto";
+			$tablegame_auto_tz = "gametxdw_auto_tz";
+			$tablegame_kg_users_tz = "gametxdw_kg_users_tz";
+			$tablegame_users_tz = "gametxdw_users_tz";
 			break;
 		case "32":
 			$tablegame = "game28gd";
@@ -491,11 +491,11 @@ function GetGameTableName($act,$t)
 			$tablegame_users_tz = "gamebj28gd_users_tz";
 			break;
 		case "34":
-			$tablegame = "gamehg28gd";
-			$tablegame_auto = "gamehg28gd_auto";
-			$tablegame_auto_tz = "gamehg28gd_auto_tz";
-			$tablegame_kg_users_tz = "gamehg28gd_kg_users_tz";
-			$tablegame_users_tz = "gamehg28gd_users_tz";
+			$tablegame = "gametx28gd";
+			$tablegame_auto = "gametx28gd_auto";
+			$tablegame_auto_tz = "gametx28gd_auto_tz";
+			$tablegame_kg_users_tz = "gametx28gd_kg_users_tz";
+			$tablegame_users_tz = "gametx28gd_users_tz";
 			break;
 		case "35":
 			$tablegame = "gamecan28gd";
@@ -588,7 +588,13 @@ function GetGameTableName($act,$t)
 			$tablegame_kg_users_tz = "gameairshiplh_kg_users_tz";
 			$tablegame_users_tz = "gameairshiplh_users_tz";
 			break;
-			
+        case "49":
+            $tablegame = "gametxffc";
+            $tablegame_auto = "gametxffc_auto";
+            $tablegame_auto_tz = "gametxffc_auto_tz";
+            $tablegame_kg_users_tz = "gametxffc_kg_users_tz";
+            $tablegame_users_tz = "gametxffc_users_tz";
+            break;
 			
 		default:
 			break;
@@ -637,7 +643,7 @@ function GetSubMenu($act,$sid)
 	}
 	for($i = 1; $i <= 8; $i++)
 	{
-		if(in_array($act,[25,26,27,28,29,30,31,36,37,41,42]) && in_array($i,[4,5])) continue;
+		if(in_array($act,[25,26,27,28,29,30,31,36,37,41,42,49]) && in_array($i,[4,5])) continue;
 		if(in_array($act,[32,33,34,35]) && in_array($i,[5])) continue;
 		switch($i)
 		{
@@ -672,7 +678,7 @@ function GetSubMenu($act,$sid)
 	
 	$RetDiv .= "\t\t</div>\r\n";
 	
-	if(!in_array($act,[25,26,27,28,29,30,31,32,33,34,35,36,37]))
+	if(!in_array($act,[25,26,27,28,29,30,31,32,33,34,35,36,37,49]))
 		$RetDiv .= "\t\t\t<div style='float:right;padding-right:9px;'><a href=\"javascript:getContent('sautopress.php?act={$act}&sid=5');\" class=\"btn btn-danger\" style='color:#fff;text-decoration:none;'>自动投注>></a></div>\r\n";
 	
 	$RetDiv .= "\t\t</li>\r\n";
@@ -686,8 +692,8 @@ function GetHeadContent($act,$sid,&$aret)
 	$tablegame = GetGameTableName($act,"game");
 	$tablegametz = GetGameTableName($act,"users_tz");
 	$SecondSub = -80;//北京快乐8系列
-	if(in_array($act,[18,19,20,21,30,31,34])) {//韩国系列
-		$SecondSub = -90;
+	if(in_array($act,[18,19,20,21,30,31,34])) {//腾讯系列
+		$SecondSub = -10;
 	}elseif (in_array($act,[6,7,14,16,17,29])){//PK系列
 		$SecondSub=-120;
 	}elseif (in_array($act,[43,44,45,46,47])){//飞艇系列
@@ -743,7 +749,7 @@ function GetHeadContent($act,$sid,&$aret)
 	$divPeriod .= "\t\t<span>开奖结果</span>\r\n";
 	$divPeriod .= "\t</div>\r\n";
 	$divPeriod .= "\t<ul>\r\n";
-	
+
 	if(in_array($act,[3,4,5,8,9,11,12,13,18,19,21,25,26,27,28,30,31,32,33,34,35,39,40,41,42])){//北京韩国加拿大快乐8源的16,28,36游戏
 		$divnums = explode("|",$kgResult);
 		if (in_array($act,[3,11,25,26,32,39,40])){   // 蛋蛋28 蛋蛋36 蛋蛋外围 蛋蛋定位;$act == "3" || $act == "11"
@@ -1039,7 +1045,7 @@ function GetHeadContent($act,$sid,&$aret)
 		}
 
 	}
-	if (in_array($act,[3,4,5,11,12,25,26,32,33,38,39,40,41,42])){//北京,蛋蛋类 
+/*	if (in_array($act,[3,4,5,11,12,25,26,32,33,38,39,40,41,42])){//北京,蛋蛋类
 		$divPeriod .= "\t\t<dd class='kaic'><a target='_blank' href='http://www.bwlc.net/bulletin/prevkeno.html'>第三方开奖查询</a></dd>\r\n";
 	}elseif (in_array($act,[18,19,20,21,30,31,34])){//韩国类
 		$divPeriod .= "\t\t<dd class='kaic'><a target='_blank' href='http://www.kenolotto.kr/kenoWinNoList.php'>第三方开奖查询</a></dd>\r\n";
@@ -1053,7 +1059,7 @@ function GetHeadContent($act,$sid,&$aret)
 		$divPeriod .= "\t\t<dd class='kaic'><a target='_blank' href='http://www.cqcp.net/game/ssc/'>第三方开奖查询</a></dd>\r\n";
 	}elseif (in_array($act,[43,44,45,46,47])){//马耳他飞艇
 		$divPeriod .= "\t\t<dd class='kaic'><a target='_blank' href='http://www.luckyairship.com/history.html'>第三方开奖查询</a></dd>\r\n";
-	}
+	}*/
 	
 	$divPeriod .= "\t\t</dl>\r\n";
 	$divPeriod .= "\t\t</li>\r\n";
@@ -1150,7 +1156,7 @@ function GetHeadContent_beifen($act,$sid,&$aret)
 
 
 
-	if (in_array($act,[3,4,5,11,12,25,26,32,33,38,39,40,41,42])){//北京类 蛋蛋类
+/*	if (in_array($act,[3,4,5,11,12,25,26,32,33,38,39,40,41,42])){//北京类 蛋蛋类
 		$divPeriod .= "\t\t<li class='kaic'><a target='_blank' href='http://www.bwlc.net/bulletin/prevkeno.html'>第三方开奖查询</a></li>\r\n";
 	}elseif (in_array($act,[18,19,20,21,30,31,34])){//	韩国类
 		$divPeriod .= "\t\t<li class='kaic'><a target='_blank' href='http://www.kenolotto.kr/kenoWinNoList.php'>第三方开奖查询</a></li>\r\n";
@@ -1164,7 +1170,7 @@ function GetHeadContent_beifen($act,$sid,&$aret)
 		$divPeriod .= "\t\t<li class='kaic'><a target='_blank' href='http://www.cqcp.net/game/ssc/'>第三方开奖查询</a></li>\r\n";
 	}elseif (in_array($act,[43,44,45,46,47])){//马耳他飞艇
 		$divPeriod .= "\t\t<li class='kaic'><a target='_blank' href='http://www.luckyairship.com/history.html'>第三方开奖查询</a></li>\r\n";
-	}
+	}*/
 
 	
 	

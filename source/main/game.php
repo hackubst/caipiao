@@ -71,7 +71,7 @@
 			$("#game_" + num).addClass("pick_beijing");
 		}
 
-		if(num == 18 || num == 19 || num == 20 || num == 21 || num == 30 || num == 31 || num == 34){
+		if(num == 18 || num == 19 || num == 20 || num == 21 || num == 30 || num == 31 || num == 34 || num == 49){
 			$("#game_" + num).addClass("pick_korea");
 		}
 
@@ -157,69 +157,68 @@
 <div id="jquery_jplayer_1"  ></div>
 
 <div id="game_titles">
-	<div class="game_titles width_1200">
-		<div class="btn-group btn_nav">
-		  <a class="btn btn-default btn_fast" onclick="javascript:show(15)" id="game_15">急速10</a>
-		  <a class="btn btn-default btn_fast" onclick="javascript:show(2)" id="game_2">急速11</a>
-		  <a class="btn btn-default btn_fast" onclick="javascript:show(1)" id="game_1">急速16</a>
-		  <a class="btn btn-default btn_fast" onclick="javascript:show(22)" id="game_22">急速22</a>
-		  <a class="btn btn-default btn_fast" onclick="javascript:show(0)" id="game_0">急速28</a>
-		  <a class="btn btn-default btn_fast" onclick="javascript:show(23)" id="game_23">急速36</a>
-		  <a class="btn btn-default btn_fast" onclick="javascript:show(24)" id="game_24">急速冠亚军</a>
-		  <a class="btn btn-default btn_pk" onclick="javascript:show(6)" id="game_6">PK10</a>
-		  <a class="btn btn-default btn_pk" onclick="javascript:show(14)" id="game_14">PK22</a>
-		  <a class="btn btn-default btn_pk" onclick="javascript:show(7)" id="game_7">PK冠军</a>
-		</div>
-		<div class="btn-group btn_nav">
-		  <a class="btn btn-default btn_dandan" onclick="javascript:show(39)" id="game_39">蛋蛋11</a>
-		  <a class="btn btn-default btn_dandan" onclick="javascript:show(40)" id="game_40">蛋蛋16</a>
-		  <a class="btn btn-default btn_dandan" onclick="javascript:show(3)" id="game_3">蛋蛋28</a>
-		  <a class="btn btn-default btn_dandan" onclick="javascript:show(11)" id="game_11">蛋蛋36</a>
-		  <a class="btn btn-default btn_beijing" onclick="javascript:show(38)" id="game_38">北京11</a>
-		  <a class="btn btn-default btn_beijing" onclick="javascript:show(5)" id="game_5">北京16</a>
-		  <a class="btn btn-default btn_beijing" onclick="javascript:show(4)" id="game_4">北京28</a>
-		  <a class="btn btn-default btn_pk" onclick="javascript:show(29)" id="game_29">北京赛车</a>
-		  <a class="btn btn-default btn_pk" onclick="javascript:show(16)" id="game_16">PK龙虎</a>
-		  <a class="btn btn-default btn_pk" onclick="javascript:show(17)" id="game_17">PK冠亚军</a>
-		</div>
-		<div class="btn-group btn_nav">
-		  <a class="btn btn-default btn_dandan" onclick="javascript:show(25)" id="game_25">蛋蛋外围</a>
-		  <a class="btn btn-default btn_dandan" onclick="javascript:show(26)" id="game_26">蛋蛋定位</a>
-		  <a class="btn btn-default btn_dandan" onclick="javascript:show(32)" id="game_32">蛋蛋28固定</a>
-		  <a class="btn btn-default btn_beijing" onclick="javascript:show(12)" id="game_12">北京36</a>
-		  <a class="btn btn-default btn_beijing" onclick="javascript:show(41)" id="game_41">北京外围</a>
-		  <a class="btn btn-default btn_beijing" onclick="javascript:show(42)" id="game_42">北京定位</a>
-		  <a class="btn btn-default btn_beijing" onclick="javascript:show(33)" id="game_33">北京28固定</a>
-		  <a class="btn btn-default btn_canada" onclick="javascript:show(10)" id="game_10">加拿大11</a>
-		  <a class="btn btn-default btn_canada" onclick="javascript:show(9)" id="game_9">加拿大16</a>
-		  <a class="btn btn-default btn_xync" onclick="javascript:show(36)" id="game_36">幸运农场</a>
-		</div>
-		<div class="btn-group btn_nav">
-		  <!-- <a class="btn btn-default btn_korea" onclick="javascript:show(20)" id="game_20">首尔11</a>
-		  <a class="btn btn-default btn_korea" onclick="javascript:show(19)" id="game_19">首尔16</a>
-		  <a class="btn btn-default btn_korea" onclick="javascript:show(18)" id="game_18">首尔28</a>
-		  <a class="btn btn-default btn_korea" onclick="javascript:show(21)" id="game_21">首尔36</a> -->
-		  
-		  <a class="btn btn-default btn_airship" onclick="javascript:show(43)" id="game_43">飞艇10</a>
-		  <a class="btn btn-default btn_airship" onclick="javascript:show(44)" id="game_44">飞艇22</a>
-		  <a class="btn btn-default btn_airship" onclick="javascript:show(45)" id="game_45">飞艇冠亚军</a>
-		  <a class="btn btn-default btn_airship" onclick="javascript:show(46)" id="game_46">飞艇冠军</a>
-		  
-		  <a class="btn btn-default btn_canada" onclick="javascript:show(8)"  id="game_8">加拿大28</a>
-		  <a class="btn btn-default btn_canada" onclick="javascript:show(13)" id="game_13">加拿大36</a>
-		  <a class="btn btn-default btn_canada" onclick="javascript:show(35)" id="game_35">加拿大28固定</a>
-		  <a class="btn btn-default btn_canada" onclick="javascript:show(27)" id="game_27">加拿大外围</a>
-		  <a class="btn btn-default btn_canada" onclick="javascript:show(28)" id="game_28">加拿大定位</a>
-		  <a class="btn btn-default btn_xync" onclick="javascript:show(37)" id="game_37">重庆时时彩</a>
-		</div>
-		<div class="btn-group btn_nav">
-		  <!-- <a class="btn btn-default btn_korea" onclick="javascript:show(30)" id="game_30">首尔外围</a>
-		  <a class="btn btn-default btn_korea" onclick="javascript:show(31)" id="game_31">首尔定位</a>
-		  <a class="btn btn-default btn_korea" onclick="javascript:show(34)" id="game_34">首尔28固定</a> -->
-		  
-		  <a class="btn btn-default btn_airship" onclick="javascript:show(47)" id="game_47">飞艇龙虎</a>
-		</div>
-	</div>
+    <div class="game_titles width_1200">
+        <div class="btn-group btn_nav">
+            <a class="btn btn-default btn_fast" onclick="javascript:show(15)" id="game_15">幸运10</a>
+            <a class="btn btn-default btn_fast" onclick="javascript:show(2)" id="game_2">幸运11</a>
+            <a class="btn btn-default btn_fast" onclick="javascript:show(1)" id="game_1">幸运16</a>
+            <a class="btn btn-default btn_fast" onclick="javascript:show(22)" id="game_22">幸运22</a>
+            <a class="btn btn-default btn_fast" onclick="javascript:show(0)" id="game_0">幸运28</a>
+            <a class="btn btn-default btn_fast" onclick="javascript:show(23)" id="game_23">幸运36</a>
+            <a class="btn btn-default btn_fast" onclick="javascript:show(24)" id="game_24">幸运冠亚军</a>
+            <a class="btn btn-default btn_pk" onclick="javascript:show(6)" id="game_6">PK10</a>
+            <a class="btn btn-default btn_pk" onclick="javascript:show(14)" id="game_14">PK22</a>
+            <a class="btn btn-default btn_pk" onclick="javascript:show(7)" id="game_7">PK冠军</a>
+        </div>
+        <div class="btn-group btn_nav">
+            <a class="btn btn-default btn_dandan" onclick="javascript:show(39)" id="game_39">蛋蛋11</a>
+            <a class="btn btn-default btn_dandan" onclick="javascript:show(40)" id="game_40">蛋蛋16</a>
+            <a class="btn btn-default btn_dandan" onclick="javascript:show(3)" id="game_3">蛋蛋28</a>
+            <a class="btn btn-default btn_dandan" onclick="javascript:show(11)" id="game_11">蛋蛋36</a>
+            <a class="btn btn-default btn_beijing" onclick="javascript:show(38)" id="game_38">北京11</a>
+            <a class="btn btn-default btn_beijing" onclick="javascript:show(5)" id="game_5">北京16</a>
+            <a class="btn btn-default btn_beijing" onclick="javascript:show(4)" id="game_4">北京28</a>
+            <a class="btn btn-default btn_pk" onclick="javascript:show(29)" id="game_29">北京赛车</a>
+            <a class="btn btn-default btn_pk" onclick="javascript:show(16)" id="game_16">PK龙虎</a>
+            <a class="btn btn-default btn_pk" onclick="javascript:show(17)" id="game_17">PK冠亚军</a>
+        </div>
+        <div class="btn-group btn_nav">
+            <a class="btn btn-default btn_dandan" onclick="javascript:show(25)" id="game_25">蛋蛋外围</a>
+            <a class="btn btn-default btn_dandan" onclick="javascript:show(26)" id="game_26">蛋蛋定位</a>
+            <a class="btn btn-default btn_dandan" onclick="javascript:show(32)" id="game_32">蛋蛋28固定</a>
+            <a class="btn btn-default btn_beijing" onclick="javascript:show(12)" id="game_12">北京36</a>
+            <a class="btn btn-default btn_beijing" onclick="javascript:show(41)" id="game_41">北京外围</a>
+            <a class="btn btn-default btn_beijing" onclick="javascript:show(42)" id="game_42">北京定位</a>
+            <a class="btn btn-default btn_beijing" onclick="javascript:show(33)" id="game_33">北京28固定</a>
+            <a class="btn btn-default btn_canada" onclick="javascript:show(10)" id="game_10">加拿大11</a>
+            <a class="btn btn-default btn_canada" onclick="javascript:show(9)" id="game_9">加拿大16</a>
+            <a class="btn btn-default btn_xync" onclick="javascript:show(36)" id="game_36">幸运农场</a>
+        </div>
+        <div class="btn-group btn_nav">
+            <a class="btn btn-default btn_airship" onclick="javascript:show(43)" id="game_43">飞艇10</a>
+            <a class="btn btn-default btn_airship" onclick="javascript:show(44)" id="game_44">飞艇22</a>
+            <a class="btn btn-default btn_airship" onclick="javascript:show(45)" id="game_45">飞艇冠亚军</a>
+            <a class="btn btn-default btn_airship" onclick="javascript:show(46)" id="game_46">飞艇冠军</a>
+            <a class="btn btn-default btn_canada" onclick="javascript:show(8)" id="game_8">加拿大28</a>
+            <a class="btn btn-default btn_canada" onclick="javascript:show(13)" id="game_13">加拿大36</a>
+            <a class="btn btn-default btn_canada" onclick="javascript:show(35)" id="game_35">加拿大28固定</a>
+            <a class="btn btn-default btn_canada" onclick="javascript:show(27)" id="game_27">加拿大外围</a>
+            <a class="btn btn-default btn_canada" onclick="javascript:show(28)" id="game_28">加拿大定位</a>
+            <a class="btn btn-default btn_xync" onclick="javascript:show(37)" id="game_37">重庆时时彩</a>
+        </div>
+        <div class="btn-group btn_nav">
+            <a class="btn btn-default btn_airship" onclick="javascript:show(47)" id="game_47">飞艇龙虎</a>
+            <a class="btn btn-default btn_korea" onclick="javascript:show(20)" id="game_20">腾讯11</a>
+            <a class="btn btn-default btn_korea" onclick="javascript:show(19)" id="game_19">腾讯16</a>
+            <a class="btn btn-default btn_korea" onclick="javascript:show(21)" id="game_21">腾讯36</a>
+            <a class="btn btn-default btn_korea" onclick="javascript:show(30)" id="game_30">腾讯外围</a>
+            <a class="btn btn-default btn_korea" onclick="javascript:show(31)" id="game_31">腾讯定位</a>
+            <a class="btn btn-default btn_korea" onclick="javascript:show(34)" id="game_34">腾讯28固定</a>
+            <a class="btn btn-default btn_korea" onclick="javascript:show(18)" id="game_18">腾讯28</a>
+            <a class="btn btn-default btn_korea" onclick="javascript:show(49)" id="game_49">腾讯分分彩</a>
+<!--            <a class="btn btn-default btn_xync" onclick="javascript:show(48)" id="game_48">江苏骰宝</a>-->
+        </div>
+    </div>
 </div>
 <div id="divContent">
 	<div class="width_1200" id="content">

@@ -41,7 +41,7 @@ class GameAction extends GamebaseAction
             }
             $this->assign('odds',$odds);//显示固定赔率
             return $this->display('game_sc');
-        }elseif(in_array($id,[37])){//时时彩
+        }elseif(in_array($id,[37,49])){//时时彩
             $pressoption=explode(',',$press->game_model);
             $this->assign('pressoption',$pressoption);
             $odds=explode('|',$press->game_std_odds);
@@ -232,6 +232,11 @@ class GameAction extends GamebaseAction
             return $this->result(1,'本期投注时间已过，请选其它期!');
         }
         
+        
+        
+        
+        
+        
         /*
         //禁止翻倍加码投注
         $secnum = 360;
@@ -364,8 +369,8 @@ class GameAction extends GamebaseAction
             $MinuteAdd = "3";
         }elseif(in_array($act,array(8,9,10,13,35,27,28))){//加拿大源
             $MinuteAdd = "13";
-        }elseif(in_array($act,array(18,19,20,21,34,30,31))) {//韩国源
-            $MinuteAdd = "5";
+        }elseif(in_array($act,array(18,19,20,21,34,30,31,49))) {//腾讯源
+            $MinuteAdd = "3";
         }elseif(in_array($act,array(37))) {//时时彩
             $MinuteAdd = "30";
         }
@@ -395,7 +400,7 @@ class GameAction extends GamebaseAction
             	$result[$k]['kjjg2']=$this->getGameSCResult($kjNoArr);
             }
             
-            if(in_array($act,array(37)) && count($arrTmpKg)==6){//时时彩
+            if(in_array($act,array(37,49)) && count($arrTmpKg)==6){//时时彩
             	$kjNoArr = explode("|", $v['kgNo']);
             	$result[$k]['kjjg2']=$this->getGameCqsscResult($kjNoArr);
             }
@@ -434,6 +439,7 @@ class GameAction extends GamebaseAction
                 $TmpKaiNum = "";
             }else{
                 $result[$k]['status']=1;//已开奖
+
             }
             $result[$k]['points']=ceil($v['points']/1000);//显示金额，不显示分数
             $result[$k]['hdpoints']=ceil($v['hdpoints']/1000);//显示金额，不显示分数
