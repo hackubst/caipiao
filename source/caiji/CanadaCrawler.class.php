@@ -1,17 +1,19 @@
 <?php
 include_once(dirname( __FILE__ ) ."/BaseCrawler.class.php");
-
+// 加拿大类
 class CanadaCrawler extends BaseCrawler
 {
 	public function __construct(){
 		parent::__construct();
-		$this->sleepSec = 1;
-		$this->stopBegin = "19:05:00";//20:05:00    19:05:00
-		$this->stopEnd = "19:55:00";//20:55:00    19:55:00
+		$this->sleepSec = 3;
+		$this->stopBegin = "00:00:00";//20:05:00    19:05:00
+		$this->stopEnd = "00:00:00";//20:55:00    19:55:00
 		$this->gameType = "gamecan";
-		$this->gameTypes = [8,9,10,13,27,28,35];
+		$this->gameTypes = [8,9,10,13,27,28,35]; 
 		$this->crawlerUrls = array(
-			0=>array('url'=>'http://e.apiplus.net/newly.do?token=t901e9adae3e34d1dk&code=cakeno&format=json','method'=>'_api','useproxy'=>0,'referurl'=>''),
+			//0=>array('url'=>'http://e.apiplus.net/newly.do?token=t901e9adae3e34d1dk&code=cakeno&format=json','method'=>'_api','useproxy'=>0,'referurl'=>''),
+			0=>array('url'=>'http://api.duourl.com/api?p=json&t=jndbskl8&limit=10&token=aa966eccdb9b6855','method'=>'_api','useproxy'=>0,'referurl'=>''),
+			//1=>array('url'=>'http://www.caipiaojieguo.com/api/lottrey?biaoshi=jndklb&format=json&rows=5','method'=>'jieguo_api','useproxy'=>0,'referurl'=>''),
 			//0=>array('url'=>'http://47.74.129.187/jnd/caiji_jnd.php?key=get_cache','method'=>'_parse_jnd2','useproxy'=>0,'referurl'=>''),
 			//0=>array('url'=>'http://47.90.52.104:180/jnd.php?key=get_cache','method'=>'_parse_jnd','useproxy'=>0,'referurl'=>''),
 			//1=>array('url'=>'http://47.90.47.199:9999/jnd.php','method'=>'_parse_jnd','useproxy'=>0,'referurl'=>''),
@@ -21,8 +23,7 @@ class CanadaCrawler extends BaseCrawler
 		);
 		
 	}
-	
-	
+		
 	private function _api($contents){
 		$str = json_decode($contents);
 		$data = $str->data;
@@ -32,24 +33,49 @@ class CanadaCrawler extends BaseCrawler
 		$row = $this->db->getRow($sql);
 		if(!empty($row)){
 			$no_begin_time = $row['no_begin_time'];
-			$no_end_time = $row['no_end_time'];
-			
+			$no_end_time = $row['no_end_time'];			
 			if(date("H",time()) >= date("H",strtotime($no_end_time)) && date("H",time()) <= date("H",strtotime($no_begin_time)+10000))
 					return $result;
 		}
-			
+
 		foreach ($data as $item) {
 			$no = $item->expect;
 			$result[$no]['no'] = $no;
 			$result[$no]['time'] = $item->opentime;
 			$result[$no]['data'] = str_replace(',', '|', $item->opencode);
 		}
+
 	
-		if(empty($result)) $this->Logger("Parse Error.");
+		if(empty($result)) $this->Logger("Parse Error _api.");
 	
 		return $result;
 	}
 	
+	private function jieguo_api($contents){
+		$str = json_decode($contents);
+		$data = $str->data;
+		$result = array();
+		
+		$sql = "select no_begin_time,no_end_time from game_catch_config where gamekind = '{$this->gameType}'";
+		$row = $this->db->getRow($sql);
+		if(!empty($row)){
+			$no_begin_time = $row['no_begin_time'];
+			$no_end_time = $row['no_end_time'];			
+			if(date("H",time()) >= date("H",strtotime($no_end_time)) && date("H",time()) <= date("H",strtotime($no_begin_time)+10000))
+					return $result;
+		}
+		
+		foreach ($data as $item) {
+			$no = $item->qishu;
+			$result[$no]['no'] = $no;
+			$result[$no]['time'] = $item->open_time;
+			$result[$no]['data'] = str_replace(',', '|', $item->result);
+		}
+
+		if(empty($result)) $this->Logger("Parse Error jieguo_api.");
+	
+		return $result;
+	}
 	
 	private function _getDiffHourCanadaToChina($theDate)
 	{
@@ -89,11 +115,11 @@ class CanadaCrawler extends BaseCrawler
 			$result[$no]['data'] = implode('|',$NumArr);
 		}
 		
-		if(empty($result)) $this->Logger("Parse Error.");
+		if(empty($result)) $this->Logger("Parse Error _parse_1680180.");
 		
 		$rets = $this->_checkDrawTime($result);
 		if(!$rets){
-			$this->Logger("Error canada open time");
+			$this->Logger("Error canada open time  _parse_1680180");
 			return [];
 		}
 		
@@ -120,11 +146,11 @@ class CanadaCrawler extends BaseCrawler
 			$result[$no]['data'] = implode('|',$NumArr);
 		}
 		
-		if(empty($result)) $this->Logger("Parse Error.");
+		if(empty($result)) $this->Logger("Parse Error _parse_168879.");
 		
 		$rets = $this->_checkDrawTime($result);
 		if(!$rets){
-			$this->Logger("Error canada open time");
+			$this->Logger("Error canada open time _parse_168879");
 			return [];
 		}
 		
@@ -145,11 +171,11 @@ class CanadaCrawler extends BaseCrawler
 			}
 		}
 	
-		if(empty($result)) $this->Logger("Parse Error.");
+		if(empty($result)) $this->Logger("Parse Error _parse_jnd2.");
 	
 		$rets = $this->_checkDrawTime($result);
 			if(!$rets){
-		$this->Logger("Error canada open time");
+		$this->Logger("Error canada open time _parse_jnd2");
 			return [];
 		}
 	
@@ -176,11 +202,11 @@ class CanadaCrawler extends BaseCrawler
 			}
 		}
 		
-		if(empty($result)) $this->Logger("Parse Error.");
+		if(empty($result)) $this->Logger("Parse Error _parse_jnd.");
 		
 		$rets = $this->_checkDrawTime($result);
 		if(!$rets){
-			$this->Logger("Error canada open time");
+			$this->Logger("Error canada open time _parse_jnd");
 			return [];
 		}
 		
@@ -250,8 +276,7 @@ class CanadaCrawler extends BaseCrawler
 		}else{
 			;//$this->switchGame(0);
 		}
-		
-		
+				
 		return $ret;
 	}
 	
@@ -287,6 +312,8 @@ class CanadaCrawler extends BaseCrawler
 					
 				if($hasnewdata)
 				break;
+			} else {
+				$this->Logger("Parse Error . Http Res => " . $contents . " result => " . $result);
 			}
 		}
 		
@@ -320,8 +347,7 @@ class CanadaCrawler extends BaseCrawler
 				break;
 			}
 		} */
-		
-		
+				
 		if(count($result) > 0){
 			foreach($result as $k=>$v){
 				$this->_createNewNo($result[$k]['no'],$result[$k]['time']);
@@ -435,7 +461,7 @@ class CanadaCrawler extends BaseCrawler
 			$this->Logger("canada28 {$No} open result is:{$result[0][0]['msg']}({$result[0][0]['result']})");
 				
 			$sql = "call web_kj_gamecan28gd({$No},{$zj_a},{$zj_b},{$zj_c},{$zj_result},'{$strkjNum}')";
-			$this->Logger("web_kj_gamecan28gd : " . $sql);
+			//$this->Logger("web_kj_gamecan28gd : " . $sql);
 			$result = $this->db->MultiQuery($sql);
 			$this->Logger("canada28gd {$No} open result is:{$result[0][0]['msg']}({$result[0][0]['result']})");
 			

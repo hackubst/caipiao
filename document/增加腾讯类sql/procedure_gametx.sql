@@ -4213,14 +4213,7 @@ CREATE DEFINER=`root`@`localhost` PROCEDURE `web_gameno_addpatch`(
   p_reccount 	INT
 )
   BEGIN
-
-
-
-
-
-
-
-
+  
     DECLARE v_tablename VARCHAR(100);
     DECLARE v_table_users_tz VARCHAR(100);
     DECLARE v_no INT DEFAULT 0;

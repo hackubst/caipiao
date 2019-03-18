@@ -1,6 +1,6 @@
 #!/bin/bash
 
-cd /home/www/caipiao/caiji
+cd /home/www/dyz.lottery/caiji
 
 PROC_NAME="Beijing"
 ProcNumber=`ps -ef |grep -w $PROC_NAME|grep -v grep|wc -l` 
@@ -14,24 +14,11 @@ if [ $ProcNumber -le 0 ];then
    /usr/bin/php crawler.php source=Canada >/dev/null 2>&1 &
 fi 
 
-PROC_NAME="Korea"
-ProcNumber=`ps -ef |grep -w $PROC_NAME|grep -v grep|wc -l` 
-if [ $ProcNumber -le 0 ];then 
-   /usr/bin/php crawler.php source=Korea >/dev/null 2>&1 &
-fi 
-
 PROC_NAME="Pk"
 ProcNumber=`ps -ef |grep -w $PROC_NAME|grep -v grep|wc -l` 
 if [ $ProcNumber -le 0 ];then 
    /usr/bin/php crawler.php source=Pk >/dev/null 2>&1 &
 fi 
-
-PROC_NAME="LuckFarm"
-ProcNumber=`ps -ef |grep -w $PROC_NAME|grep -v grep|wc -l` 
-if [ $ProcNumber -le 0 ];then 
-   /usr/bin/php crawler.php source=LuckFarm >/dev/null 2>&1 &
-fi
-
 
 PROC_NAME="CQSSC"
 ProcNumber=`ps -ef |grep -w $PROC_NAME|grep -v grep|wc -l` 
@@ -39,12 +26,30 @@ if [ $ProcNumber -le 0 ];then
    /usr/bin/php crawler.php source=CQSSC >/dev/null 2>&1 &
 fi
 
-
 PROC_NAME="Airship"
 ProcNumber=`ps -ef |grep -w $PROC_NAME|grep -v grep|wc -l` 
 if [ $ProcNumber -le 0 ];then 
    /usr/bin/php crawler.php source=Airship >/dev/null 2>&1 &
 fi
+
+PROC_NAME="Tenxun"
+ProcNumber=`ps -ef |grep -w $PROC_NAME|grep -v grep|wc -l`
+if [ $ProcNumber -le 0 ];then
+   /usr/bin/php crawler.php source=Tenxun >/dev/null 2>&1 &
+fi
+
+
+#PROC_NAME="Korea"
+#ProcNumber=`ps -ef |grep -w $PROC_NAME|grep -v grep|wc -l` 
+#if [ $ProcNumber -le 0 ];then 
+#   /usr/bin/php crawler.php source=Korea >/dev/null 2>&1 &
+#fi 
+
+#PROC_NAME="LuckFarm"
+#ProcNumber=`ps -ef |grep -w $PROC_NAME|grep -v grep|wc -l` 
+#if [ $ProcNumber -le 0 ];then 
+#   /usr/bin/php crawler.php source=LuckFarm >/dev/null 2>&1 &
+#fi
 
 
 find ./ -mtime +2 -name "*_game*.log" -exec rm -rf {} \;

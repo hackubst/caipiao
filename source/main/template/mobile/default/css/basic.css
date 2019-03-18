@@ -176,18 +176,24 @@ table thead tr th,table tbody tr td{
 }
 /*开奖中*/
 .press button.kj {
-	width: 80px;
+	width: 70px;
 	height: 34px;
 	border: 0px !important;
 	background-image: url('../new_imgs/bet/btn_kaijiang.png') !important;
 	background-size: 100% 100%;
 	background-color: transparent;
 	margin-top: -5px;
+	color: #ffffff;
+	font-size: 14px;
+	font-weight: 600;
 }
 /*投注*/
 .press #press button.kj {
 	background-image: url('../new_imgs/bet/btn_touzhu.png') !important;
 	background-size: 100% 100%;
+	color: #f7eee6;
+	font-size: 14px;
+	font-weight: 600;
 }
 
 

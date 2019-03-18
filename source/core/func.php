@@ -492,7 +492,7 @@ function checkIP()
         $result = db::get_one($sql);
         if(empty($result) || empty($ip)){
             echo "<META http-equiv=Content-Type content=\"text/html; charset=utf-8\">\r\n";
-            echo "对不起，你不能访问这里!";
+            echo "对不起，你的IP:".$ip.",不能访问这里!";
             exit;
         }
     }

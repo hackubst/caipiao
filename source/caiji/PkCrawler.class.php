@@ -1,18 +1,20 @@
 <?php
 include_once(dirname( __FILE__ ) ."/BaseCrawler.class.php");
-
+//PK类
 class PkCrawler extends BaseCrawler
 {
 	public function __construct(){
 		parent::__construct();
 		$this->sleepSec = 3;
-		$this->stopBegin = "00:10:00";
+		$this->stopBegin = "00:05:00";
 		$this->stopEnd = "09:00:00";
 		$this->gameType = "gamepk";
 		$this->gameTypes = [6,7,14,16,17,29];
-		$this->crawlerUrls = array(
-			0=>array('url'=>'http://e.apiplus.net/newly.do?token=t901e9adae3e34d1dk&code=bjpk10&format=json','method'=>'_api','useproxy'=>0,'referurl'=>''),
-			1=>array('url'=>'http://api.api68.com/pks/getPksHistoryList.do?date=&lotCode=10001','method'=>'_pase_1680210','useproxy'=>0,'referurl'=>'http://www.1680100.com/html/PK10/pk10kai_history.html')
+		$this->crawlerUrls = array( 
+			0=>array('url'=>'http://api.duourl.com/api?p=json&t=bjpk10&limit=10&token=aa966eccdb9b6855','method'=>'_api','useproxy'=>0,'referurl'=>''),
+			//0=>array('url'=>'http://e.apiplus.net/newly.do?token=t901e9adae3e34d1dk&code=bjpk10&format=json','method'=>'_api','useproxy'=>0,'referurl'=>'').
+			1=>array('url'=>'http://api.api68.com/pks/getPksHistoryList.do?date=&lotCode=10001','method'=>'_pase_1680210','useproxy'=>0,'referurl'=>'http://www.1680100.com/html/PK10/pk10kai_history.html'),
+			//2=>array('url'=>'http://www.caipiaojieguo.com/api/lottrey?biaoshi=bjpks&format=json&rows=10','method'=>'jieguo_api','useproxy'=>0,'referurl'=>''),
 			//2=>array('url'=>'http://www.bwlc.net/bulletin/prevtrax.html?num=','method'=>'_parse_bwlc','useproxy'=>0,'referurl'=>'','useno'=>1),
 			//0=>array('url'=>'http://www.bwlc.net/bulletin/prevtrax.html','method'=>'_parse_bwlc','useproxy'=>0,'referurl'=>''),
 			//3=>array('url'=>'http://116.62.128.99/http.php?url=http://www.bwlc.net/bulletin/prevtrax.html?num=','method'=>'_parse_bwlc','useproxy'=>0,'referurl'=>'','useno'=>1),
@@ -32,8 +34,25 @@ class PkCrawler extends BaseCrawler
 			$result[$no]['time'] = $item->opentime;
 			$result[$no]['data'] = str_replace(',', '|', $item->opencode);
 		}
+		
+		if(empty($result)) $this->Logger("Parse Error _api.");
 	
-		if(empty($result)) $this->Logger("Parse Error.");
+		return $result;
+	}
+
+	private function jieguo_api($contents){
+		$str = json_decode($contents);
+		$data = $str->data;
+		$result = array();
+	
+		foreach ($data as $item) {
+			$no = $item->qishu;
+			$result[$no]['no'] = $no;
+			$result[$no]['time'] = $item->open_time;
+			$result[$no]['data'] = str_replace(',', '|', $item->result);
+		}
+
+		if(empty($result)) $this->Logger("Parse Error jieguo_api.");
 	
 		return $result;
 	}
@@ -55,7 +74,7 @@ class PkCrawler extends BaseCrawler
 			}
 		}
 		
-		if(empty($result)) $this->Logger("Parse Error.");
+		if(empty($result)) $this->Logger("Parse Error _pase_pk8810.");
 		
 		return $result;
 	}
@@ -77,7 +96,7 @@ class PkCrawler extends BaseCrawler
 			}
 		}
 		
-		if(empty($result)) $this->Logger("Parse Error.");
+		if(empty($result)) $this->Logger("Parse Error _pase_1680210.");
 		
 		return $result;
 	}
@@ -104,7 +123,7 @@ class PkCrawler extends BaseCrawler
 			}
 		}
 		
-		if(empty($result)) $this->Logger("Parse Error.");
+		if(empty($result)) $this->Logger("Parse Error _pase_baidu.");
 		
 		return $result;
 	}
@@ -125,7 +144,7 @@ class PkCrawler extends BaseCrawler
 			}
 		}
 		
-		if(empty($result)) $this->Logger("Parse Error.");
+		if(empty($result)) $this->Logger("Parse Error _pase_pk10.");
 		
 		return $result;
 	}
@@ -148,7 +167,7 @@ class PkCrawler extends BaseCrawler
 				$result[$v] = ['no'=>$v,'time'=>$data[4][$k],'data'=>implode('|',$arrTmp)];
 		}
 		
-		if(empty($result)) $this->Logger("Parse Error.");
+		if(empty($result)) $this->Logger("Parse Error _parse_bwlc.");
 		
 		return $result;
 	}
@@ -343,9 +362,7 @@ class PkCrawler extends BaseCrawler
 			}
 			
 		}
-		
-		
-		
+
 		if($isToAuto){
 			//给下一盘自动投注
 			$NextNo = $No+1;
@@ -356,8 +373,6 @@ class PkCrawler extends BaseCrawler
 				$this->autoPress($No,$NextNo);
 			}
 		}
-			
-			
 	}
 	
 	

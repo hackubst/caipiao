@@ -12,8 +12,8 @@ class TenxunCrawler extends BaseCrawler
 		$this->gameType = "gametx";
 		$this->gameTypes = [18,19,20,21,30,31,34,49];
 		$this->crawlerUrls = array(
-								0=>array('url'=>'https://mma.qq.com/cgi-bin/im/online','method'=>'_api','useproxy'=>0,'referurl'=>''),
-								);
+			0=>array('url'=>'https://mma.qq.com/cgi-bin/im/online','method'=>'_api','useproxy'=>0,'referurl'=>''),
+		);
 	}
 
     private function _api($contents){
@@ -193,7 +193,7 @@ class TenxunCrawler extends BaseCrawler
 
             //开奖腾讯28固定
 			$sql = "call web_kj_gametx28gd({$No},{$zj_a},{$zj_b},{$zj_c},{$zj_result},'{$strkjNum}')";
-			$this->Logger("web_kj_gametx28gd : " . $sql);
+			//$this->Logger("web_kj_gametx28gd : " . $sql);
 			$result = $this->db->MultiQuery($sql);
 			$this->Logger("tenxun28gd {$No} open result is:{$result[0][0]['msg']}({$result[0][0]['result']})");
 			

@@ -32,7 +32,9 @@
         </div>
     </div>
 </div>
+
 {tpl foot}
+
 <div class="footer">
 	<?php if($is_weixin){?>
 	<p>客服QQ:78271214 <a href="http://wpa.qq.com/msgrd?v=3&uin=78271214&site=qq&menu=yes">在线客服</a></p>

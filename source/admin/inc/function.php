@@ -124,7 +124,7 @@ function getVerifyCode(){
 
 function login_check( $groupname  , $verify = 1)
 {
-	global_check($verify);
+	//global_check($verify);
 	
 	global $db;
 	global $web_dbtop;
@@ -203,6 +203,8 @@ function usersip( )
 	
 	if(filterKey($ip)) exit("access denied!");
 	
+	return $ip;
+
 	global $db;
 	$sql = "select ip from admin_ips where ip='{$ip}' limit 1";
 	$result = $db->query($sql);

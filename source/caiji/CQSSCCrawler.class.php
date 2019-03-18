@@ -1,24 +1,43 @@
 <?php
 include_once(dirname( __FILE__ ) ."/BaseCrawler.class.php");
-
+// 重庆时时彩类
 class CQSSCCrawler extends BaseCrawler
 {
 	public function __construct(){
 		parent::__construct();
 		$this->sleepSec = 5;
-		$this->stopBegin = "02:00:00";
-		$this->stopEnd = "10:00:00";
+		$this->stopBegin = "00:00:00";
+		$this->stopEnd = "00:00:00";
 		$this->gameType = "gamecqssc";
 		$this->gameTypes = [37];
 		$this->crawlerUrls = array(
 			//0=>array('url'=>'http://www.cqcp.net/','method'=>'_parse_cqssc_home','useproxy'=>0,'referurl'=>''),
 			//0=>array('url'=>'http://buy.cqcp.net/Game/GetNum.aspx?iType=3&time=','method'=>'_parse_cqssc','useproxy'=>0,'referurl'=>'http://buy.cqcp.net/game/cqssc/'),
-			1=>array('url'=>'http://www.cqcp.net/game/ssc/','method'=>'_parse_cqssc_home2','useproxy'=>0,'referurl'=>''),
-			3=>array('url'=>'https://fx.cp2y.com/cqssckj/','method'=>'_parse_cp2y_com','useproxy'=>0,'referurl'=>'https://www.cp2y.com'),
-			2=>array('url'=>'http://caipiao.163.com/award/cqssc/','method'=>'_parse_163_com','useproxy'=>0,'referurl'=>'http://caipiao.163.com'),
+			//0=>array('url'=>'http://www.cqcp.net/game/ssc/','method'=>'_parse_cqssc_home2','useproxy'=>0,'referurl'=>''),
+			0=>array('url'=>'https://fx.cp2y.com/cqssckj/','method'=>'_parse_cp2y_com','useproxy'=>0,'referurl'=>'https://www.cp2y.com'),
+			1=>array('url'=>'http://caipiao.163.com/award/cqssc/','method'=>'_parse_163_com','useproxy'=>0,'referurl'=>'http://caipiao.163.com'),
+			//0=>array('url'=>'http://www.caipiaojieguo.com/api/lottrey?biaoshi=cqssc&format=json&rows=10','method'=>'_parse_jieguo','useproxy'=>0,'referurl'=>'http://caipiao.163.com'),
 		);
 	}
 	
+	private function _parse_jieguo($contents){
+		$arrRet = json_decode($contents,true);
+		$arrRet = $arrRet['result']['data'];
+		$result = [];
+		
+		for($i = 0; $i < count($arrRet); $i++)
+		{
+			$no = $item->qishu;
+			$result[$no]['no'] = $no;
+			$result[$no]['time'] = $item->open_time;
+			$result[$no]['data'] = str_replace(',', '|', $item->result);
+		}
+				
+		if(empty($result)) $this->Logger("Parse Error _parse_jieguo.");
+		
+		return $result;
+	}
+
 	private function _parse_163_com($contents){
 		$result = [];
 	
@@ -33,7 +52,7 @@ class CQSSCCrawler extends BaseCrawler
 			}
 		}
 	
-		if(empty($result)) $this->Logger("Parse Error.");
+		if(empty($result)) $this->Logger("Parse Error _parse_163_com.");
 	
 		return $result;
 	}
@@ -53,7 +72,7 @@ class CQSSCCrawler extends BaseCrawler
 			}
 		}
 	
-		if(empty($result)) $this->Logger("Parse Error.");
+		if(empty($result)) $this->Logger("Parse Error _parse_cp2y_com.");
 	
 		return $result;
 	}
@@ -69,7 +88,7 @@ class CQSSCCrawler extends BaseCrawler
 			$result[$no] = ['no'=>$no,'time'=>date("Y-m-d H:i:s"),'data'=>$data[9][0].'|'.$data[10][0].'|'.$data[11][0].'|'.$data[12][0].'|'.$data[13][0]];
 		}
 	
-		if(empty($result)) $this->Logger("Parse Error.");
+		if(empty($result)) $this->Logger("Parse Error _parse_cqssc_home.");
 	
 		return $result;
 	}
@@ -86,7 +105,7 @@ class CQSSCCrawler extends BaseCrawler
 				$result[$v] = ['no'=>$v,'time'=>date("Y-m-d H:i:s"),'data'=>implode('|',$arrTmp)];
 		}
 	
-		if(empty($result)) $this->Logger("Parse Error.");
+		if(empty($result)) $this->Logger("Parse Error _parse_cqssc_home2.");
 		
 		return $result;
 	}
@@ -103,7 +122,7 @@ class CQSSCCrawler extends BaseCrawler
 		}
 		//print_r($result);exit;
 		
-		if(empty($result)) $this->Logger("Parse Error.");
+		if(empty($result)) $this->Logger("Parse Error _parse_cqssc.");
 		
 		return $result;
 	}
@@ -126,7 +145,7 @@ class CQSSCCrawler extends BaseCrawler
 		
 		//print_r($result);exit;
 		
-		if(empty($result)) $this->Logger("Parse Error.");
+		if(empty($result)) $this->Logger("Parse Error _pase_1680210.");
 		
 		return $result;
 	}
@@ -141,12 +160,43 @@ class CQSSCCrawler extends BaseCrawler
 			
 			$sql = "DELETE FROM gamecqssc WHERE kgtime < DATE_ADD(NOW(),INTERVAL -15 DAY)";
 			$this->db->execute($sql);
-			
+
+			$sql = "SELECT no_interval_second,no_begin_time,no_end_time FROM game_catch_config WHERE gamekind = 'gamecqssc'";
+			$catch = $this->db->getRow($sql);
+			$timestep = intval($catch['no_interval_second']);
+
 			$sql = "select now() as nowtime";
 			$nowtime = $this->db->getOne($sql);
 			$currday = date("ymd" , strtotime($nowtime));
 			$currday2 = date("Y-m-d" , strtotime($nowtime));
 			
+			$i = 1; //1:0030 2:0050 3:0110 4:0130 5:0150 6:0210 7:0230 8:0250 9:0310
+			$starttime = $currday2 . " 00:10:00";
+			while($i<10){
+				$no = $currday . substr("00".$i ,-3);
+				$time = date("Y-m-d H:i:s" , strtotime($starttime) + $timestep);
+				$starttime = $time;
+				if($time > $nowtime){
+					$sql = "INSERT IGNORE INTO gamecqssc(id,kgtime,gfid,zjpl) SELECT {$no},'{$time}',{$no},game_std_odds FROM game_config WHERE game_type = 37";
+					$this->db->execute($sql);
+				}
+				$i++;
+			}
+			$i = 10; //8 9 10 11 12 17*3=45+2=47
+			//10:0730 11:0750 12:0810 13:0830 14:0850 15:0910 16:0930 17:0950 18:1010 19:1030 20:1050 21:1110 22:1130 23:1150 24:1210 25:1230 26:1250
+			$starttime = $currday2 . " 07:10:00";
+			while($i<=59){
+				$no = $currday . substr("00".$i ,-3);
+				$time = date("Y-m-d H:i:s" , strtotime($starttime) + $timestep);
+				$starttime = $time;
+				if($time > $nowtime){
+					$sql = "INSERT IGNORE INTO gamecqssc(id,kgtime,gfid,zjpl) SELECT {$no},'{$time}',{$no},game_std_odds FROM game_config WHERE game_type = 37";
+					$this->db->execute($sql);
+				}
+				$i++;
+			}
+
+			/*
 			$i = 1;
 			$starttime = $currday2 . " 00:05:00";
 			$timestep = 0;
@@ -156,7 +206,7 @@ class CQSSCCrawler extends BaseCrawler
 				$starttime = $time;
 				$timestep = 300;
 				$i++;
-				
+
 				if($time > $nowtime){
 					$sql = "INSERT IGNORE INTO gamecqssc(id,kgtime,gfid,zjpl) SELECT {$no},'{$time}',{$no},game_std_odds FROM game_config WHERE game_type = 37";
 					$this->db->execute($sql);
@@ -177,8 +227,7 @@ class CQSSCCrawler extends BaseCrawler
 					$this->db->execute($sql);
 				}
 			}
-			
-			
+						
 			$starttime = $currday2 . " 22:05:00";
 			$timestep = 0;
 			while($i<=120){
@@ -193,7 +242,7 @@ class CQSSCCrawler extends BaseCrawler
 					$this->db->execute($sql);
 				}
 			}
-			
+			*/
 		}
 		
 	}
@@ -212,7 +261,7 @@ class CQSSCCrawler extends BaseCrawler
 				$ret[$res['id']] = $res['id'];
 			}
 		}
-				
+		
 		if(count($result) >= 4){
 			$this->switchGame(1);
 		}else{
@@ -314,7 +363,7 @@ class CQSSCCrawler extends BaseCrawler
 				$resultIdStr = implode(",", $resultIds);
 				$oddStr = implode(",", $odds);
 				$sql = "call web_kj_gamecqssc({$No},{$zj_result},'{$strkjNum}',{$oddsCnt},'{$resultIdStr}','{$oddStr}')";
-				$this->Logger($sql);
+				//$this->Logger($sql);
 				$result = $this->db->MultiQuery($sql);
 				$this->Logger("cqssc {$No} open result is:{$result[0][0]['msg']}({$result[0][0]['result']})");
 			}

@@ -14,13 +14,7 @@
 	//返回数据
 	GetGameData();
 	
-	
-	
-	
-    
-    /* 取得游戏刷新数据
-    * 
-    */
+    /* 取得游戏刷新数据 **/
     function GetGameData()
     {
     	global $db;

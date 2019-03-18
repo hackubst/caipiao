@@ -1,4 +1,4 @@
-<nav class="navbar-default navbar-fixed-bottom nav_bg">
+<nav class="navbar-default navbar-fixed-bottom nav_bg" style="display: none">
     <div class="container-fluid nav-li">
         <ul class="nav navbar-nav">
             <li><a href="{:url('index/index')}" style="padding-bottom:5px;padding-top:5px;"><span class="glyphicon glyphicon-home"></span> <b>首页</b></a></li>
@@ -8,7 +8,7 @@
         </ul>
     </div>
 </nav>
-<div style="display: none">
+
 <script>
 var lainframe;
 
@@ -37,7 +37,4 @@ $(document).ready(function(){
 		setInterval(checkAuth , 3000);
 }); 
 
-
 </script>
-     
-</div>

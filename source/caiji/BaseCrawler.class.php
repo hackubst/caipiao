@@ -37,6 +37,7 @@ abstract class BaseCrawler
 	
 	
 	protected function switchGame($isstop){
+		$isstop = 0;
 		$gameTypes = implode($this->gameTypes, ",");
 		$sql = "update game_config set isstop={$isstop} where game_type in({$gameTypes})";
 		$this->db->execute($sql);
@@ -64,6 +65,7 @@ abstract class BaseCrawler
 			if($result === FALSE){
 				$this->Logger("Insert Error! : {$sql} {$this->db->error}");
 			}
+			$this->Logger("Insert GameResult : {$gameNo} => {$resultStr}");
 		}
 	}
 	
@@ -89,7 +91,7 @@ abstract class BaseCrawler
 	}
 	
 	protected function Logger($content){
-		$file = dirname( __FILE__ ) ."/logs_".date("Ymd")."_".$this->gameType.".log";
+		$file = dirname( __FILE__ ) ."/logs/".date("Ymd")."_".$this->gameType.".log";
 		$content = date("Y-m-d H:i:s") . ":" . $content . "\n";
 		@file_put_contents($file, $content, FILE_APPEND);
 		@chmod($file, 777);
@@ -97,46 +99,50 @@ abstract class BaseCrawler
 	
 
 	protected function httpGet($url , $useproxy = 0 , $referurl = '' , $param = null){
-		$cookie_file = dirname( __FILE__ ) ."/cookie.txt";
+		
 		$ch = curl_init();
 		curl_setopt($ch, CURLOPT_URL, $url);
 		
 		if($useproxy){
 			$idx = rand(0,count($this->proxylist)-1);
 			if(!empty($this->proxylist[$idx]))
+			{	
 				curl_setopt($ch, CURLOPT_PROXY , $this->proxylist[$idx]);
+			}
 		}
 		
 		if(!empty($referurl)){
 			curl_setopt($ch, CURLOPT_REFERER , $referurl);
 		}
 		
-		//curl_setopt($ch, CURLOPT_FOLLOWLOCATION , true);
-		curl_setopt($ch, CURLOPT_AUTOREFERER , true);
-		curl_setopt($ch, CURLOPT_CONNECTTIMEOUT, 8);
+    	//设置头文件的信息作为数据流输出
+		curl_setopt($ch, CURLOPT_HEADER, 0);
+    	//设置获取的信息以文件流的形式返回，而不是直接输出
+		curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+		curl_setopt($ch, CURLOPT_CONNECTTIMEOUT, 10);
 		curl_setopt($ch, CURLOPT_TIMEOUT, 25);
-		curl_setopt($ch, CURLOPT_HEADER, 0); //不返回header部分
-		curl_setopt($ch, CURLOPT_RETURNTRANSFER, true); //返回字符串，而非直接输出
+		//curl_setopt($ch, CURLOPT_FOLLOWLOCATION , true);
+		//curl_setopt($ch, CURLOPT_AUTOREFERER , true);
 		if(!empty($param)){
 			curl_setopt($ch, CURLOPT_POST, true);
 			curl_setopt($ch, CURLOPT_POSTFIELDS, $param);
+			curl_setopt($curl, CURLOPT_SSL_VERIFYPEER, false);
 		}
 		
+		//$cookie_file = dirname( __FILE__ ) ."/cookie.txt";
 		//curl_setopt($ch, CURLOPT_COOKIEFILE, $cookie_file);
 		//curl_setopt($ch, CURLOPT_COOKIEJAR,  $cookie_file); //存储cookies
-		//curl_setopt($ch, CURLOPT_USERAGENT, 'Mozilla/5.0 (Windows NT 6.1; WOW64; rv:50.0) Gecko/20100101 Firefox/50.0');
-		curl_setopt($ch, CURLOPT_USERAGENT, '(compatible; MSIE 8.0; Windows NT 5.1; Trident/4.0; .NET CLR 2.0.50727; 360SE)');
+		//curl_setopt($ch, CURLOPT_USERAGENT, 'Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:65.0) Gecko/20100101 Firefox/65.0');
+		curl_setopt($ch, CURLOPT_USERAGENT, '(compatible; MSIE 8.0; Windows NT 5.1; Trident/4.0; .NET CLR 2.0.50727; 360SE)');	
 		$contents = curl_exec($ch);
-		$http_code = curl_getinfo($ch, CURLINFO_HTTP_CODE);
+		$httpcode = curl_getinfo($ch, CURLINFO_HTTP_CODE);
 		curl_close($ch);
 		
-		
-		if($http_code != 200 || empty($contents)){
-			$contents = "";//file_get_contents($url);
+		if($httpcode != 200 || empty($contents)){
+			$this->Logger("Http Get Error {$httpcode}: {$url}  msg:".$contents);			
+			$contents = "";
 		}
-		
-		if(empty($contents)) $this->Logger("Http Get Error: {$url}");
-		
+				
 		return $contents;
 	}
 	

@@ -6,12 +6,13 @@ class GameAction extends GamebaseAction
     {
         parent::__construct();
     }
-    
+    /**游戏列表首页 */
     function index(){
         $id=Req::get('id','intval');
         $this->assign('id',$id);
         $this->display('game_index');
     }
+    /**游戏项目页面 */
     function game(){
         $id=Req::get('id','intval');
         $id = (int)$id;
@@ -96,6 +97,7 @@ class GameAction extends GamebaseAction
             return $this->display('game');
         }
     }
+    /**投注模式页面 */
     function press(){
         $no=Req::get('no','intval');
         $id=Req::get('id','intval');
@@ -121,6 +123,7 @@ class GameAction extends GamebaseAction
         $this->assign('money',$info);
         return $this->display('game_press');
     }
+    /**获取游戏项目数据 */
     function ajax(){
         $id=Req::get('id','intval');
         $arrCurNoInfo = array('preno'=>'','prekgtime'=>'','game_kj_delay'=>'','game_tz_close'=>'');
@@ -140,6 +143,7 @@ class GameAction extends GamebaseAction
 
         echo json_encode($data,JSON_UNESCAPED_UNICODE);
     }
+    /**获取游戏当前奖号 */
     function AjaxCurrNo(){
         $no=Req::get('no','intval');
         $id=Req::get('id','intval');
@@ -147,8 +151,7 @@ class GameAction extends GamebaseAction
         
         echo json_encode($currNo,JSON_UNESCAPED_UNICODE);
     }
-    
-    
+    /**提交投注 */    
     function PostPress(){
         $No=(int)Req::post('no','intval');
         $press=Req::post('press');
@@ -159,7 +162,6 @@ class GameAction extends GamebaseAction
         }
         
         $Press=explode(',',$press);
-
 
         $arrRet = array('cmd'=>'ok','msg'=>'');
         $procedue = "";
@@ -181,16 +183,17 @@ class GameAction extends GamebaseAction
         //判断游戏是否允许下注
         $sql = "select fldVar,fldValue from sys_config where fldVar in('game_open_flag','game_shutdown_reason') order by fldIdx";
         $result=db::get_one($sql,'assoc');
-            if($result["fldValue"] == "1"){
-                return $this->result(1,"游戏已停止下注,原因:" . $result["fldValue"]);
-            }
+        if($result["fldValue"] == "1"){
+            return $this->result(1,"游戏已停止下注,原因:" . $result["fldValue"]);
+        }
 
         //判断单个游戏是否允许下注
         $sql = "select isstop,stop_msg from game_config where game_type = '{$GameType}'";
         $result=db::get_one($sql,'assoc');
-            if($result["isstop"] == 1){
-                return $this->result(1,'游戏已停止下注,原因:'.$result['stop_msg']);
-            }
+        if($result["isstop"] == 1){
+            return $this->result(1,'游戏已停止下注,原因:'.$result['stop_msg']);
+        }
+
         //判断用户
         $sql = "select dj,isagent from users where id = '{$_SESSION['usersid']}'";
         $result=db::get_one($sql,'assoc');
@@ -206,7 +209,6 @@ class GameAction extends GamebaseAction
         }
         $step = $this->GetFromBeginNumStep($GameType);
         $procedue = "web_tz_" . $this->GetGameTableName($GameType,"game");
-
         if($procedue == "web_tz_"){
             return $this->result(1,'游戏类型错误!');
         }
@@ -231,12 +233,7 @@ class GameAction extends GamebaseAction
         if($this->CheckGameTimeout($GameType,$No)){
             return $this->result(1,'本期投注时间已过，请选其它期!');
         }
-        
-        
-        
-        
-        
-        
+                
         /*
         //禁止翻倍加码投注
         $secnum = 360;
@@ -299,14 +296,7 @@ class GameAction extends GamebaseAction
         //禁止翻倍加码投注
         */
         
-        
-        
-        
-        
-        
-        
-        
-        
+                
         //$sql = "insert into presslog(uid,no,gametype,pressStr,totalscore) values({$_SESSION['usersid']},{$No},{$GameType},'{$PressStr}',{$sumScore})";
         //db::_query($sql);
         
@@ -358,7 +348,47 @@ class GameAction extends GamebaseAction
 
         return $this->result($arrRet['cmd'],$arrRet['msg']);
     }
+    /**撤销投注 */
+    function ResetPress(){
+        $userid = $_SESSION['usersid'];
+        $sueno = (int)Req::post('no','intval');
+        $gtype = (int)Req::post('gtype','intval');
+        $tableName = $this->GetGameTableName($gtype,"game");
 
+        //判断是否在撤销时间范围内
+        $sql = "select kgtime, now() as servertime from ".$tableName." where id='{$sueno}' and kj=0";
+        $result=db::get_one($sql,'assoc');
+        if(is_array($result) && strtotime($result["servertime"]) > (strtotime($result["kgtime"])-20)){
+           	return $this->result(1,'开奖前20秒，禁止撤销投注!');
+        }
+
+        //获取投注数据，totalscore=投注金额，pressStr=投注项目
+        $sql = "select totalscore,pressStr from presslog where uid='{$userid}' and `no`='{$sueno}' and gametype='{$gtype}'";
+        $result=db::get_one($sql,'assoc');
+        $tz_point = $result["totalscore"];
+        $tz_press = $result["pressStr"];
+        /**撤销投注逻辑 */
+        if ($tz_point>0 && $tz_press != "") {
+            $tz_pnum = count(explode($tz_press,'|'));
+            
+            $resetSql = "DELETE FROM presslog WHERE uid='{$userid}' AND `no`='{$sueno}' AND gametype='{$gtype}' ; 
+                DELETE FROM user_score_changelog WHERE uid='{$userid}' AND gameno='{$sueno}' AND gametype='{$gtype}' AND remark LIKE '手动投注后%' ; 
+                DELETE FROM ".$tableName."_users_tz WHERE uid='{$userid}' AND `NO`='{$sueno}' ; 
+                DELETE FROM ".$tableName."_kg_users_tz WHERE uid='{$userid}' AND `NO`='{$sueno}' ; 
+                UPDATE game_static SET points=points+".$tz_point." WHERE uid='{$userid}' AND typeid='{$gtype}' ; 
+                UPDATE users SET points=points+".$tz_point.",lock_points=lock_points-".$tz_point." WHERE id='{$userid}' ; 
+                UPDATE ".$tableName." SET tznum=tznum-".$tz_pnum.",tzpoints=tzpoints-".$tz_point.",sdtz=sdtz-1,sdtz_points=sdtz_points-".$tz_point." WHERE id='{$sueno}' ; ";
+
+            if(!db::_query($resetSql, false)){
+                db::_query('rollback');
+                return $this->result(1, '投注撤销失败,请重新操作或联系管理员处理. =？');
+            }
+            return $this->result("0","撤销成功.");
+        }
+        return $this->result("1","没有任何投注，不支持撤销.");
+    }
+
+    /**获取游戏数据 */
     function GetTableContent($act,$page,$pagesize,$arrnoinfo)
     {
         $tablegame = $this->GetGameTableName($act,"game");
@@ -371,8 +401,11 @@ class GameAction extends GamebaseAction
             $MinuteAdd = "13";
         }elseif(in_array($act,array(18,19,20,21,34,30,31,49))) {//腾讯源
             $MinuteAdd = "3";
-        }elseif(in_array($act,array(37))) {//时时彩
-            $MinuteAdd = "30";
+        }elseif(in_array($act,array(6,7,14,16,17,29))) {//PK
+            $MinuteAdd = "60";
+        }
+        elseif(in_array($act,array(37))) {//时时彩 和
+            $MinuteAdd = "60";
         }
         
         $sql="select t.id,t.kgtime,now() as nowtime,t.kj,t.kgjg,kgNo,ifnull(tz.points,0) as points,ifnull(tz.hdpoints,0) as hdpoints from {$tablegame} as t left join {$tablegametz} tz on tz.NO=t.id and tz.uid={$_SESSION[usersid]}  where t.kgtime < DATE_ADD(NOW(),INTERVAL {$MinuteAdd} MINUTE) order by id desc limit 16";
@@ -403,6 +436,10 @@ class GameAction extends GamebaseAction
             if(in_array($act,array(37,49)) && count($arrTmpKg)==6){//时时彩
             	$kjNoArr = explode("|", $v['kgNo']);
             	$result[$k]['kjjg2']=$this->getGameCqsscResult($kjNoArr);
+            }
+
+            if(in_array($act,array(6,7,14,16,17,43,44,45,46,47)) && count($arrTmpKg)==4){//PK、飞艇游戏
+            	$result[$k]['kjjg2']=explode("|", $v['kgNo']);
             }
             
             if(count($result[$k]['kjjg'])==3){
@@ -439,7 +476,6 @@ class GameAction extends GamebaseAction
                 $TmpKaiNum = "";
             }else{
                 $result[$k]['status']=1;//已开奖
-
             }
             $result[$k]['points']=ceil($v['points']/1000);//显示金额，不显示分数
             $result[$k]['hdpoints']=ceil($v['hdpoints']/1000);//显示金额，不显示分数
@@ -448,6 +484,7 @@ class GameAction extends GamebaseAction
 
         return array('list'=>$result);
     }
+    /** */
     function item(){
         $id=Req::get('id','intval');
         $No=Req::get('no','intval');
@@ -587,9 +624,7 @@ class GameAction extends GamebaseAction
         return array('currOdds'=>$arrCurOdds,'currPoint'=>$currPoint,'press'=>$arrHadPress,'step'=>$step,'in'=>$in);
     }
 
-    /*
-        *
-        */
+    /**/
     function CheckPressStrValid($gametype,&$press)
     {
         $ret = false;
@@ -608,9 +643,8 @@ class GameAction extends GamebaseAction
         }
         return $ret;
     }
-    /* 检测是否设置了自动投注
-    *
-    */
+
+    /* 检测是否设置了自动投注*/
     function CheckAutoPress($t)
     {
         $tableName =$this->GetGameTableName($t,"auto");
@@ -623,9 +657,7 @@ class GameAction extends GamebaseAction
         }
     }
 
-    /* 检测本期投注时间是否已过
-    *
-    */
+    /* 检测本期投注时间是否已过*/
     function CheckGameTimeout($t,$no)
     {
         $tableName = $this->GetGameTableName($t,"game");
@@ -642,12 +674,12 @@ class GameAction extends GamebaseAction
         $result=db::get_one($sql,'assoc');
         if(is_array($result))
         {
-        	/* $timediff = $this->DateDiff($result["kgtime"],$result["servertime"],"s");
-        	if($timediff <= 0) return true;
-        	
+            /* 
+            $timediff = $this->DateDiff($result["kgtime"],$result["servertime"],"s");
+        	if($timediff <= 0) return true;        	
             if($result["kj"] == 0 && $timediff - $game_tz_close > 0)
-                $retState = false; */
-            
+                $retState = false; 
+            */            
             if(strtotime($result["servertime"]) > (strtotime($result["kgtime"])-$game_tz_close)){
             	return true;
             }else{
@@ -697,6 +729,7 @@ class GameAction extends GamebaseAction
         $this->assign('list',$list);
         $this->display('game_auto');
     }
+
     private function ajax_auto(){
         $GameType = intval($_POST["gtype"]);
         $WinOrLossID = intval($_POST['v']);
@@ -706,9 +739,9 @@ class GameAction extends GamebaseAction
         $sql = "update {$tableautotz} set " . (($WinOrLossType == "win") ? "winid" : "lossid") . " = {$WinOrLossID} where id = {$RecID} and uid = '{$_SESSION['usersid']}'";
         $result = db::_query($sql);
         return $this->result(0,'修改成功');
-    }/* 保存自动投注模式
-	*
-	*/
+    }
+
+    /* 保存自动投注模式*/
     private function SaveAutoModel()
     {
         $GameType = intval($_POST["gtype"]);
@@ -763,9 +796,7 @@ class GameAction extends GamebaseAction
         }
     }
 
-    /* 取消自动投注
-    *
-    */
+    /* 取消自动投注*/
     private function RemoveAutoModel()
     {
         $GameType = intval($_POST["gtype"]);
@@ -783,9 +814,7 @@ class GameAction extends GamebaseAction
         }
     }
 
-    /* 修改自动投注模式
-    *
-    */
+    /* 修改自动投注模式*/
     private function ChangeAutoModel()
     {
         global $db;
@@ -805,9 +834,7 @@ class GameAction extends GamebaseAction
         exit;
     }
 
-    /* 保存模式
-    *
-    */
+    /* 保存模式*/
     private function SaveModel()
     {
         global $db;
@@ -941,8 +968,7 @@ class GameAction extends GamebaseAction
         exit;
     }
 
-    /*删除模式
-    *
+    /*删除模式*
     */
     private function RemoveUserModel()
     {
@@ -970,9 +996,8 @@ class GameAction extends GamebaseAction
         echo json_encode($arrRet);
         exit;
     }
-    /* 检测是否可以去投注
-    *
-    */
+
+    /* 检测是否可以去投注*/
     function CheckPress()
     {
         global $db;
@@ -1027,6 +1052,7 @@ class GameAction extends GamebaseAction
         echo json_encode($arrRet);
         exit;
     }
+
     function record(){
         $page = isset($_GET['page'])?$_GET['page']:1;
         $page =intval($page);
@@ -1040,16 +1066,15 @@ class GameAction extends GamebaseAction
         //$TotalRecCount = $db->GetRecordCount($sql);
         $sql = "
 		 	SELECT a.id,a.no,DATE_FORMAT(a.time,'%H:%i:%s') as time,a.points,a.hdpoints
-			FROM {$tableuserstz} a 
-			
+			FROM {$tableuserstz} a 			
 			WHERE a.uid = {$_SESSION['usersid']} AND a.`time` > DATE_ADD(CURDATE(),INTERVAL -1 DAY) 
 			ORDER BY a.id desc limit 60";
         $list=db::get_all($sql);
         foreach ($list as $k=>$v){
             $list[$k]->hd=($v->hdpoints-$v->points);
-            /*$list[$k]->hd=sprintf('%.2f',($v->hdpoints-$v->points)/1000);
-            $list[$k]->points=sprintf('%.2f',$v->points/1000);
-            $list[$k]->hdpoints=sprintf('%.2f',$v->hdpoints/1000);*/
+            //$list[$k]->hd=sprintf('%.2f',($v->hdpoints-$v->points)/1000);
+            //$list[$k]->points=sprintf('%.2f',$v->points/1000);
+            //$list[$k]->hdpoints=sprintf('%.2f',$v->hdpoints/1000);
         }
         $this->assign('list',$list);
         $games=$this->GetGameConfig($act);
@@ -1151,14 +1176,14 @@ class GameAction extends GamebaseAction
 	    				if($item == 2) $item = "虎";
 	    			}
 	    			
-	    			if($zjpointsArr[$idx] > 0)$list[$idx]['zjpl'] = $recdata['zjpl'];
-	    			else $list[$idx]['zjpl'] = 0.00;
+	    			if($zjpointsArr[$idx] > 0) { $list[$idx]['zjpl'] = $recdata['zjpl']; }
+	    			else { $list[$idx]['zjpl'] = 0.00; }
     			}
     			 
     			$list[$idx]['no'] = $no;
     			$list[$idx]['tznum'] = $tznumArr[$idx];
-    			$list[$idx]['tzpoints'] = $tzpointsArr[$idx];
-    			$list[$idx]['zjpoints'] = $zjpointsArr[$idx];
+    			$list[$idx]['tzpoints'] = $tzpointsArr[$idx]; //sprintf('%.2f', floatval($tzpointsArr[$idx])/1000);
+    			$list[$idx]['zjpoints'] = $zjpointsArr[$idx]; //sprintf('%.2f', floatval($zjpointsArr[$idx])/1000);
     			
     			$tzpointsTotal = $tzpointsTotal + $tzpointsArr[$idx];
     			$zjpointsTotal = $zjpointsTotal + $zjpointsArr[$idx];
@@ -1166,18 +1191,18 @@ class GameAction extends GamebaseAction
     		
     		$list[$idx+1]['no'] = "总计";
     		$list[$idx+1]['tznum'] = "";
-    		$list[$idx+1]['tzpoints'] = $tzpointsTotal;
-    		$list[$idx+1]['zjpoints'] = $zjpointsTotal;
+    		$list[$idx+1]['tzpoints'] = $tzpointsTotal; //sprintf('%.2f', floatval($tzpointsTotal)/1000);
+    		$list[$idx+1]['zjpoints'] = $zjpointsTotal; //sprintf('%.2f', floatval($zjpointsTotal)/1000);
     		$list[$idx+1]['zjpl'] = "";
     	}
-    	 
-    	 
+    	     	 
     	$this->assign('list',$list);
     	 
     	$games=$this->GetGameConfig($act);
     	$this->assign('game_name',$games['game_name']);
     	$this->display('game_recorddetail');
     }
+
     function total(){
         $page = isset($_GET['page'])?$_GET['page']:1;
         $page =intval($page);
@@ -1201,6 +1226,7 @@ class GameAction extends GamebaseAction
         $this->assign('game_name',$games['game_name']);
         $this->display('game_total');
     }
+
     function rule(){
         $id=Req::get('id','intval');
         $this->assign('act',$id);
@@ -1222,9 +1248,7 @@ class GameAction extends GamebaseAction
 
         return $step;
     }
-    /* 取上盘押注情况
-	*
-	*/
+    /* 取上盘押注情况 */
     function getLastPress(){
         $GameType = Req::post('gtype','intval');
         $No = Req::post('no','intval');
@@ -1272,8 +1296,6 @@ class GameAction extends GamebaseAction
         }
     }
     
-    
-    
     private function getGameWWResult($a,$b,$c){//外围开奖结果
     	$total = $a + $b + $c;
     	$result = [];
@@ -1315,8 +1337,7 @@ class GameAction extends GamebaseAction
     	sort($result);
     	return $result;
     }
-    
-    
+        
     private function getGameDWResult($a,$b,$c){//定位开奖结果
     	$total = $a + $b + $c;
     	$result = [];
@@ -1402,8 +1423,7 @@ class GameAction extends GamebaseAction
     	sort($result);
     	return $result;
     }
-    
-    
+        
     private function getGameSCResult($kjNoArr){//赛车开奖结果
     	$a = $kjNoArr[0];
     	$b = $kjNoArr[1];
@@ -1501,8 +1521,7 @@ class GameAction extends GamebaseAction
     	sort($result);
     	return $result;
     }
-    
-    
+        
     protected function getGame36Result($a,$b,$c){//36开奖结果
     	$arrNum = array($a,$b,$c);
     	sort($arrNum);

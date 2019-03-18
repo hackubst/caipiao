@@ -68,11 +68,10 @@ class BaseAction extends Action{
     }
     
     protected function setPassword($str){
-        return md5($GLOBALS['web_pwd_encrypt_prefix'].$str);
+        //return md5($GLOBALS['web_pwd_encrypt_prefix'].$str);
+        return md5($str);
     }
-    /* 更新分数
- *
-*/
+    /* 更新分数**/
     function RefreshPoints()
     {
         $sql = "select points,back,dj from users where id = '{$_SESSION['usersid']}'";

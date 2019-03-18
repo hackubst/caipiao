@@ -21,7 +21,6 @@
     </div>
 </nav>
 
-
 <div id="main">
     <div class="container-fluid">
         <div class="row white_bg detailed_coin">
@@ -53,8 +52,7 @@
         </div>
         <div class="row detailed_coin">
             <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 pad0">
-                <p class="jl"><span id="liTimer">当前:{$no}(距离截止还有<span class="red">768秒</span>)</span> <br/>我已投注金蛋:<span
-                        class="red">{$tzpoints}</span></p>
+                <p class="jl"><span id="liTimer">当前:{$no}(距离截止还有<span class="red">768秒</span>)</span> <br/>我已投注金蛋:<span class="red">{$tzpoints}</span></p>
             </div>
         </div>
     </div>
@@ -146,7 +144,6 @@
                         <td><a href="javascript:void(0);" class="btn btn-default btn-block btn-be c3">10倍</a></td>
                     </tr>
                     {/loop}
-
                     </tbody>
                 </table>
             </form>
@@ -154,8 +151,6 @@
     </div>
 
 </div>
-
-
 
 <nav class="navbar-default navbar-fixed-bottom">
     <div class="container-fluid betting_bottom">
@@ -165,7 +160,8 @@
 
                 <li style="width: 30%; line-height: 1.5;" class="pull-right">
                     <button href="javascript:void(0);" class="btn btn-danger btn-md btn-tz"  data-toggle="modal" data-target="#myModal1">投注模式</button>
-<!--                    <a href="javascript:void(0);" class="btn btn-danger btn-xs" data-toggle="modal" data-target="#myModal1">11投注模式</a></li>-->
+                    <!--<a href="javascript:void(0);" class="btn btn-danger btn-xs" data-toggle="modal" data-target="#myModal1">11投注模式</a>-->
+                </li>
                 <!--
                 <li style="display: none"><a href="javascript:void(0);" data-toggle="modal" data-target="#myModal2">自定义模式</a></li>
                 <li style="display: none"><a href="save.shtml">另存为</a></li>
@@ -251,9 +247,6 @@
         </div>
     </div>
 </div>
-
-
-
 
 <script type="text/javascript">
     var MAX_SCORE = {$pl.press_max};

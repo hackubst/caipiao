@@ -23,13 +23,12 @@
 </nav>
 <div id="main" class="container-fluid">
     
-    {tpl info}
-
-    <div class="row white_bg member_mycard" style="margin: 0px;padding: 0px;">
-        <form action="" style="margin-top:10px;">
+    <div class="row member_bank white_bg">
+        <form action="" style="margin:0px 15px 30px;">
+            <h4 style="text-align:center;">从游戏转入彩票</h4>
             <div class="form-group member_coin">
-                <label for="desposit">存豆金额:</label>
-                <input type="text" class="form-control" name="deposit" id="deposit" placeholder="请输入金额整数">
+                <label for="desposit">转入金额:（以游戏账户余额为准!）</label>
+                <input type="text" class="form-control" name="deposit" id="deposit" placeholder="请输入转入金额">
             </div>
             
             <button type="button"  class="btn btn-danger" style="font-size:12px;" onclick="savemoney(50)">50</button>
@@ -39,14 +38,16 @@
             <button type="button"  class="btn btn-danger" style="font-size:12px;" onclick="savemoney(5000)">5K</button>
             <button type="button"  class="btn btn-danger" style="font-size:12px;" onclick="removes1()">清除</button>
             
-            <button type="button" class="btn btn-danger btn-block set" style="margin-top:10px;">游戏转入彩票</button>
+            <button type="button" class="btn btn-danger btn-block set" style="margin-top:10px;">立 即 转 入</button>
             
         </form>
-
-        <form action="" style="margin-top:10px;">
+    </div>
+    <div class="row member_bank white_bg">
+        <form action="" style="margin:20px 15px 30px;">
+            <h4 style="text-align:center;">从彩票转入游戏</h4>
             <div class="form-group member_coin">
-                <label for="desposit">取豆金额:</label>
-                <input type="text" class="form-control" name="take" id="take" placeholder="请输入金额整数">
+                <label for="desposit">转出金额:（当前可转出总余额：<font class="red">{$info.points}</font>）</label>
+                <input type="text" class="form-control" name="take" id="take" placeholder="请输入转出金额">
             </div>
             
             <button type="button"  class="btn btn-danger" style="font-size:12px;" onclick="getmoney(50)">50</button>
@@ -57,11 +58,12 @@
             <button type="button"  class="btn btn-danger" style="font-size:12px;" onclick="getall()">全部</button>
             <button type="button"  class="btn btn-danger" style="font-size:12px;" onclick="removes2()">清除</button>
             
-            <button type="button" class="btn btn-danger btn-block get" style="margin-top:10px;">彩票转入游戏</button>
+            <button type="button" class="btn btn-danger btn-block get" style="margin-top:10px;">立 即 转 出</button>
         </form>
-        <p class="green message_text">温馨提示:游戏金币和彩票乐豆的互转</p>
     </div>
-
+    <div style="margin:15px auto;">
+        <strong class="red message_text">温馨提示：游戏和彩票的账户余额互转均已10的整倍数为准，如：10、20、50、100以此类推.</strong>
+    </div>
 </div>
 
 <!-- {tpl foot} -->

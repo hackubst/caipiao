@@ -174,8 +174,8 @@ class UsersAction extends BaseAction
         if($_COOKIE['username'])$this->assign('username',$_COOKIE['username']);
         $this->display('login');
     }
-    private function act_gamelogin(){
-
+    private function act_gamelogin()
+    {
         $data=[];
         $data['mobile']=Req::request('account');
         $data['password']=Req::request('password');
@@ -651,23 +651,21 @@ class UsersAction extends BaseAction
             if ($points < $Score) {
                 return $this->result(1, '余额不足!');
             } else {
-                $sql="update users set `points`=`points`-{$Score} where username='{$account}' and `points`-{$Score}>=0";
-                if(!db::_query($sql , false)){
-                    db::_query('rollback');
-                    return $this->result(1, '转入游戏失败[1],请联系管理员');
-                }else {
-                    $url = 'http://192.168.0.120:13201/lottery/transfer2game';
-                    $result = curl_post($url,$data);
-                    $datas = json_decode($result);
-                    if (0==$datas->errcode) {
-                        $arrRet['cmd'] = "0";
-                        $arrRet['msg'] = "操作成功!";
-                        $this->RefreshPoints();
-                    }else {
+                $url = 'http://192.168.1.36:13201/lottery/transfer2game';
+                $result = curl_post($url,$data);
+                $datas = json_decode($result);
+                if (0==$datas->errcode) {
+                    $arrRet['cmd'] = "0";
+                    $arrRet['msg'] = "操作成功!";
+                    $sql="update users set `points`=`points`-{$Score} where username='{$account}' and `points`-{$Score}>=0";
+                    if(!db::_query($sql , false)){
                         db::_query('rollback');
-                        $arrRet['cmd'] = "1";
-                        $arrRet['msg'] = $datas->errmsg;
-                    }
+                        return $this->result(1, '转入游戏失败[1],请联系管理员');
+                    } else { $this->RefreshPoints(); }
+                }else {
+                    db::_query('rollback');
+                    $arrRet['cmd'] = "1";
+                    $arrRet['msg'] = $datas->errmsg;
                 }
             }
         }elseif (0==$oprType) {
@@ -677,7 +675,7 @@ class UsersAction extends BaseAction
                 return $this->result(1, '余额不足!');
             }
             //游戏转入彩票
-            $url = 'http://192.168.0.120:13201/lottery/transfer2lottery';
+            $url = 'http://192.168.1.36:13201/lottery/transfer2lottery';
             $result = curl_post($url,$data);
             
             //file_put_contents('d:\\cp28gt_err.log',"mytransfer points:".$result."\n", FILE_APPEND);
@@ -767,8 +765,6 @@ class UsersAction extends BaseAction
     	exit;
     }
     
-    
-
     function pay(){
     	$whereStr = "";
         /* $sql = "SELECT DISTINCT id FROM (
@@ -817,7 +813,6 @@ class UsersAction extends BaseAction
         $this->display('pay_order');
     }
     
-    
     public function pay_order_list(){
     	$sql='select p.order_id,p.rmb,p.add_time,p.pay_time,p.state,w.name AS charge_type from pay_online p left join recharge_type w on w.id=p.cz_type 
     			where p.state in(0,1,2) and p.uid='.$_SESSION['usersid'].' order by p.id desc limit 20';
@@ -833,7 +828,6 @@ class UsersAction extends BaseAction
     	$this->display('pay_order_list');
     }
     
-    
     public function cancelorder(){
     	$order_id = (int)$_POST['order_id'];
     	$sql="update pay_online set state=3 where uid='{$_SESSION['usersid']}' and order_id='{$order_id}' and state=0";
@@ -843,7 +837,6 @@ class UsersAction extends BaseAction
     		return $this->result(0,'撤销成功!');
     	}
     }
-    
     
     function bind(){
         $this->display('user_bind');

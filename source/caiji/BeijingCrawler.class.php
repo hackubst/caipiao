@@ -1,17 +1,20 @@
 <?php
 include_once(dirname( __FILE__ ) ."/BaseCrawler.class.php");
-
+//北京类
 class BeijingCrawler extends BaseCrawler
 {
 	public function __construct(){
 		parent::__construct();
-		$this->sleepSec = 3;
+		$this->sleepSec = 10;
 		$this->stopBegin = "00:05:00";
 		$this->stopEnd = "09:00:00";
 		$this->gameType = "gamebj";
 		$this->gameTypes = [3,4,5,11,12,25,26,32,33,38,39,40,41,42];
-		$this->crawlerUrls = array(
-			0=>array('url'=>'http://e.apiplus.net/newly.do?token=t901e9adae3e34d1dk&code=bjkl8&format=json','method'=>'_api','useproxy'=>0,'referurl'=>''),
+		$this->crawlerUrls = array( 
+			0=>array('url'=>'http://api.duourl.com/api?p=json&t=bjkl8&limit=10&token=aa966eccdb9b6855','method'=>'_api','useproxy'=>0,'referurl'=>''),
+			1=>array('url'=>'http://www.caipiaojieguo.com/api/lottrey?biaoshi=bjklb&format=json&rows=5','method'=>'jieguo_api','useproxy'=>0,'referurl'=>''),
+			//1=>array('url'=>'http://e.apiplus.net/newly.do?token=t901e9adae3e34d1dk&code=bjkl8&format=json','method'=>'_api','useproxy'=>0,'referurl'=>''),
+			
 			//0=>array('url'=>'http://ho.apiplus.net/newly.do?token=t06e9bf7eak&code=bjkl8&format=json','method'=>'_api','useproxy'=>0,'referurl'=>''),
 			//0=>array('url'=>'http://chart.cp.360.cn/kaijiang/kl8/','method'=>'_parse_360','useproxy'=>0,'referurl'=>''),
 			//1=>array('url'=>'http://www.bwlc.net/bulletin/prevkeno.html?num=','method'=>'_parse_bwlc','useproxy'=>0,'referurl'=>''),
@@ -23,8 +26,40 @@ class BeijingCrawler extends BaseCrawler
 		);
 	}
 	
+	private function _api($contents){
+		$str = json_decode($contents);
+		$data = $str->data;
+		$result = array();
+	
+		foreach ($data as $item) {
+			$no = $item->expect;
+			$result[$no]['no'] = $no;
+			$result[$no]['time'] = $item->opentime;
+			$result[$no]['data'] = str_replace(',', '|', str_replace('+00', '', $item->opencode));
+		}
+	
+		if(empty($result)) $this->Logger("Parse Error _api.");
+	
+		return $result;
+	}
 
+	private function jieguo_api($contents){
+		$str = json_decode($contents);
+		$data = $str->data;
+		$result = array();
 
+		foreach ($data as $item) {
+			$no = $item->qishu;
+			$result[$no]['no'] = $no;
+			$result[$no]['time'] = $item->open_time;
+			$result[$no]['data'] = str_replace('+00', '', str_replace(',', '|', $item->result));
+		}
+	
+		if(empty($result)) $this->Logger("Parse Error jieguo_api.");
+	
+		return $result;
+	}
+	
 	private function _1399klc($contents){
 		$contents = str_replace(['(',')'],['',''],$contents);
 		$str = json_decode($contents);
@@ -39,28 +74,10 @@ class BeijingCrawler extends BaseCrawler
 		}
 	
 	
-		if(empty($result)) $this->Logger("Parse Error.");
+		if(empty($result)) $this->Logger("Parse Error _1399klc.");
 	
 		return $result;
-	}
-	
-	private function _api($contents){
-		$str = json_decode($contents);
-		$data = $str->data;
-		$result = array();
-	
-		foreach ($data as $item) {
-			$no = $item->expect;
-			$result[$no]['no'] = $no;
-			$result[$no]['time'] = $item->opentime;
-			$result[$no]['data'] = str_replace(',', '|', $item->opencode);
-		}
-	
-		if(empty($result)) $this->Logger("Parse Error.");
-	
-		return $result;
-	}
-	
+	}	
 	
 	private function _pase_1680210($contents){
 		$arrRet = json_decode($contents,true);
@@ -80,11 +97,10 @@ class BeijingCrawler extends BaseCrawler
 			}
 		}
 		
-		if(empty($result)) $this->Logger("Parse Error.");
+		if(empty($result)) $this->Logger("Parse Error _pase_1680210.");
 		
 		return $result;
-	}
-	
+	}	
 	
 	private function _pase_baidu($contents){
 		preg_match('#<title>(\D+)(\d+)(\D+)(\d+)(\D+)(\d+)(\D+)(\d+)(\D+)(\d+)(\D+)</title>#s',$contents,$tabledata);
@@ -107,11 +123,10 @@ class BeijingCrawler extends BaseCrawler
 			}
 		}
 	
-		if(empty($result)) $this->Logger("Parse Error.");
+		if(empty($result)) $this->Logger("Parse Error _pase_baidu.");
 	
 		return $result;
-	}
-	
+	}	
 	
 	private function _parse_bwlc($contents){
 		/* preg_match('#<table class="tb" width="100%">(.*?)</table>#s',$contents,$tabledata);
@@ -133,7 +148,7 @@ class BeijingCrawler extends BaseCrawler
 				$result[$v] = ['no'=>$v,'time'=>$data[5][$k],'data'=>implode('|',$arrTmp)];
 		}
 		
-		if(empty($result)) $this->Logger("Parse Error.");
+		if(empty($result)) $this->Logger("Parse Error _parse_bwlc.");
 	
 		return $result;
 	}
@@ -152,7 +167,7 @@ class BeijingCrawler extends BaseCrawler
 				$result[$no]=['no'=>$no,'time'=>$list[3][$k],'data'=>$data];
 		}
 		
-		if(empty($result)) $this->Logger("Parse Error.");
+		if(empty($result)) $this->Logger("Parse Error _parse_360.");
 		
 		return $result;
 	}
@@ -161,24 +176,22 @@ class BeijingCrawler extends BaseCrawler
 	protected function getUnOpenGameNos(){
 		$ret = array();
 		$sql = "SELECT id FROM game28 
-					WHERE kj = 0 AND kgtime < NOW() 
-					AND kgtime > DATE_ADD(NOW(),INTERVAL -30 MINUTE)
-					AND id NOT IN(select gameno FROM game_result WHERE gametype = '{$this->gameType}') 
-					ORDER BY id DESC";
+				WHERE kj = 0 AND kgtime < NOW() 
+				AND kgtime > DATE_ADD(NOW(),INTERVAL -70 MINUTE)
+				AND id NOT IN(select gameno FROM game_result WHERE gametype = '{$this->gameType}') 
+				ORDER BY id DESC";
 		$result = $this->db->getAll($sql);
 		if(!empty($result)){
 			foreach($result as $res){
 				$ret[$res['id']] = $res['id'];
 			}
 		}
-		
-		
+				
 		if(count($result) >= 4){
 			$this->switchGame(1);
 		}else{
 			;//$this->switchGame(0);
-		}
-		
+		}		
 		
 		return $ret;
 	}
@@ -209,7 +222,9 @@ class BeijingCrawler extends BaseCrawler
 					}
 						
 					if($hasnewdata)
-					break;
+						break;
+				} else {
+					$this->Logger("Parse Error . Http Res => " . $contents . " result => " . $result);
 				}
 			}
 			
@@ -266,8 +281,8 @@ class BeijingCrawler extends BaseCrawler
 			}
 		}
 		
-		$strkjNum = $this->getGameResult($No);//取开奖号码串
-		$kjnum_array = explode( "|", $strkjNum );
+		$strkjNum = $this->getGameResult($No);//取开奖号码串		
+		$kjnum_array = explode( "|", $strkjNum);
 		
 		if(count($kjnum_array) == 20){ //取到了
 			//排序
@@ -295,7 +310,7 @@ class BeijingCrawler extends BaseCrawler
 			
 			//开奖北京28固定
 			$sql = "call web_kj_gamebj28gd({$No},{$zj_a},{$zj_b},{$zj_c},{$zj_result},'{$strkjNum}')";
-			$this->Logger("web_kj_gamebj28gd : " . $sql);
+			//$this->Logger("web_kj_gamebj28gd : " . $sql);
 			$result = $this->db->MultiQuery($sql);
 			$this->Logger("beijing28gd {$No} open result is:{$result[0][0]['msg']}({$result[0][0]['result']})");
 			
@@ -330,10 +345,6 @@ class BeijingCrawler extends BaseCrawler
 				$result = $this->db->MultiQuery($sql);
 				$this->Logger("bj dw {$No} open result is:{$result[0][0]['msg']}({$result[0][0]['result']})");
 			}
-			
-			
-			
-			
 			
 			//开奖北京36
 			$zjh_a = $kjnum_array[1] + $kjnum_array[4] + $kjnum_array[7] + $kjnum_array[10] + $kjnum_array[13] + $kjnum_array[16];
@@ -370,7 +381,7 @@ class BeijingCrawler extends BaseCrawler
 			$zj_c = -1;
 			$zj_result = $zj_a + $zj_b;
 			$sql = "call web_kj_gamebj11({$No},{$zj_a},{$zj_b},{$zj_c},{$zj_result},'{$strkjNum}')";
-			$this->Logger($sql);
+			//$this->Logger($sql);
 			$result = $this->db->MultiQuery($sql);
 			$this->Logger("beijing11 {$No} open result is:{$result[0][0]['msg']}({$result[0][0]['result']})");
 			
@@ -384,7 +395,7 @@ class BeijingCrawler extends BaseCrawler
 			$zj_c = ($zjh_c % 6) + 1;
 			$zj_result = $zj_a + $zj_b + $zj_c;
 			$sql = "call web_kj_game16({$No},{$zj_a},{$zj_b},{$zj_c},{$zj_result},'{$strkjNum}')";
-			$this->Logger($sql);
+			//$this->Logger($sql);
 			$result = $this->db->MultiQuery($sql);
 			$this->Logger("dandan16 {$No} open result is:{$result[0][0]['msg']}({$result[0][0]['result']})");
 				
@@ -396,7 +407,7 @@ class BeijingCrawler extends BaseCrawler
 			$zj_c = -1;
 			$zj_result = $zj_a + $zj_b;
 			$sql = "call web_kj_game11({$No},{$zj_a},{$zj_b},{$zj_c},{$zj_result},'{$strkjNum}')";
-			$this->Logger($sql);
+			//$this->Logger($sql);
 			$result = $this->db->MultiQuery($sql);
 			$this->Logger("dandan11 {$No} open result is:{$result[0][0]['msg']}({$result[0][0]['result']})");
 			
@@ -467,9 +478,7 @@ class BeijingCrawler extends BaseCrawler
 				$this->Logger("dandandw {$No} open result is:{$result[0][0]['msg']}({$result[0][0]['result']})");
 			}
 		}
-		
-		
-		
+				
 		if($isToAuto){
 			//给下一盘自动投注
 			$NextNo = $No+1;

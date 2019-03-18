@@ -31,11 +31,12 @@ while(!$crawler->stop()){
 		break;
 	}
 
+	//$crawler->Logger("Go To Open {$count}");
 	if($count > 0){
 		for($i=0;$i<$count;$i++){
 			$crawler->open();
 		}
-	}else{
+	} else {
 		$crawler->open();
 	}
 	

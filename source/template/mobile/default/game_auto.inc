@@ -25,16 +25,10 @@
 
 
 <div id="main" class="container-fluid">
-    <div class="white_bg detailed_coin" style="padding:0px;">
-        <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 pad0">
-            <p>¥: <span class="red" id="money">{$info.points}</span></p>
-        </div>
-        <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 pad0">
-            <p>银行: ¥<span class="red" id="bank">{$info.bankpoints}</span></p>
-        </div>
-    </div>
     <div class='Edit'>
         <ul class='new' style="margin:10px auto;">
+            <li><lable>当前余额: </lable>¥<span class="red" id="money">{$info.points}</span></li>
+            <li style="display:none"><lable>银行余额: </lable>¥<span class="red" id="bank">{$info.bankpoints}</span></li>
             <li>
                 <lable>开始模式:</lable><select id='sltcurModel' name='select'>
                     {loop $list $k $v}

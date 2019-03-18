@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,minimum-scale=1.0,user-scalable=no">
     {tpl style}
-    <link rel="stylesheet" type="text/css" href="{$skin}css/js.css?15" />
+    <link rel="stylesheet" type="text/css" href="{$skin}css/js.css??v=1.5.01" />
     <script type="text/javascript" src="{$skin}js/vue.min.js"></script>
     <title>{$webname}</title>
 </head>
@@ -38,38 +38,40 @@
                     <a href="javascript:;" id="{{v.id}}" class="list-group-item status{{v.status}}">
                         <div class="container-fluid">
                             <div class="row list_pad">
-                                <div class="col-lg-1 col-md-1 col-sm-1 col-xs-1 text-left pad0"><span>{{v.sid}}</span></div>
+                                <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2 text-left pad0"><span>{{v.sid}}</span></div>
                                 <template v-if="v.kj==0">
-                                <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3 text-left pad0"><span>{{v.kgtime}}</span></div>
-                                </template>
-                                <div class="col-lg-5 col-md-5 col-sm-5 col-xs-5 text-left pad0 w{{v.kj}}" >
-                                    <span v-if="v.kj==1">
-                                    	
-                                        <template v-for="(index, sv) in v.kjjg">
-                                        	<span v-if="index==5">
-                                        		<div class="result_num" style="width:25px;height:25px;line-height:25px;">{{sv}}</div>
-                                        	</span>
-                                        </template>
-
-                                        <template v-for="(index, sv) in v.kjjg2">
-                                        	<span v-if="sv<7">
-                                        		<img src="{$skin}img/ssc/ds_{{sv}}.png">
-                                        	</span>
-                                        </template>
-                                        
-                                    </span>
-                                    <template v-if="v.kj==0">
+                                    <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3 text-left pad0"><span>{{v.kgtime}}</span></div>
+                                    <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4 text-center pad0 w{{v.kj}}" >
                                         <span v-if="v.stoptime>0">截止<span class="red">{{v.stoptime}}</span>秒</span>
                                         <span v-else>
                                             <span v-if="v.kjtime>0">还有<span class="red">{{v.kjtime}}</span>秒,开奖 </span>
                                             <span v-else>开奖中...</span>
                                         </span>
-                                    </template>
-                                </div>
+                                    </div>
+                                </template>
+                                <template v-if="v.kj==1">
+                                    <div class="col-lg-7 col-md-7 col-sm-7 col-xs-7 text-left pad0" >
+                                        <span style="display:inline-block;">                                    	
+                                            <template v-for="(index, sv) in v.kjjg">
+                                                <span v-if="index<5" style="display:inline-block;vertical-align:middle;">
+                                                    <b style="width:27px;height:27px;color:red;font-size:25px;">{{sv}}</b>
+                                                </span>
+                                                <span v-if="index==5" style="display:inline-block;vertical-align:top;margin-right:10px;">
+                                                    <div class="result_num" style="width:27px;height:27px;line-height:27px;margin-top:4px;border:1px solid red;">{{sv}}</div>
+                                                </span>
+                                            </template>
+                                            <template v-for="(index, sv) in v.kjjg2">
+                                                <span v-if="sv<7" style="display:inline-block;">
+                                                    <img src="{$skin}img/ssc/ds_{{sv}}.png">
+                                                </span>
+                                            </template>                                        
+                                        </span>
+                                    </div>
+                                </template>
                                 <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3 pad0 press" style="float:right">
                                     <span v-if="v.status==1">{{v.points}}/{{v.hdpoints}}</span>
-                                    <span v-if="v.status==2" id="press"><button class="btn btn-info kj"><span v-if="v.points>0">{{v.points}}</span><span v-else>&nbsp;<!--投　注-->&nbsp;</span></button></span>
-                                    <span v-if="v.status==3"><button class="btn btn-warning kj">&nbsp;<!--开奖中-->&nbsp;</button></span>
+                                    <span v-if="v.status==2" id="press"><button class="btn btn-info kj"><span v-if="v.points>0">{{v.points}}</span><span v-else>&nbsp;投　注&nbsp;</span></button></span>
+                                    <span v-if="v.status==3"><button class="btn btn-warning kj">&nbsp;开奖中&nbsp;</button></span>
                                 </div>
                             </div>
                         </div>
@@ -187,7 +189,6 @@
 	    $("#fullbg,#presspannel,#pressbottom").hide();
 	}
 </script>
-
 
 <div id="presspannel" style="top:60px;">
 	<div style="position:absolute;right:0px;top:0px;"><img src="{$skin}img/close.png" alt="关闭" id="closeimg" onclick="closePressPannel();"></div>
@@ -357,28 +358,28 @@
     </div>
 </div>
 
-
 <nav class="navbar-default navbar-fixed-bottom" id="pressbottom" style="display:none;">
     <div class="container-fluid betting_bottom">
         <div class="row">
-                <div class="bottom_left">
-                    <p style="font-size:14px;color:#fff;"><span>投注:</span><input type="number" name="total" id="total" class="form-control total_press" style="display:inline-block;height:35px;width:40%;" value="0"/>　余额:<span>{$info.points}</span></p>
-                    <div class="chips">
-                        <a href="javascript:chouma(1);"><img src="{$skin}img/chips_1000.png" class="img-responsive" alt="1"></a>
-                        <a href="javascript:chouma(10);"><img src="{$skin}img/chips_10000.png" class="img-responsive" alt="10"></a>
-                        <a href="javascript:chouma(100);"><img src="{$skin}img/chips_100000.png" class="img-responsive" alt="100"></a>
-                        <a href="javascript:chouma(500);"><img src="{$skin}img/chips_500000.png" class="img-responsive" alt="500"></a>
-                        <a href="javascript:chouma(1000);"><img src="{$skin}img/chips_1000000.png" class="img-responsive" alt="1000"></a>
-                        <a href="javascript:chouma(5000);"><img src="{$skin}img/chips_5000000.png" class="img-responsive" alt="5000"></a>
-                    </div>
+            <div class="col-lg-9 col-md-9 col-sm-8 col-xs-8 bottom_left">
+                <input type="hidden" name="total" id="total" class="form-control total_press" value="0"/>
+                <p><span style="display:inline-block;"><b>投注:</b></span><span name="total" style="display:inline-block;min-width:50px;">0</span><span style="display:inline-block;">余额:{$info.points}</span></p>
+                <div class="chips">
+                    <a href="javascript:chouma(1);"><img src="{$skin}img/chips_1000.png" class="img-responsive" alt="1"></a>
+                    <a href="javascript:chouma(10);"><img src="{$skin}img/chips_10000.png" class="img-responsive" alt="10"></a>
+                    <a href="javascript:chouma(100);"><img src="{$skin}img/chips_100000.png" class="img-responsive" alt="100"></a>
+                    <a href="javascript:chouma(500);"><img src="{$skin}img/chips_500000.png" class="img-responsive" alt="500"></a>
+                    <a href="javascript:chouma(1000);"><img src="{$skin}img/chips_1000000.png" class="img-responsive" alt="1000"></a>
+                    <a href="javascript:chouma(5000);"><img src="{$skin}img/chips_5000000.png" class="img-responsive" alt="5000"></a>
                 </div>
-        </div>
-        <div class="row">
-                <div class="bottom_right">
-                    <a href="javascript:last_press();" class="btn-tz btn btn-success">上次</a>
+            </div>
+            <div class="col-lg-3 col-md-3 col-sm-4 col-xs-4 bottom_right">
+                <div class="button-group">
+                    <a href="javascript:retz();" class="btn-tz btn btn-info">撤销</a>
                     <a href="javascript:cancel();" class="btn-tz btn btn-warning">取消</a>
-                    <a href="javascript:;" class="btn-tz btn btn-danger" onclick="tz()">投注</a>
                 </div>
+                <a href="javascript:;" class="btn-tz btn btn-danger" style="border-color:#af8344;" onclick="tz()">确认投注</a>
+            </div>
         </div>
     </div>
 </nav>
@@ -394,6 +395,7 @@
     var num=0;
     var curr_cm=0;
     var data = PRESSNUM.split(",");
+    var v_gid={$id};
 
     $(function () {
         $(".btn-qc").on('click',function () {
@@ -416,7 +418,22 @@
         $("#total").on('change',function () {
         	money=parseInt($(this).val());
         	total();
-        })
+        });
+        if (v_gid == 49) {
+            $('#press .row:eq(0) .pad0:eq(2)').hide();
+            $('#press .row:eq(0) .pad0:eq(3)').hide();
+            $('#press .row:eq(1) .pad0:eq(2)').hide();
+            $('#press .row:eq(2) .pad0:eq(2)').hide();
+            $('#press .row:eq(2) .pad0:eq(3)').hide();
+            $('#press .row:eq(3) .pad0:eq(2)').hide();
+            $('#press .row:eq(3) .pad0:eq(3)').hide();
+            $('#press .row:eq(4) .pad0:eq(2)').hide();
+            $('#press .row:eq(4) .pad0:eq(3)').hide();
+            $('#press .row:eq(5) .pad0:eq(2)').hide();
+            $('#press .row:eq(5) .pad0:eq(3)').hide();
+            $('#press .row:eq(6) .pad0:eq(2)').hide();
+            $('#press .row:eq(6) .pad0:eq(3)').hide();
+        }
     });
     function last_press() {
         $.ajax({
@@ -451,7 +468,7 @@
     }
     function total() {
     	//TODO
-        //$("#total").text(money);
+        $('span[name="total"]').text(money);
         $("#total").val(money);
         jf=money*1000;
     }
@@ -512,6 +529,28 @@
         });
         total();
     }
+    function retz() {
+        $.ajax({
+            type: "POST",
+            url: "{:url('game/ResetPress')}",
+            data:{gtype:{$id},no:no},
+            dataType: "json",
+            timeout:3000,
+            cache:false,
+            success: function(data){
+                if(data.status==0){
+                    alert("投注撤销成功!");
+                  	//TODO
+                    closePressPannel();
+                    window.location='{:url("game/game/id/$id")}';
+                } else {
+                    alert(data.message);
+                  	//TODO
+                    closePressPannel();
+                }
+            }
+        });
+    }
     $(function () {
         $("#press").on("mousedown",".item",function(event){
             if($(this).hasClass("active")){
@@ -529,6 +568,47 @@
         })
     });
     function usefenpei(Input_Score){
+        var data = PRESSNUM.split(",");
+        var totalScore = 0,totalPressScore = 0;
+        var perScore = 0, tnum=0, tsnum=0;
+        var result="";
+
+        for(var i = 0; i < data.length; i++)
+        {
+            if($("#tbNum" + i).hasClass("small-red"))
+            {
+                tnum++;
+                totalScore += parseInt(data[i]);
+            }
+        }
+        for(var i= 0; i < data.length; i++)
+        {
+            perScore=0;
+
+            if($("#tbNum" + i).hasClass("small-red"))
+            {
+                tsnum +=1;
+                if(Input_Score <= MAX_SCORE)
+                {
+                    perScore = Input_Score / totalScore * parseInt(data[i]);
+                }
+                else
+                {
+                    perScore = MAX_SCORE / totalScore * parseInt(data[i]);
+                }
+                totalPressScore += parseInt(perScore);
+                if (tsnum==tnum){
+                    if(Input_Score <= MAX_SCORE){
+                        perScore += (Input_Score-totalPressScore);
+                    } else {
+                        perScore += (MAX_SCORE-totalPressScore);
+                    } 
+                }
+            }
+            result+=parseInt(perScore)+',';
+        }
+        return result;
+        /*
         var totalScore = 0;
         var result="";
         var data = PRESSNUM.split(",");
@@ -542,14 +622,7 @@
                 totalScore ++;
             }
         }
-        
-        /* $("#press div div").each(function () {
-            if($(this).children("a").hasClass("small-red")){
-                totalScore ++;
-            }
-            total ++;
-        }); */
-        
+                
         tz_money=parseInt($("#total").val())*1000;
         one=parseInt(tz_money/totalScore);
         var tsnum=0;
@@ -557,7 +630,6 @@
             if($("#tbNum" + i).hasClass("small-red"))
             {
                 tsnum += 1;
-                console.info(tsnum, tz_money, i, one);
                 if (tsnum==totalScore) 
                 { result+=parseInt(one+(tz_money-(one*tsnum)))+','; } 
                 else { result+=parseInt(one)+','; }
@@ -568,6 +640,7 @@
             }
         }
         return result;
+        */
     }
     function cancel() {
     	//TODO

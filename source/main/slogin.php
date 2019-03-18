@@ -17,9 +17,10 @@ switch($_GET['act'])
         exit;
     case "login":
         $username = str_check($_POST['username']);
-        $pwd = $_POST['pass'];
-        $pwd = (strlen($pwd) > 30) ? substr($pwd,0,30) : $pwd;
-        $pwd = md5($web_pwd_encrypt_prefix . $_POST['pass']);
+        //$pwd = $_POST['pass'];
+        //$pwd = (strlen($pwd) > 30) ? substr($pwd,0,30) : $pwd;
+        //$pwd = md5($web_pwd_encrypt_prefix . $_POST['pass']); 
+        $pwd = md5($_POST['pass']); 
         $vcode = trim($_POST['vcode']);
         $isKeepLogin = $_POST['iskeep'];
         $arrRet = array('cmd'=>'');

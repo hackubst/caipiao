@@ -5,16 +5,15 @@ class AirshipCrawler extends BaseCrawler
 {
 	public function __construct(){
 		parent::__construct();
-		$this->sleepSec = 3;
+		$this->sleepSec = 10;
 		$this->stopBegin = "04:20:00";
 		$this->stopEnd = "13:00:00";
 		$this->gameType = "gameairship";
 		$this->gameTypes = [43,44,45,46,47];
 		$this->crawlerUrls = array(
-			//http://e.apiplus.net/newly.do?token=t901e9adae3e34d1dk&code=mlaft&format=json
-			//1=>array('url'=>'http://www.luckyairship.com/history.html','method'=>'_parse_airship','useproxy'=>0,'referurl'=>'','useno'=>1),
-			//0=>array('url'=>'http://ho.apiplus.net/newly.do?token=t0612bf7eak&code=mlaft&format=json','method'=>'_api','useproxy'=>0,'referurl'=>'')
-			0=>array('url'=>'http://e.apiplus.net/newly.do?token=t901e9adae3e34d1dk&code=mlaft&format=json','method'=>'_api','useproxy'=>0,'referurl'=>'')
+			//0=>array('url'=>'http://e.apiplus.net/newly.do?token=t901e9adae3e34d1dk&code=mlaft&format=json','method'=>'_api','useproxy'=>0,'referurl'=>''),
+			0=>array('url'=>'http://www.caipiaojieguo.com/api/lottrey?biaoshi=xyft&format=json&rows=10','method'=>'_jieguoapi','useproxy'=>0,'referurl'=>''),
+			1=>array('url'=>'http://www.luckyairship.com/history.html?useno=','method'=>'_parse_airship','useproxy'=>0,'referurl'=>'','useno'=>1)
 		);
 	}
 	
@@ -30,11 +29,27 @@ class AirshipCrawler extends BaseCrawler
 			$result[$no]['data'] = str_replace(',', '|', $item->opencode);
 		}
 	
-		if(empty($result)) $this->Logger("Parse Error.");
+		if(empty($result)) $this->Logger("Parse Error _api.");
 	
 		return $result;
 	}
 	
+	private function _jieguoapi($contents){
+		$str = json_decode($contents);
+		$data = $str->data;
+		$result = array();
+	
+		foreach ($data as $item) {
+			$no = $item->qishu;
+			$result[$no]['no'] = $no;
+			$result[$no]['time'] = $item->open_time;
+			$result[$no]['data'] = str_replace(',', '|', $item->result);
+		}
+	
+		if(empty($result)) $this->Logger("Parse Error _jieguoapi.");
+	
+		return $result;
+	}
 	
 	private function _parse_airship($contents){
 		preg_match('#<table width="100%" border="0" cellspacing="0" cellpadding="0">(.*?)</table>#s',$contents,$tabledata);
@@ -54,11 +69,11 @@ class AirshipCrawler extends BaseCrawler
 				$arrTmp[] = $data[11][$k];
 				$arrTmp[] = $data[12][$k];
 				if(is_numeric($v))
-					$result[$v] = ['no'=>$v,'time'=>'','data'=>implode('|',$arrTmp)];
+				{ $result[$v] = ['no'=>$v,'time'=>'','data'=>implode('|',$arrTmp)]; }
 			}
 		}
 		
-		if(empty($result)) $this->Logger("Parse Error.");
+		if(empty($result)) $this->Logger("Parse Error _parse_airship.");
 		
 		return $result;
 	}
@@ -167,7 +182,7 @@ class AirshipCrawler extends BaseCrawler
 					}
 				}
 				
-				$contents = $this->httpGet($source['url'] , $source['useproxy'] , $source['referurl']);
+				$contents = $this->httpGet($source['url'], $source['useproxy'] , $source['referurl']);
 				$result = $this->$source['method']($contents);
 				if(count($result) > 0){
 					$hasnewdata = 0;
@@ -302,8 +317,6 @@ class AirshipCrawler extends BaseCrawler
 			$this->Logger("airshipgyj {$No} open result is:{$result[0][0]['msg']}({$result[0][0]['result']})");
 			
 		}
-		
-		
 		
 		if($isToAuto){
 			//给下一盘自动投注

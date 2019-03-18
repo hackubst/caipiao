@@ -3,6 +3,38 @@ ul,li,dl,ol{
 	padding:0;
 	margin:0;
 }
+.text-left {
+	text-align: left !important;
+}
+.word-fw {
+	width: 27px;
+	height: 26px;
+	letter-spacing: normal;
+	word-spacing: normal;
+	background: url("/template/mobile/default/img/jg/word.fw.png") no-repeat;
+	display: inline-block;
+	vertical-align: middle;
+}
+.word-fw.word.fw-01 { background-position: 0px 0px; }
+.word-fw.word.fw-02 { background-position: 0px -26px; }
+.word-fw.word.fw-03 { background-position: 0px -52px; }
+.word-fw.word.fw-04 { background-position: 0px -78px; }
+.word-fw.word.fw-05 { background-position: 0px -104px; }
+.word-fw.word.fw-06 { background-position: 0px -130px; }
+.word-fw.word.fw-07 { background-position: 0px -156px; }
+.word-fw.word.fw-08 { background-position: 0px -182px; }
+.word-fw.word.fw-09 { background-position: 0px -208px; }
+.word-fw.word.fw-10 { background-position: 0px -234px; }
+.word-fw.fw-01 { background-position: 0px -260px; }
+.word-fw.fw-02 { background-position: 0px -286px; }
+.word-fw.fw-03 { background-position: 0px -312px; }
+.word-fw.fw-04 { background-position: 0px -338px; }
+.word-fw.fw-05 { background-position: 0px -364px; }
+.word-fw.fw-06 { background-position: 0px -390px; }
+.word-fw.fw-07 { background-position: 0px -416px; }
+.word-fw.fw-08 { background-position: 0px -442px; }
+.word-fw.fw-09 { background-position: 0px -468px; }
+.word-fw.fw-10 { background-position: 0px -494px; }
 /*	急速10首页	*/
 .game_bank p{
 	height:40px;
@@ -26,7 +58,7 @@ ul,li,dl,ol{
 }
 .list-group .list-group-item {
 	padding:0;
-	margin:0;
+	margin:0 auto;
 	border:none;
 	/* border-bottom:1px solid #ddd; */
 	font-size: 16px;
@@ -43,16 +75,18 @@ ul,li,dl,ol{
 	width:100%;
 	display:block;
 	clear:both;
-	height:35px;
+	/* height:35px; */
 	line-height: 35px;
 	text-align:center;
-	
 }
 .list_pad{
-	padding:0 10px;
+	padding:0 5px;
 }
 .list_pad img{
-	margin-top:4px;
+	margin:4px 1px;
+	border: 1px solid #fff;
+	border-radius: 50%;
+	vertical-align: top;
 }
 .red{
 	text-overflow:ellipsis;
@@ -71,6 +105,9 @@ ul,li,dl,ol{
 }
 .small-show a{
 	text-align:center;
+}
+#presspannel .small-show a{
+	border:1px solid #af8c5a;
 }
 .small-btn {
 	width:100%;
@@ -247,21 +284,21 @@ ul.new li select, ul.new li input {
 #presspannel::-webkit-scrollbar {display:none}
 
 #presspannel{
-	width:96%;
+	width:98%;
 	border-radius:15px;
 	-moz-border-radius:15px;
 	-webkit-border-radius:15px;
 	-khtml-border-radius:15px;
-	background-color:white;
+	background-color:rgba(255, 255, 255, 0.85);
 	padding-top:32px;
 	padding-bottom:10px;
 	display:none;
     left:0;
     right: 0;
 	top:auto;
-	bottom:125px;
+	bottom:88px;
 	margin: auto;
-	position:absolute;
+	position:fixed;
 	overflow:auto;
 	z-index:50;
 }
@@ -276,6 +313,9 @@ ul.new li select, ul.new li input {
 	-moz-border-radius:15px;
 	-webkit-border-radius:15px;
 	-khtml-border-radius:15px;
+	width: 28px;
+	height: 28px;
+	margin: 3px 3px 0px 0px;
 }
 
 .result_num{
@@ -312,42 +352,67 @@ ul.new li select, ul.new li input {
 .betXSmall {
     font-size: 0.85rem;
     font-weight:200;
-    color:#000;
+    color:#3f3f3f;
 }
 
 .bottom_left{
 	text-align:left;
-	width:96%;
+	/* width:96%; */
 	margin: 0 auto;
+	padding-left: 10px;
+	padding-right: 0px;
 }
 .bottom_right{
-	width:96%;
+	/* width:96%; */
 	margin: 0 auto;
 	display:block;
-	text-align:center;
+	text-align:right;
+	padding-left: 0px;
 }
 .bottom_right a{
-	width:30%;
+	width:100%;
+}
+.bottom_right .button-group {
+	height: 40px;
+	line-height: 34px;
+	padding-top: 5px;
+	text-align: center;
+}
+.bottom_right .button-group .btn-info {
+    color: #fff;
+    background-color: #5bc0de;
+    border-color: #46b8da;
+}
+.bottom_right .button-group .btn-info:hover {
+    color: #fff;
+    background-color: #31b0d5;
+    border-color: #269abc;
+}
+.bottom_right .button-group a{
+	width: 45%;
+	height: 28px;
+	line-height: 28px;
 }
 .bottom_left p{
-	width:inherit;
+	/* width:inherit; */
 	color:#fff;
 	font-size:14px;
 	margin:5px 5px 0px;
-	text-align: center;
+	height: 25px;
+	line-height: 25px;
 }
 .bottom_left .chips{
-	width:inherit;
-	margin:5px 5px 0px;
+	margin:5px 0px;
 	display:inline-block;
-	text-align: center;
 	clear:both;
 }
 .bottom_left .chips a {
 	display:inline-block;
 }
 .bottom_left .chips img{
-	margin:3px 5px;
+	margin:1px 0px 0px;
+	width: 36px;
+	height: 40px;
 }
 .bottom_right dd{
 	width:33%;

@@ -43,8 +43,8 @@
     	global $db;
     	
     	//$sql = "SELECT GROUP_CONCAT(game_type SEPARATOR ',') AS gametype,GROUP_CONCAT(game_name SEPARATOR ',') AS gamename
-		//		FROM game_config where state=1
-		//		ORDER BY game_name"; //TODO and id<=37
+		  //FROM game_config where state=1
+		  //ORDER BY game_name"; //TODO and id<=37
     	//$result = $db->query($sql);
     	//if($rs = $db->fetch_array($result)){
     	//$arrGameType = explode(",",$rs["gametype"]);
