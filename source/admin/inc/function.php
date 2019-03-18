@@ -202,9 +202,7 @@ function usersip( )
 	}
 	
 	if(filterKey($ip)) exit("access denied!");
-	
-	return $ip;
-
+		
 	global $db;
 	$sql = "select ip from admin_ips where ip='{$ip}' limit 1";
 	$result = $db->query($sql);
